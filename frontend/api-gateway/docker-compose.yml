@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  api-gateway:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - user-management
+      - problem-management
+      - transaction-service
+      - solver-service
+
+  user-management:
+    image: your_user_management_image
+    ports:
+      - "3000:3000"
+
+  problem-management:
+    image: your_problem_management_image
+    ports:
+      - "3000:3000"
+
+  transaction-service:
+    image: your_transaction_service_image
+    ports:
+      - "3000:3000"
+
+  solver-service:
+    image: your_solver_service_image
+    ports:
+      - "3000:3000"

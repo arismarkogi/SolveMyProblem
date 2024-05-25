@@ -15,6 +15,7 @@
       <list>
         <option value="HTML File" />
         <option value="JavaScript File" />
+        <option value="Dockerfile" />
       </list>
     </option>
   </component>
