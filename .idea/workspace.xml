@@ -7,10 +7,6 @@
     <list default="true" id="829892d7-26cb-47b2-a40d-f4e5c498d0f3" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/api-gateway/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/api-gateway/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/api-gateway/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/api-gateway/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/api-gateway/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/api-gateway/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/mock-backend/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/mock-backend/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/user-frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/user-frontend/src/App.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,7 +80,7 @@
       <updated>1716644736442</updated>
       <workItem from="1716644737038" duration="684000" />
       <workItem from="1716645702750" duration="2243000" />
-      <workItem from="1716650262217" duration="7669000" />
+      <workItem from="1716650262217" duration="13423000" />
     </task>
     <servers />
   </component>
