@@ -1,0 +1,17 @@
+{
+  "statistics": {
+    "totalProblems": 100,
+    "completedProblems": 80,
+    "pendingProblems": 20
+  },
+  "user-submissions": [
+    { "name": "Problem 1", "createdOn": "2023-01-01", "status": "ready" },
+    { "name": "Problem 2", "createdOn": "2023-01-02", "status": "not ready" },
+    { "name": "Problem 3", "createdOn": "2023-01-03", "status": "executed" }
+  ],
+  "admin-activity": [
+    { "creator": "User 1", "name": "Problem 1", "createdOn": "2023-01-01", "status": "ready" },
+    { "creator": "User 2", "name": "Problem 2", "createdOn": "2023-01-02", "status": "not ready" },
+    { "creator": "User 3", "name": "Problem 3", "createdOn": "2023-01-03", "status": "executed" }
+  ]
+}
