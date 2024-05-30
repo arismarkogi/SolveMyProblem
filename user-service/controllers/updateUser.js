@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 
 exports.updateUser = async (req, res) => {
     const { userId, username, email, password } = req.body;
-
+    try{
     // Check for Google ID association
     const user = await User.findOne({_id:userId});
     if (!user) {
@@ -41,5 +41,9 @@ exports.updateUser = async (req, res) => {
 
     await User.updateOne({ _id: userId }, { $set: updates });
 
-    res.json({ message: 'User data updated successfully' });
+    return res.status(200).json({ message: 'User data updated successfully' });
+    } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'Internal server error' });
+}
 };
