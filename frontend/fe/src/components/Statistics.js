@@ -6,7 +6,7 @@ function Statistics() {
 
     useEffect(() => {
         //axios.get('/api/statistics')
-        axios.get('http://localhost:5000/statistics')
+            axios.get('http://localhost:5000/statistics')
             .then(response => {
                 setStatistics(response.data);
             })

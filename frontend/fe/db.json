@@ -4,14 +4,111 @@
     "completedProblems": 80,
     "pendingProblems": 20
   },
+  "models": [
+    { "id": "1", "title": "Model 1", "notes": "Notes for model 1" },
+    { "id": "2", "title": "Model 2", "notes": "Notes for model 2" },
+    { "id": "3", "title": "Model 3", "notes": "Notes for model 3" }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "email": "admin@gmail.com",
+      "password": "password",
+      "isAdmin": true
+    },
+    {
+      "id": "2",
+      "email": "user@gmail.com",
+      "password": "password",
+      "isAdmin": false
+    },
+    {
+      "id": "b402",
+      "email": "admin@example.com",
+      "password": "passwrod"
+    },
+    {
+      "id": "65c8",
+      "email": "admin@example.com",
+      "password": "passwrod"
+    },
+    {
+      "id": "2090",
+      "email": "admin@example.com",
+      "password": "password"
+    },
+    {
+      "id": "ec48",
+      "email": "admin@gmail.com",
+      "password": "password"
+    },
+    {
+      "id": "3cdf",
+      "email": "user@gmail.com",
+      "password": "password"
+    },
+    {
+      "id": "5098",
+      "email": "admin@gmail.com",
+      "password": "password"
+    },
+    {
+      "id": "9cea",
+      "email": "admin@gmail.com",
+      "password": "password"
+    },
+    {
+      "id": "5ab5",
+      "email": "admin@example.com",
+      "password": "password"
+    },
+    {
+      "id": "7d27",
+      "email": "admin@gmail.com",
+      "password": "password"
+    }
+  ],
   "user-submissions": [
-    { "name": "Problem 1", "createdOn": "2023-01-01", "status": "ready" },
-    { "name": "Problem 2", "createdOn": "2023-01-02", "status": "not ready" },
-    { "name": "Problem 3", "createdOn": "2023-01-03", "status": "executed" }
+    {
+      "name": "Problem 1",
+      "createdOn": "2023-01-01",
+      "status": "ready",
+      "id": "0f6d"
+    },
+    {
+      "name": "Problem 2",
+      "createdOn": "2023-01-02",
+      "status": "not ready",
+      "id": "1a6f"
+    },
+    {
+      "name": "Problem 3",
+      "createdOn": "2023-01-03",
+      "status": "executed",
+      "id": "237c"
+    }
   ],
   "admin-activity": [
-    { "creator": "User 1", "name": "Problem 1", "createdOn": "2023-01-01", "status": "ready" },
-    { "creator": "User 2", "name": "Problem 2", "createdOn": "2023-01-02", "status": "not ready" },
-    { "creator": "User 3", "name": "Problem 3", "createdOn": "2023-01-03", "status": "executed" }
+    {
+      "creator": "User 1",
+      "name": "Problem 1",
+      "createdOn": "2023-01-01",
+      "status": "ready",
+      "id": "dff7"
+    },
+    {
+      "creator": "User 2",
+      "name": "Problem 2",
+      "createdOn": "2023-01-02",
+      "status": "not ready",
+      "id": "9a91"
+    },
+    {
+      "creator": "User 3",
+      "name": "Problem 3",
+      "createdOn": "2023-01-03",
+      "status": "executed",
+      "id": "6b5e"
+    }
   ]
 }
