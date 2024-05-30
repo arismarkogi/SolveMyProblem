@@ -19,7 +19,10 @@ exports.googleSignUp = async (req, res) => {
         return jwt.sign(payload, process.env.JWT_SECRET_KEY, { expiresIn: '1h' });
     }
     try {
-        // Check if the user already exists
+        const existingmailUser = await User.findOne({ email: email });
+        if (existingmailUser) return res.status(400).json({ message: 'Email already used' });
+
+
         const existingUser = await User.findOne({ googleId: id });
         if (existingUser) { 
             await User.updateOne(
