@@ -10,6 +10,14 @@ exports.googleSignUp = async (req, res) => {
     if(!id || !username || !email) {
         return res.status(400).json({ message: 'Something missing' });
     }
+    function generateToken(user) {
+        const payload = {
+            id: user._id, // Include user ID in the payload
+            role: user.role // Include the role in the payload
+        };
+        // Sign the token with your secret key and set an expiration (e.g., 1 hour)
+        return jwt.sign(payload, process.env.JWT_SECRET_KEY, { expiresIn: '1h' });
+    }
     try {
         // Check if the user already exists
         const existingUser = await User.findOne({ googleId: id });
@@ -18,7 +26,6 @@ exports.googleSignUp = async (req, res) => {
                     { googleId: id },
                     { $set: { username: username, email: email }}
             );
-            return res.json({ message: 'User already exists' });
         }
         else {
             // Create a new user
@@ -28,8 +35,8 @@ exports.googleSignUp = async (req, res) => {
                 email: email
             });
             await user.save();
-            return res.json({ message: 'User created successfully' });
         }
+        return res.json({ token: generateToken(user) });
     } catch (error) {
         console.error(error);
         return res.status(500).json({ message: 'Internal server error' });
