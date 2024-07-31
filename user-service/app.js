@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const userRoutes = require('./routes/userRoutes');
 const updateCreditController = require('./controllers/updateCredit');
+const { connectRabbitMQ } = require('./utils/rabbitmq');
 
 require('dotenv').config();
 
@@ -16,9 +17,10 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopol
     .then(() => console.log('MongoDB connected'))
     .catch(err => console.error('MongoDB connection error:', err));
 
-const processMessage = async (msg, channel) => {
+const processMessage = async (msg) => {
         const message = JSON.parse(msg.content.toString());
         const {type, mes} = message;
+        console.log('Received message:', mes);
         if(type === "new"){
         }
         else if(type === "delete"){
@@ -43,7 +45,7 @@ const main = async () => {
     
         channel.consume('user-service-queue', async (msg) => {
             if (msg !== null) {
-                await processMessage(msg, channel);
+                await processMessage(msg);
                 channel.ack(msg);
             }
         });

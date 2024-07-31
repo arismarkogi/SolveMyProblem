@@ -6,28 +6,36 @@ const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
 
 
-exports.updateCredit = async (req, res) => {//form : "refund","purchase","consumption" etc
-    const { userId, credit, form} = req.body;
-    try{
-    // Check for Google ID association
-    const user = await User.findById(userId);
-    if (!user) {
-        return res.status(404).json({ message: 'User not found' });
+exports.updateCredit = async (message) => {
+    const { userId, creditAmount } = message;
+    try {
+        // Check for Google ID association
+        const user = await User.findById(userId);
+        if (!user) {
+            const errorResponse = { message: 'User not found', success: false };
+            await sendToQueue('user-service-queue-res', errorResponse);
+            return;
+        }
+        
+        const currentCredit = user.creditAmount;
+        if (currentCredit + creditAmount < 0) {
+            const errorResponse = { message: 'Insufficient credits', success: false };
+            await sendToQueue('user-service-queue-res', errorResponse);
+            return;
+        }
+        
+        user.creditAmount += creditAmount;
+        await user.save();
+        
+        const finalMessage = {
+            userId,
+            creditAmount: user.creditAmount,
+            success: true
+        };
+        await sendToQueue('user-service-queue-res', finalMessage);
+    } catch (error) {
+        console.error(error);
+        const errorResponse = { message: 'Internal server error', success: false };
+        await sendToQueue('user-service-queue-res', errorResponse);
     }
-    currentcredit = user.creditAmount;
-    if (currentcredit + credit < 0) {
-        return res.status(400).json({ message: 'Insufficient credits' });
-    }
-    user.creditAmount += credit;
-    await user.save();
-    final_message = {
-        userId,
-        creditAmount: user.creditAmount,
-    }
-    await sendToQueue('user-service-queue-res', final_message);
-    return res.status(200).json({ message: 'User credit update and transaction send to queue' });
-} catch (error) {
-    console.error(error);
-    return res.status(500).json({ message: 'Internal server error' });
-}
 };

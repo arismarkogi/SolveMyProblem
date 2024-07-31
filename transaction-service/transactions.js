@@ -18,18 +18,19 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopol
     .catch(err => console.error('MongoDB connection error:', err));
 
 const createTransaction = async (msg,channel) => {
-    const message = JSON.parse(msg.content.toString());
-    const { userId, amount,date, form } = message;
-    if(!userId ||!amount || !date || !form) {
-        return res.status(400).json({ message: 'User, amount, and tyoe are required' });
+    console.log('Received message:', msg);
+    const { userId, creditAmount, form } = msg;
+    if(!userId ||!creditAmount || !form) {
+        console.error('Missing required fields');
+        return; //res.status(400).json({ message: 'User, amount, and type are required' });
     }
     
-    console.log('Received message:', message);
+    console.log('Received message:', msg);
     try {
         const transaction = new Transaction({
             userId: userId,
-            amount: amount,
-            createdAt: new Date(date),
+            amount: creditAmount,
+            createdAt: new Date(),
             type: form
         });
         await transaction.save();
@@ -38,7 +39,8 @@ const createTransaction = async (msg,channel) => {
     }
     const resultMessage = {
         userId,
-        form
+        form,
+        success: true
     };
     sendToQueue('trans_response_queue', resultMessage, channel);
 };
