@@ -33,16 +33,14 @@ const createTransaction = async (msg,channel) => {
             type: form
         });
         await transaction.save();
-        resp = 'Transaction created successfully'
     } catch (error) {
         console.error(error);
-        resp =  'Internal server error';
     }
     const resultMessage = {
         userId,
-        result: resp
+        form
     };
-    sendToQueue(transResponseQueue, resultMessage, channel);
+    sendToQueue('trans_response_queue', resultMessage, channel);
 };
 
 const processMessage = async (msg, channel) => {
@@ -58,15 +56,12 @@ const processMessage = async (msg, channel) => {
 const main = async () => {
     const channel = await connectRabbitMQ();
 
-    console.log('Waiting for messages in', transQueue);
+    console.log('Waiting for messages in', 'trans_queue');
 
-    channel.consume(transQueue, async (msg) => {
+    channel.consume('trans_queue', async (msg) => {
         if (msg !== null) {
             await processMessage(msg, channel);
             channel.ack(msg);
-        } else if (msg !== null) {
-            // Requeue the message
-            setTimeout(() => channel.nack(msg), 1000);
         }
     });
 };

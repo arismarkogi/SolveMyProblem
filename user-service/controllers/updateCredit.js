@@ -20,18 +20,11 @@ exports.updateCredit = async (req, res) => {//form : "refund","purchase","consum
     }
     user.creditAmount += credit;
     await user.save();
-    //await User.updateOne({ _id: userId }, { $set: { credit: currentcredit + credit }});
-    const message = {
+    final_message = {
         userId,
-        credit,
-        date : new Date().toISOString(),
-        form
+        creditAmount: user.creditAmount,
     }
-    final_message ={
-        type: "new",
-        message
-    }
-    await sendToQueue('trans_queue', final_message);
+    await sendToQueue('user-service-queue-res', final_message);
     return res.status(200).json({ message: 'User credit update and transaction send to queue' });
 } catch (error) {
     console.error(error);

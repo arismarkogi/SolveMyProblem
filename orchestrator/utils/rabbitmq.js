@@ -9,10 +9,10 @@ const connectRabbitMQ = async () => {
         connection = await amqplib.connect(process.env.RABBITMQ_URL);
         channel = await connection.createChannel();
 
-        await channel.assertQueue('user-service-add-credit', { durable: false });
-        await channel.assertQueue('user-service-add-credit-res', { durable: false });
-        await channel.assertQueue('transaction-service-log', { durable: false });
-        await channel.assertQueue('transaction-service-log-res', { durable: false });
+        await channel.assertQueue('user-service-queue', { durable: false });
+        await channel.assertQueue('user-service-queue-res', { durable: false });
+        await channel.assertQueue('trans_queue', { durable: false });
+        await channel.assertQueue('trans_response_queue', { durable: false });
         await channel.assertQueue('user-service-remove-user', { durable: false });
         await channel.assertQueue('user-service-credit-req', { durable: false });
         await channel.assertQueue('user-service-credit-res', { durable: false });
