@@ -2,10 +2,6 @@ const { json } = require('express');
 const jwt = require('jsonwebtoken');
 const { sendToQueue, receiveFromQueue } = require('../utils/rabbitmq');
 
-const TransactionController = require('../../transaction-service/controllers/newTransaction');
-const UserCredit = require('../../user-service/controllers/updateCredit');
-const UserRemoval = require('../../user-service/controllers/deleteUser');
-
 
 exports.problemIssue = async (req, res) => {
     try {
@@ -25,6 +21,21 @@ exports.problemIssue = async (req, res) => {
         // Not sure if this the one chief - Fix if necessary
         console.error('Error in problem issue saga:', error);
         res.status(500).json({ error: 'Error in problem issue saga' });
+    }
+}
+
+exports.problemResult = async (req, res) => {
+    try {
+        await receiveFromQueue('problem-service-issue-res', async (msg) => {
+            if (!msg.success) {
+                res.status(400).json({ error: 'Problem issue failed' });
+            }
+        }
+        );
+    }
+    catch (error) {
+        console.error('Error in problem result saga:', error);
+        res.status(500).json({ error: 'Error in problem result saga' });
     }
 }
 /*
