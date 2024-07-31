@@ -1,13 +1,21 @@
+const express = require('express');
+const mongoose = require('mongoose');
+
+const bodyParser = require('body-parser');
 const { connectRabbitMQ, sendToQueue } = require('./utils/rabbitmq');
-const { exec } = require('child_process');
 const { transQueue, transResponseQueue } = require('./config');
 const Transaction = require('./models/transactionModel');
 
-const fs = require('fs');
-const path = require('path');
+
 require('dotenv').config();
 
-let isSolverBusy = false;
+const app = express();
+const PORT = process.env.PORT || 5000;
+app.use(bodyParser.json());
+
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => console.log('MongoDB connected'))
+    .catch(err => console.error('MongoDB connection error:', err));
 
 const createTransaction = async (msg,channel) => {
     const message = JSON.parse(msg.content.toString());
@@ -63,4 +71,7 @@ const main = async () => {
     });
 };
 
-main().catch(console.error);
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+    main().catch(console.error);
+});
