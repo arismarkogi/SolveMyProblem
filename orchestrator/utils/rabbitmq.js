@@ -1,7 +1,7 @@
 const amqplib = require('amqplib');
 
-const connection = null;
-const channel = null;
+var connection = null;
+var channel = null;
 
 const connectRabbitMQ = async () => {
     try {

@@ -1,7 +1,7 @@
 const { connectRabbitMQ, sendToQueue } = require('./utils/rabbitmq');
 const { exec } = require('child_process');
 const { transQueue, transResponseQueue } = require('./config');
-const Transaction = require('../models/transactionModel');
+const Transaction = require('./models/transactionModel');
 
 const fs = require('fs');
 const path = require('path');
@@ -53,11 +53,9 @@ const main = async () => {
     console.log('Waiting for messages in', transQueue);
 
     channel.consume(transQueue, async (msg) => {
-        if (msg !== null && !isSolverBusy) {
-            isSolverBusy = true;
+        if (msg !== null) {
             await processMessage(msg, channel);
             channel.ack(msg);
-            isSolverBusy = false;
         } else if (msg !== null) {
             // Requeue the message
             setTimeout(() => channel.nack(msg), 1000);

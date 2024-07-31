@@ -4,6 +4,9 @@ const connectRabbitMQ = async () => {
     try {
         const connection = await amqplib.connect(process.env.RABBITMQ_URL);
         const channel = await connection.createChannel();
+        
+        await channel.assertQueue('trans_queue', { durable: false });
+        await channel.assertQueue('trans_response_queue', { durable: false });
         return channel;//,connection; // Possibly return the channel and connection
     } catch (error) {
         console.error('Failed to connect to RabbitMQ:', error);
@@ -14,7 +17,6 @@ const connectRabbitMQ = async () => {
 
 const sendToQueue = async (queue, message, channel) => {
     try {
-        await channel.assertQueue(queue, { durable: true }); // Ensure queue is durable
         channel.sendToQueue(queue, Buffer.from(JSON.stringify(message)), { persistent: true });
         //await channel.assertQueue(queue);
         //channel.sendToQueue(queue, Buffer.from(JSON.stringify(message)));

@@ -11,7 +11,7 @@ app.use('/', orchestrationRoutes);
 
 const PORT = process.env.PORT || 5000;
 
-await connectRabbitMQ();
+connectRabbitMQ();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
