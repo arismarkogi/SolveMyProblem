@@ -12,7 +12,7 @@ exports.returnUsers = async (req, res) => {
         if (username || email) {
             query.$or = [];
             if (username) {
-                query.$or.push({ username: { $regex: username, $options: 'i' } }); // case-insensitive matching
+                query.$or.push({ username: { $regex: username, $options: 'i' } }); // caseinsensitive- matching
             }
             if (email) {
                 query.$or.push({ email: { $regex: email, $options: 'i' } }); // case-insensitive matching

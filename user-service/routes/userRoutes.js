@@ -12,7 +12,8 @@ router.post('/login', logInController.logIn);
 router.post('/signup', signUpController.signUp);
 router.post('/google-signup', googleSignUpController.googleSignUp);
 router.post('/update-user', updateUserController.updateUser);
-router.post('/update-credit', updateCreditController.updateCredit);
+router.post('/updateCredit', updateCreditController.updateCredit);
 router.get('/health-check', healthCheckController.healthCheck);
 
 module.exports = router;
+
