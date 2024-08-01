@@ -1,8 +1,19 @@
 exports.healthCheck = async (req, res) => {
     try {
-        res.status(200).json({ status: 'OK', service: 'transaction-service' });
+        const finalMessage = {
+            status: 'OK',
+            success: true,
+            service: 'transaction-service'
+        };
+        await sendToQueue('trans_response_queue', finalMessage);
     } catch (error) {
         console.error('Error in healthcheck:', error);
-        res.status(500).json({ status: 'error', service: 'transaction-service'});
+        const finalMessage = {
+            status: 'error',
+            success: false,
+            service: 'transaction-service'
+        };
+        await sendToQueue('trans_response_queue', finalMessage);
     }
 }
+

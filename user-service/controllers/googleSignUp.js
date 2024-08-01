@@ -1,15 +1,12 @@
 const { json } = require('express');
 const User = require('../models/userModel');
+const { sendToQueue } = require('../utils/rabbitmq');
 const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
 
 exports.googleSignUp = async (req, res) => {
-    const id = req.body.id;
-    const username = req.body.username;
-    const email = req.body.email;
-    if(!id || !username || !email) {
-        return res.status(400).json({ message: 'Something missing' });
-    }
+    const { id, username, email } = req.body;
+
     function generateToken(user) {
         const payload = {
             id: user._id, // Include user ID in the payload
@@ -19,29 +16,47 @@ exports.googleSignUp = async (req, res) => {
         return jwt.sign(payload, process.env.JWT_SECRET_KEY, { expiresIn: '1h' });
     }
     try {
-        const existingmailUser = await User.findOne({ email: email });
-        if (existingmailUser) return res.status(400).json({ message: 'Email already used' });
+        if (!id || !username || !email) {
+            const errorResponse = { message: 'Google ID, username, and email are required', success: false };
+            await sendToQueue('user-service-queue-res', errorResponse);
+            return;
+        }
+        const existingEmailUser = await User.findOne({ email: email });
+        if (existingEmailUser) {
+            const errorResponse = { message: 'Email already used', success: false };
+            await sendToQueue('user-service-queue-res', errorResponse);
+            return;
+        }
 
 
-        const existingUser = await User.findOne({ googleId: id });
-        if (existingUser) { 
+        let user = await User.findOne({ googleId: id });
+        if (user) {
+            // Update existing user
             await User.updateOne(
-                    { googleId: id },
-                    { $set: { username: username, email: email }}
+                { googleId: id },
+                { $set: { username: username, email: email }}
             );
         }
         else {
             // Create a new user
-            const user = new User({
+            user = new User({
                 googleId: id,
                 username: username,
                 email: email
             });
             await user.save();
         }
-        return res.json({ token: generateToken(user) });
+        const token = generateToken(user);
+        const successResponse = { 
+            message: 'Google sign up successful',
+            success: true,
+            token: token,
+            userId: user._id
+        };
+        await sendToQueue('user-service-queue-res', successResponse);
     } catch (error) {
         console.error(error);
-        return res.status(500).json({ message: 'Internal server error' });
+        const errorResponse = { message: 'Internal server error', success: false };
+        await sendToQueue('user-service-queue-res', errorResponse);
     }
 }

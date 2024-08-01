@@ -1,5 +1,7 @@
 const { json } = require('express');
 const User = require('../models/userModel');
+const { sendToQueue } = require('../utils/rabbitmq'); // Corrected import
+
 const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
 
@@ -10,11 +12,15 @@ exports.updateUser = async (req, res) => {
     // Check for Google ID association
     const user = await User.findOne({_id:userId});
     if (!user) {
-        return res.status(404).json({ message: 'User not found' });
+        const errorResponse = { message: 'User not found', success: false };
+        await sendToQueue('user-service-queue-res', errorResponse);
+        return;
     }
 
     if (user.googleId) {
-        return res.status(403).json({ message: 'Update not allowed for Google authenticated users' });
+        const errorResponse = { message: 'Update not allowed for Google authenticated users', success: false };
+        await sendToQueue('user-service-queue-res', errorResponse);
+        return;
     }
 
     const updates = {};
@@ -35,15 +41,23 @@ exports.updateUser = async (req, res) => {
     if (conditions.length > 0) {
         const existingUser = await User.findOne({ $or: conditions, _id: { $ne: userId } });
         if (existingUser) {
-            return res.status(400).json({ message: 'Username or email already exists' });
+            const field = existingUser.username === username ? 'Username' : 'Email';
+            const errorResponse = { message: `${field} already exists`, success: false };
+            await sendToQueue('user-service-queue-res', errorResponse);
+            return;
         }
     }
 
     await User.updateOne({ _id: userId }, { $set: updates });
-
-    return res.status(200).json({ message: 'User data updated successfully' });
+    
+    const finalMessage = {
+        userId,
+        success: true
+    };
+    await sendToQueue('user-service-queue-res', finalMessage);
     } catch (error) {
     console.error(error);
-    return res.status(500).json({ message: 'Internal server error' });
+    const errorResponse = { message: 'Internal server error', success: false };
+    await sendToQueue('user-service-queue-res', errorResponse);
 }
 };

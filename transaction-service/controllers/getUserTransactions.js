@@ -1,9 +1,9 @@
 const Transaction = require('../models/transactionModel');
 const { sendToQueue } = require('../utils/rabbitmq');
 
-const deleteUserTransactions = async (msg, channel) => {
+const getUserTransactions = async (msg, channel) => {
     console.log('Received message:', msg);
-    const { userId } = msg;
+    const { userId} = msg;
 
     if (!userId) {
         console.error('Missing required field: userId');
@@ -16,26 +16,30 @@ const deleteUserTransactions = async (msg, channel) => {
     }
 
     try {
-        // Delete all transactions associated with the user
-        const result = await Transaction.deleteMany({ userId: userId });
+        // Calculate skip value for pagination
+
+        // Fetch transactions
+        const transactions = await Transaction.find({ userId: userId })
+            .sort({ createdAt: -1 })
+
 
         const successMessage = {
             userId,
             success: true,
-            deletedCount: result.deletedCount,
-            message: `Successfully deleted ${result.deletedCount} transaction(s) for the user`
+            transactions: transactions,
+            message: 'User transactions fetched successfully'
         };
         await sendToQueue('trans_response_queue', successMessage, channel);
 
     } catch (error) {
-        console.error('Error deleting user transactions:', error);
+        console.error('Error fetching user transactions:', error);
         const errorMessage = {
             userId,
             success: false,
-            message: 'Failed to delete user transactions'
+            message: 'Failed to fetch user transactions'
         };
         await sendToQueue('trans_response_queue', errorMessage, channel);
     }
 };
 
-module.exports = { deleteUserTransactions };
+module.exports = { getUserTransactions };

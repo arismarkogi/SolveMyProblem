@@ -4,6 +4,7 @@ const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
 
 exports.logIn = async (req, res) => {
+    const { email, password } = req.body;
     if(!req.body.email || !req.body.password) {
         return res.status(400).json({ message: 'Username and password are required' });
     }
@@ -15,18 +16,32 @@ exports.logIn = async (req, res) => {
         // Sign the token with your secret key and set an expiration (e.g., 1 hour)
         return jwt.sign(payload, process.env.JWT_SECRET_KEY, { expiresIn: '1h' });
     }
-    const email = req.body.email;
-    const password = crypto.createHash('sha256').update(req.body.password).digest('hex');
+    
     try {
-        // Find the user
-        const user = await User.findOne({ email: email, password: password});
+        if (!email || !password) {//checking necessary fields
+            const errorResponse = { message: 'Email and password are required', success: false };
+            await sendToQueue('user-service-queue-res', errorResponse);
+            return;
+        }
+        const hashedPassword = crypto.createHash('sha256').update(password).digest('hex');
+        // Find the user with the given email and password
+        const user = await User.findOne({ email: email, password: hashedPassword});
 
-        if (!user) return res.status(401).json({ message: 'Invalid username or password' });
-
+        if (!user) {
+            const errorResponse = { message: 'Invalid email or password', success: false };
+            await sendToQueue('user-service-queue-res', errorResponse);
+            return;
+        }
         // Generate token
         const token = generateToken(user);
-        // Return the token
-        return res.json({ token: token });
+        // Send success response
+        const successResponse = { 
+            message: 'Login successful',
+            success: true,
+            token: token,
+            userId: user._id
+        };
+        await sendToQueue('user-service-queue-res', successResponse)
 
     } catch (error) {
         console.error(error);
