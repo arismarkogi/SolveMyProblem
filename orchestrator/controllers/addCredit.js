@@ -1,3 +1,4 @@
+const jwt = require('jsonwebtoken');
 const { sendToQueue, receiveFromQueue } = require('../utils/rabbitmq');
 
 exports.addCredit = async (req, res) => {
@@ -7,7 +8,6 @@ exports.addCredit = async (req, res) => {
         if (!userId || !creditAmount || !form) {
             return res.status(400).json({ error: 'Missing required fields' });
         }
-
         const message_user = {
             type: "credit_update",
             mes: {
@@ -16,41 +16,47 @@ exports.addCredit = async (req, res) => {
             }
         };
 
-        // Send message to user service and wait for response
         await sendToQueue('user-service-queue', message_user);
-        const userServiceResponse = await new Promise((resolve) => {
-            receiveFromQueue('user-service-queue-res', resolve);
-        });
 
-        console.log('Response from user service');
-
-        if (!userServiceResponse.success) {
-            return res.status(500).json({ error: 'Internal Error - credit update' });
-        }
-
-        const message_trans = {
-            type: "new",
-            mes: {
-                userId,
-                creditAmount,
-                form
+        await receiveFromQueue('user-service-queue-res', async (msg) => {
+            if (!msg.success) {
+                res.status(500);
+                return;
+            } else {
+                const message_trans = {
+                    type: "new",
+                    mes: {
+                        userId,
+                        creditAmount,
+                        form
+                    }
+                };
+                console.log('Sending message to transaction service:');
+                await sendToQueue('trans_queue', message_trans);
+                console.log('Waiting for response from transaction service:');
+                await receiveFromQueue('trans_response_queue', async (msg) => {
+                    console.log('Received message orchestration:', msg);
+                    if (!msg.success) {
+                            res.status(500);
+                            return;
+                    } 
+                    else {
+                            res.status(200);
+                            return;
+                    }
+                });
+                console.log('Response from transaction service:', res.statusCode);
             }
-        };
-
-        // Send message to transaction service and wait for response
-        await sendToQueue('trans_queue', message_trans);
-        const transServiceResponse = await new Promise((resolve) => {
-            receiveFromQueue('trans_response_queue', resolve);
         });
-
-        if (!transServiceResponse.success) {
-            return res.status(500).json({ error: 'Internal Error - transaction creation' });
+        if (res.statusCode === 200) {
+            return res.status(200).json({ success: 'Credit added successfully' });
         }
-
-        res.status(200).json({ message: 'Credit Added Successfully' });
-
+        else {
+            return res.status(500).json({ error: 'Internal Error' });
+        }
     } catch (error) {
         console.error('Internal Error', error);
         res.status(500).json({ error: 'Internal Error' });
+        return res.status(500).json({ error: 'Internal Error' });
     }
 };
