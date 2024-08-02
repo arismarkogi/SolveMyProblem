@@ -1,15 +1,13 @@
-const { json } = require('express');
-const jwt = require('jsonwebtoken');
 const { sendToQueue, receiveFromQueue } = require('../utils/rabbitmq');
 
 exports.addCredit = async (req, res) => {
     try {
         const { userId, creditAmount, form } = req.body;
-        
+
         if (!userId || !creditAmount || !form) {
             return res.status(400).json({ error: 'Missing required fields' });
         }
-        
+
         const message_user = {
             type: "credit_update",
             mes: {
@@ -18,35 +16,41 @@ exports.addCredit = async (req, res) => {
             }
         };
 
+        // Send message to user service and wait for response
         await sendToQueue('user-service-queue', message_user);
-        
-        await receiveFromQueue('user-service-queue-res', async (msg) => {
-            if (!msg.success) {
-                return res.status(500).json({ error: 'Internal Error - credit update' });
-            } else {
-                const message_trans = {
-                    type: "new",
-                    mes: {
-                        userId,
-                        creditAmount,
-                        form
-                    }
-                };
-
-                await sendToQueue('trans_queue', message_trans);
-                
-                await receiveFromQueue('trans_response_queue', async (msg) => {
-                    console.log('Received message orchestration:', msg);
-                    if (!msg.success) {
-                        return res.status(500).json({ error: 'Internal Error - transaction creation' });
-                    } else {
-                        return res.status(200).json({ message: 'Credit Added Successfully' });
-                    }
-                });
-            }
+        const userServiceResponse = await new Promise((resolve) => {
+            receiveFromQueue('user-service-queue-res', resolve);
         });
+
+        console.log('Response from user service');
+
+        if (!userServiceResponse.success) {
+            return res.status(500).json({ error: 'Internal Error - credit update' });
+        }
+
+        const message_trans = {
+            type: "new",
+            mes: {
+                userId,
+                creditAmount,
+                form
+            }
+        };
+
+        // Send message to transaction service and wait for response
+        await sendToQueue('trans_queue', message_trans);
+        const transServiceResponse = await new Promise((resolve) => {
+            receiveFromQueue('trans_response_queue', resolve);
+        });
+
+        if (!transServiceResponse.success) {
+            return res.status(500).json({ error: 'Internal Error - transaction creation' });
+        }
+
+        res.status(200).json({ message: 'Credit Added Successfully' });
+
     } catch (error) {
         console.error('Internal Error', error);
-        return res.status(500).json({ error: 'Internal Error' });
+        res.status(500).json({ error: 'Internal Error' });
     }
 };

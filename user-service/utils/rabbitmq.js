@@ -1,30 +1,55 @@
 const amqplib = require('amqplib');
 
-var connection = null;
-var channel = null;
+let connection = null;
+let channel = null;
 
 const connectRabbitMQ = async () => {
     try {
         connection = await amqplib.connect(process.env.RABBITMQ_URL);
         channel = await connection.createChannel();
-        return channel;//,connection; // Possibly return the channel and connection
+        
+        // Ensure all necessary queues are asserted
+        await channel.assertQueue('user-service-queue', { durable: false });
+        await channel.assertQueue('user-service-queue-res', { durable: false });
+        
+        console.log('Connected to RabbitMQ');
+        return channel;
     } catch (error) {
         console.error('Failed to connect to RabbitMQ:', error);
         process.exit(1);
     }
 };
 
-
 const sendToQueue = async (queue, message) => {
     try {
-        await channel.assertQueue(queue, { durable: false }); // Ensure queue is durable
-        channel.sendToQueue(queue, Buffer.from(JSON.stringify(message)), { persistent: true });
-        //await channel.assertQueue(queue);
-        //channel.sendToQueue(queue, Buffer.from(JSON.stringify(message)));
+        if (!channel) {
+            throw new Error('Channel not initialized');
+        }
+        channel.sendToQueue(queue, Buffer.from(JSON.stringify(message)));
         console.log('Message sent to queue:', queue);
     } catch (error) {
         console.error('Failed to send message to queue:', error);
+        throw error;
     }
 };
 
-module.exports = { connectRabbitMQ, sendToQueue };
+const consumeQueue = async (queue, callback) => {
+    try {
+        if (!channel) {
+            throw new Error('Channel not initialized');
+        }
+        await channel.consume(queue, async (msg) => {
+            if (msg !== null) {
+                const content = JSON.parse(msg.content.toString());
+                await callback(content);
+                channel.ack(msg);
+            }
+        });
+        console.log(`Consuming from queue: ${queue}`);
+    } catch (error) {
+        console.error('Failed to consume from queue:', error);
+        throw error;
+    }
+};
+
+module.exports = { connectRabbitMQ, sendToQueue, consumeQueue };

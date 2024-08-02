@@ -2,15 +2,17 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const userRoutes = require('./routes/userRoutes');
+const { connectRabbitMQ, consumeQueue } = require('./utils/rabbitmq');
+
+// Import controllers individually
 const logInController = require('./controllers/logIn');
-const googleSignUpController = require('./controllers/googleSignUp');
-const searchUsersController = require('./controllers/searchUsers');
-const signUpController = require('./controllers/signUp');
-const deleteUserController = require('./controllers/deleteUser');
-const updateUserController = require('./controllers/updateUser');
-const healthCheckController = require('./controllers/healthCheck');
 const updateCreditController = require('./controllers/updateCredit');
-const { connectRabbitMQ } = require('./utils/rabbitmq');
+const searchUsersController = require('./controllers/searchUsers');
+const googleSignUpController = require('./controllers/googleSignUp');
+const signUpController = require('./controllers/signUp');
+const updateUserController = require('./controllers/updateUser');
+const deleteUserController = require('./controllers/deleteUser');
+const healthCheckController = require('./controllers/healthCheck');
 
 require('dotenv').config();
 
@@ -24,56 +26,29 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopol
     .then(() => console.log('MongoDB connected'))
     .catch(err => console.error('MongoDB connection error:', err));
 
-const processMessage = async (msg) => {
-        const message = JSON.parse(msg.content.toString());
-        const {type, mes} = message;
-        console.log('Received message:', mes);
+const processMessage = async (message) => {
+    const { type, mes } = message;
+    console.log('Received message:', mes);
 
-        if(type === "login"){
-            logInController.logIn(mes)
-        }
-        else if(type === "credit_update"){
-            updateCreditController.updateCredit(mes);
-
-        }
-        else if(type === "search"){
-            searchUsersController.searchUsers(mes);
-        }
-        else if(type === "google_signup"){
-            googleSignUpController.googleSignUp(mes);
-        }
-        else if(type === "signup"){
-            signUpController.signUp(mes);
-        }
-        
-        else if(type === "update"){
-            updateUserController.updateUser(mes);
-        }
-        else if(type === "delete"){
-            deleteUserController.deleteUser(mes);
-        }
-        else if(type === "health_check"){  
-            healthCheckController.healthCheck(mes);
-        } 
-        
-    
-        console.log('Received message:', message);
+    switch(type) {
+        case "login": await logInController.logIn(mes); break;
+        case "credit_update": await updateCreditController.updateCredit(mes); break;
+        case "search": await searchUsersController.searchUsers(mes); break;
+        case "google_signup": await googleSignUpController.googleSignUp(mes); break;
+        case "signup": await signUpController.signUp(mes); break;
+        case "update": await updateUserController.updateUser(mes); break;
+        case "delete": await deleteUserController.deleteUser(mes); break;
+        case "health_check": await healthCheckController.healthCheck(mes); break;
+        default: console.log('Unknown message type:', type);
+    }
 };
-    
+
 const main = async () => {
-        const channel = await connectRabbitMQ();
-    
-        console.log('Waiting for messages in user-service-queue');
-    
-        channel.consume('user-service-queue', async (msg) => {
-            if (msg !== null) {
-                await processMessage(msg);
-                channel.ack(msg);
-            }
-        });
-    };
+    await connectRabbitMQ();
+    await consumeQueue('user-service-queue', processMessage);
+};
+
 app.listen(PORT, () => {
-        console.log(`Server running on port ${PORT}`);
-        main().catch(console.error);
-    });
-    
+    console.log(`Server running on port ${PORT}`);
+    main().catch(console.error);
+});
