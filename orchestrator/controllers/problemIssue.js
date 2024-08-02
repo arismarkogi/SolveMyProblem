@@ -8,13 +8,18 @@ exports.problemIssue = async (req, res) => {
         await sendToQueue('user-service-credit-req', req.body);
         await receiveFromQueue('user-service-credit-res', async (msg) => {
             if (!msg.success) {
-               res.status(400).json({ error: 'Insufficient credits' });
+               res.status(400);
             }
+            else {
+                await sendToQueue('problem-service-issue', req.body);
+                res.status(200);
+            }
+        });
+        if (res.statusCode === 200) {
+            return res.status(200).json({ message: 'Problem issued successfully' });
         }
-        );
-        if (!res.status(400)) {
-            await sendToQueue('problem-service-issue', req.body);
-            res.status(200).json({ message: 'Problem issued successfully' });
+        else {
+            return res.status(500).json({ error: 'Internal Error' });
         }
     }
     catch (error) {
@@ -26,12 +31,23 @@ exports.problemIssue = async (req, res) => {
 
 exports.problemResult = async (req, res) => {
     try {
+        data = {};
         await receiveFromQueue('problem-service-issue-res', async (msg) => {
             if (!msg.success) {
-                res.status(400).json({ error: 'Problem issue failed' });
+                res.status(400);
+            }
+            else {
+                res.status(200);
+                data = msg;
             }
         }
         );
+        if (res.statusCode === 200) {
+            return res.status(200).json({ message: 'Problem result received successfully', data: data });
+        }
+        else {
+            return res.status(500).json({ error: 'Internal Error' });
+        }
     }
     catch (error) {
         console.error('Error in problem result saga:', error);

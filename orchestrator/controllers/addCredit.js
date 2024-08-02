@@ -21,7 +21,6 @@ exports.addCredit = async (req, res) => {
         await receiveFromQueue('user-service-queue-res', async (msg) => {
             if (!msg.success) {
                 res.status(500);
-                return;
             } else {
                 const message_trans = {
                     type: "new",
@@ -37,12 +36,10 @@ exports.addCredit = async (req, res) => {
                 await receiveFromQueue('trans_response_queue', async (msg) => {
                     console.log('Received message orchestration:', msg);
                     if (!msg.success) {
-                            res.status(500);
-                            return;
+                        res.status(500);
                     } 
                     else {
-                            res.status(200);
-                            return;
+                        res.status(200);
                     }
                 });
                 console.log('Response from transaction service:', res.statusCode);
