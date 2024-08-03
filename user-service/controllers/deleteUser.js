@@ -6,16 +6,16 @@ const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
 
 
-exports.deleteUser = async (req, res) => {
-    const { userId } = req.body;
+exports.deleteUser = async (message) => {
+    const { userId } = message;
     try{
 
     // Check for Google ID association
-    const user = await User.findOne({ _id: userId });
-        if (!user) {
-            const errorResponse = { message: 'User not found', success: false };
-            await sendToQueue('user-service-queue-res', errorResponse);
-            return;
+    const user = await User.findOne({ _id: userId },{ role: 'user' });
+    if (!user) {
+        const errorResponse = { message: 'User not found', success: false };
+        await sendToQueue('user-service-queue-res', errorResponse);
+        return;
         }
 
     await User.deleteOne({ _id: userId });

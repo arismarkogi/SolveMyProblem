@@ -1,25 +1,53 @@
-const { json } = require('express');
 const jwt = require('jsonwebtoken');
 const { sendToQueue, receiveFromQueue } = require('../utils/rabbitmq');
-// Delete User and associated data
-receiveFromQueue('user-service-remove-user', async (msg) => {//μπορει να πρεπει να παει μεσα στο addCredit με await
-    const { userId} = JSON.parse(msg.content.toString());
-    const result = await UserRemoval.deleteUser({ body: { userId}});
-    
-    if (result && result.success) { 
-        await sendToQueue('transaction-service-delete-user-transactions', { userId});
-        //await sendToQueue('problem-service-delete-user-problems', { userId});
-        //await sendToQueue('stats-service-delete-user-stats', { userId});
 
-    }
-});
 exports.deleteUserandAssosiatedData = async (req, res) => {
     try {
         const { userId} = req.body;
-        await sendToQueue('user-service-remove-user', { userId});
-        return res.status(200).json({ message: "User and user's data removed successfully" });
+
+        if (!userId ) {
+            return res.status(400).json({ error: 'Missing user-id' });
+        }
+        const message_user = {
+            type: "delete",
+            mes: {
+                userId
+            }
+        };
+        await sendToQueue('user-service-queue', message_user);
+        await receiveFromQueue('user-service-queue-res', async (msg) => {
+            if (!msg.success) {
+                res.status(500);
+            } else {
+                const message_transaction = {
+                    type: "delete",
+                    mes: {
+                        userId
+                    }
+                };
+                console.log('Sending message to transaction service:');
+                await sendToQueue('trans_queue', message_transaction);
+                console.log('Waiting for response from transaction service:');
+                await receiveFromQueue('trans_response_queue', async (msg) => {
+                    console.log('Received message orchestration:', msg);
+                    if (!msg.success) {
+                        res.status(500);
+                    } 
+                    else {
+                        res.status(200);
+                    }
+                });
+            }
+        });
+        if (res.statusCode === 200) {
+            return res.status(200).json({ success: 'User and assosiated data removed successfully' });
+        }
+        else {
+            return res.status(500).json({ error: 'Internal Error' });
+        }
     } catch (error) {
-        console.error('Error adding credit:', error);
-        res.status(500).json({ error: 'Error adding credit' });
+        console.error('Internal Error', error);
+        res.status(500).json({ error: 'Internal Error' });
+        return res.status(500).json({ error: 'Internal Error' });
     }
 };

@@ -45,3 +45,4 @@ const receiveFromQueue = async (queue, callback) => {
 }
 
 module.exports = {connectRabbitMQ, sendToQueue, receiveFromQueue};
+

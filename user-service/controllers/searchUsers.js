@@ -2,8 +2,8 @@ const { json } = require('express');
 const User = require('../models/userModel');
 const { sendToQueue } = require('../utils/rabbitmq');
 
-exports.searchUsers = async (req, res) => {
-    const { username, email} = req.body;//, limit = 10, page = 1 
+exports.searchUsers = async (message) => {
+    const { username, email} = message
 
         // Build the query object
     try {

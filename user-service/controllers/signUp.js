@@ -5,15 +5,16 @@ const { sendToQueue } = require('../utils/rabbitmq');
 const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
 
-exports.signUp = async (req, res) => {
+exports.signUp = async (message) => {
     
-    const { username, password, email } = req.body;
+    const { username, password, email } = message;
     try {// checking necessary fields
         if (!username || !password || !email) {
             const errorResponse = { message: 'Username, password, and email are required', success: false };
             await sendToQueue('user-service-queue-res', errorResponse);
             return;
         }
+        con
         // Check if the user already exists
         const existingUser = await User.findOne( {$or: [
             { email: email },

@@ -6,8 +6,8 @@ const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
 
 
-exports.updateUser = async (req, res) => {
-    const { userId, username, email, password } = req.body;
+exports.updateUser = async (message) => {
+    const { userId, username, email, password } = message;
     try{
     // Check for Google ID association
     const user = await User.findOne({_id:userId});
