@@ -44,7 +44,7 @@ const consumeQueue = async (queue, callback) => {
                 await callback(content);
                 channel.ack(msg);
             }
-        });
+        }, { noAck: false});
         console.log(`Consuming from queue: ${queue}`);
     } catch (error) {
         console.error('Failed to consume from queue:', error);

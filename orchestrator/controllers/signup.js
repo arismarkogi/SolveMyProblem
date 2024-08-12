@@ -18,19 +18,28 @@ exports.signUp = async (req, res) => {
             }
         };
 
+        let content;
         await sendToQueue('user-service-queue', message);
+        console.log('this should be before status code');
         await receiveFromQueue('user-service-queue-res', async (msg) => {
-            if (!msg.success) {
+            console.log(msg, 'yes');
+            if (msg.success !== true) {
                 res.status(500);
             } else {
                 res.status(200);
             }
+            content = msg.message;
         });
-        if (res.statusCode === 200) {
-            return res.status(200).json({ success: 'user added' });
+        while(true) {
+        if(content) {
+            
+            if (res.statusCode === 200) {
+                return res.status(200).json({ success: content });
+            }
+            else {
+                return res.status(500).json({ error: content });
+            }
         }
-        else {
-            return res.status(500).json({ error: 'Internal Error' });
         }
     } catch (error) {
         console.error('Internal Error', error);

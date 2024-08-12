@@ -31,14 +31,14 @@ const processMessage = async (message) => {
     console.log('Received message:', mes);
 
     switch(type) {
-        case "login": await logInController.logIn(mes); break;
-        case "credit_update": await updateCreditController.updateCredit(mes); break;
-        case "search": await searchUsersController.searchUsers(mes); break;
-        case "google_signup": await googleSignUpController.googleSignUp(mes); break;
-        case "signup": await signUpController.signUp(mes); break;
-        case "update": await updateUserController.updateUser(mes); break;
-        case "delete": await deleteUserController.deleteUser(mes); break;
-        case "health_check": await healthCheckController.healthCheck(mes); break;
+        case "login": await logInController.logIn(mes); return;
+        case "credit_update": await updateCreditController.updateCredit(mes); return;
+        case "search": await searchUsersController.searchUsers(mes); return;
+        case "google_signup": await googleSignUpController.googleSignUp(mes); return;
+        case "signup": await signUpController.signUp(mes); return;
+        case "update": await updateUserController.updateUser(mes); return;
+        case "delete": await deleteUserController.deleteUser(mes); return;
+        case "health_check": await healthCheckController.healthCheck(mes); return;
         default: console.log('Unknown message type:', type);
     }
 };

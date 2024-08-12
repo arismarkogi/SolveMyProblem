@@ -6,12 +6,19 @@ const {sendToQueue } = require('../utils/rabbitmq');
 
 const createTransaction = async (msg,channel) => {
     console.log('Received message:', msg);
-    const { userId, creditAmount, form } = msg;
+    if (!msg) {
+        console.error('No message received');
+        return;
+    }
+    const { correlationId, userId, creditAmount, form } = msg;
+    console.log('correlationId', correlationId);
     // Check if the required fields are present
     if (!userId || !creditAmount || !form) {
         console.error('Missing required fields');
         const errorMessage = {
+            correlationId,
             userId,
+            creditAmount,
             form,
             success: false,
             message: 'Missing required fields'
@@ -33,7 +40,9 @@ const createTransaction = async (msg,channel) => {
         await transaction.save();
         //send success message
         const successMessage = {
+            correlationId,
             userId,
+            creditAmount,
             form,
             success: true,
             transactionId: transaction._id,
@@ -45,7 +54,9 @@ const createTransaction = async (msg,channel) => {
         // Log the error and send an error message
         console.error('Error creating transaction:', error);
         const errorMessage = {
+            correlationId,
             userId,
+            creditAmount,
             form,
             success: false,
             message: 'Failed to create transaction'

@@ -48,7 +48,8 @@ const main = async () => {
 
         console.log('Waiting for messages in trans_queue');
 
-        channel.consume('trans_queue', async (msg) => {
+        await channel.consume('trans_queue', async (msg) => {
+            console.log('Received message from user-service:', msg.content.toString());
             if (msg !== null) {
                 await processMessage(msg, channel);
                 channel.ack(msg);

@@ -14,7 +14,7 @@ exports.signUp = async (message) => {
             await sendToQueue('user-service-queue-res', errorResponse);
             return;
         }
-        con
+        
         // Check if the user already exists
         const existingUser = await User.findOne( {$or: [
             { email: email },

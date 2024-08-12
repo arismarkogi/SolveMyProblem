@@ -1,24 +1,36 @@
 const jwt = require('jsonwebtoken');
-const { sendToQueue, receiveFromQueue } = require('../utils/rabbitmq');
+const { sendToQueue, responseMap } = require('../utils/rabbitmq');
+const { v4: uuidv4 } = require('uuid');
 
 exports.addCredit = async (req, res) => {
     try {
-        const { userId, creditAmount, form } = req.body;
+        const { userId, creditAmount, form} = req.body;
 
         if (!userId || !creditAmount || !form) {
-            return res.status(400).json({ error: 'Missing required fields' });
+            res.status(400).json({ error: 'Missing required fields' });
         }
+
+        const correlationId = uuidv4();
+
+
         const message_user = {
             type: "credit_update",
             mes: {
                 userId,
-                creditAmount
+                creditAmount,
+                form,
+                correlationId 
             }
+            
         };
+
+        responseMap.set(correlationId, res);
+        
+        //console.log(responseMap.get(correlationId));
 
         await sendToQueue('user-service-queue', message_user);
 
-        await receiveFromQueue('user-service-queue-res', async (msg) => {
+        /*await receiveFromQueue('user-service-queue-res', async (msg) => {
             if (!msg.success) {
                 res.status(500);
             } else {
@@ -44,16 +56,11 @@ exports.addCredit = async (req, res) => {
                 });
                 console.log('Response from transaction service:', res.statusCode);
             }
-        });
-        if (res.statusCode === 200) {
-            return res.status(200).json({ success: 'Credit added successfully' });
-        }
-        else {
-            return res.status(500).json({ error: 'Internal Error' });
-        }
+        });*/
+
+        //res.status(200).json({ success: 'Credit add sent succesfully' });
     } catch (error) {
         console.error('Internal Error', error);
         res.status(500).json({ error: 'Internal Error' });
-        return res.status(500).json({ error: 'Internal Error' });
     }
 };
