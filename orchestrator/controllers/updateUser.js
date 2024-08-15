@@ -1,5 +1,7 @@
 const jwt = require('jsonwebtoken');
-const { sendToQueue, receiveFromQueue } = require('../utils/rabbitmq');
+const { sendToQueue, responseMap } = require('../utils/rabbitmq');
+const { v4: uuidv4 } = require('uuid');
+
 
 exports.updateUser = async (req, res) => {
     try {

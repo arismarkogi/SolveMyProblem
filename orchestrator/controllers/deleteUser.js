@@ -1,5 +1,7 @@
 const jwt = require('jsonwebtoken');
-const { sendToQueue, receiveFromQueue } = require('../utils/rabbitmq');
+const { sendToQueue, responseMap } = require('../utils/rabbitmq');
+const { v4: uuidv4 } = require('uuid');
+
 
 exports.deleteUserandAssosiatedData = async (req, res) => {
     try {
@@ -17,7 +19,10 @@ exports.deleteUserandAssosiatedData = async (req, res) => {
                 userId
             }
         };
+        responseMap.set(correlationId, res);
+
         await sendToQueue('user-service-queue', message_user);
+        
        
     } catch (error) {
         console.error('Internal Error', error);

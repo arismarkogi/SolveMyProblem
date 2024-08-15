@@ -109,7 +109,7 @@ const connectRabbitMQ = async () => {
 
                 switch(msg.type) {
                     case "new": await simpleResponse(msg); return;
-                    case "delete": await simpleResponse(msg);//deleteTransaction(msg); return;
+                    case "delete": await simpleResponse(msg);return;//deleteTransaction(msg); return;
                 }
             }
         });
