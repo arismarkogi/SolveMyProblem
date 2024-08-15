@@ -7,12 +7,12 @@ exports.updateCredit = async (message) => {
     try {
         const user = await User.findById(userId);
         if (!user) {
-            await sendToQueue('user-service-queue-res', { correlationId : correlationId, message: 'User not found', success: false });
+            await sendToQueue('user-service-queue-res', {type:"credit", correlationId : correlationId, message: 'User not found', status: 400 });
             return;
         }
 
         if (user.creditAmount + creditAmount < 0) {
-            await sendToQueue('user-service-queue-res', { correlationId : correlationId, message: 'Insufficient credits', success: false });
+            await sendToQueue('user-service-queue-res', {type:"credit", correlationId : correlationId, message: 'Insufficient credits', status: 400 });
             return;
         }
 
@@ -20,15 +20,16 @@ exports.updateCredit = async (message) => {
         await user.save();
 
         await sendToQueue('user-service-queue-res', {
+            type:"credit",
             correlationId: correlationId,
             userId : user._id,
             creditAmount: creditAmount, 
             form : form,
-            success: true
+            status:200
         });
 
     } catch (error) {
         console.error('Error updating credit:', error);
-        await sendToQueue('user-service-queue-res', {correlationId : correlationId, message: 'Internal server error', success: false });
+        await sendToQueue('user-service-queue-res', {type:"credit",correlationId : correlationId, message: 'Internal server error', status: 500 });
     }
 };

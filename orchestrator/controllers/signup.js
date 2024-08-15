@@ -9,18 +9,30 @@ exports.signUp = async (req, res) => {
             return res.status(400).json({ error: 'Missing username, password, or email' });
         }
 
+        const correlationId = uuidv4();
+
         const message = {
             type: "signup",
             mes: {
+                correlationId,
                 username,
                 password,
                 email
             }
         };
 
-        let content;
+        responseMap.set(correlationId, res);
+
         await sendToQueue('user-service-queue', message);
-        console.log('this should be before status code');
+        
+    } catch (error) {
+        console.error('Internal Error', error);
+        res.status(500).json({ error: 'Internal Error' });
+        return res.status(500).json({ error: 'Internal Error' });
+    }
+};
+
+/*console.log('this should be before status code');
         await receiveFromQueue('user-service-queue-res', async (msg) => {
             console.log(msg, 'yes');
             if (msg.success !== true) {
@@ -40,10 +52,4 @@ exports.signUp = async (req, res) => {
                 return res.status(500).json({ error: content });
             }
         }
-        }
-    } catch (error) {
-        console.error('Internal Error', error);
-        res.status(500).json({ error: 'Internal Error' });
-        return res.status(500).json({ error: 'Internal Error' });
-    }
-};
+        }*/

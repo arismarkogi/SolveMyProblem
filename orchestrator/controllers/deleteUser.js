@@ -8,14 +8,25 @@ exports.deleteUserandAssosiatedData = async (req, res) => {
         if (!userId ) {
             return res.status(400).json({ error: 'Missing user-id' });
         }
+        const correlationId = uuidv4();
+
         const message_user = {
             type: "delete",
             mes: {
+                correlationId,
                 userId
             }
         };
         await sendToQueue('user-service-queue', message_user);
-        await receiveFromQueue('user-service-queue-res', async (msg) => {
+       
+    } catch (error) {
+        console.error('Internal Error', error);
+        res.status(500).json({ error: 'Internal Error' });
+    }
+};
+
+/*
+ await receiveFromQueue('user-service-queue-res', async (msg) => {
             if (!msg.success) {
                 res.status(500);
             } else {
@@ -44,10 +55,4 @@ exports.deleteUserandAssosiatedData = async (req, res) => {
         }
         else {
             return res.status(500).json({ error: 'Internal Error' });
-        }
-    } catch (error) {
-        console.error('Internal Error', error);
-        res.status(500).json({ error: 'Internal Error' });
-        return res.status(500).json({ error: 'Internal Error' });
-    }
-};
+        }*/

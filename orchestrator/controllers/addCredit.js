@@ -12,7 +12,6 @@ exports.addCredit = async (req, res) => {
 
         const correlationId = uuidv4();
 
-
         const message_user = {
             type: "credit_update",
             mes: {
@@ -23,14 +22,21 @@ exports.addCredit = async (req, res) => {
             }
             
         };
-
         responseMap.set(correlationId, res);
         
-        //console.log(responseMap.get(correlationId));
-
         await sendToQueue('user-service-queue', message_user);
 
-        /*await receiveFromQueue('user-service-queue-res', async (msg) => {
+        
+    } catch (error) {
+        console.error('Internal Error', error);
+        res.status(500).json({ error: 'Internal Error' });
+    }
+};
+
+
+
+
+/*await receiveFromQueue('user-service-queue-res', async (msg) => {
             if (!msg.success) {
                 res.status(500);
             } else {
@@ -59,8 +65,3 @@ exports.addCredit = async (req, res) => {
         });*/
 
         //res.status(200).json({ success: 'Credit add sent succesfully' });
-    } catch (error) {
-        console.error('Internal Error', error);
-        res.status(500).json({ error: 'Internal Error' });
-    }
-};

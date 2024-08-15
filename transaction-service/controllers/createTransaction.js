@@ -1,10 +1,19 @@
-const { json } = require('express');
 const Transaction = require('../models/transactionModel');
 const {sendToQueue } = require('../utils/rabbitmq');
 
 
-
-const createTransaction = async (msg,channel) => {
+const sendResponse = async (correlationId, message, status, userId =null,transactionId = null) => {
+    const response = {
+        type: "new",
+        correlationId,
+        message,
+        status,
+        userId,
+        transactionId
+    };
+    await sendToQueue('trans_response_queue', response);
+};
+const createTransaction = async (msg) => {
     console.log('Received message:', msg);
     if (!msg) {
         console.error('No message received');
@@ -12,8 +21,21 @@ const createTransaction = async (msg,channel) => {
     }
     const { correlationId, userId, creditAmount, form } = msg;
     console.log('correlationId', correlationId);
-    // Check if the required fields are present
-    if (!userId || !creditAmount || !form) {
+
+    if (!userId) {
+        await sendResponse(correlationId, "User's ID is required", 400);
+        return;
+    }
+    if(!creditAmount) {
+        await sendResponse(correlationId, 'Credit Amount is required', 400);
+        return;
+    }
+    if(!form) {
+        await sendResponse(correlationId, 'Form is required', 400);
+        return;
+    }
+
+    /*if (!userId || !creditAmount || !form) {
         console.error('Missing required fields');
         const errorMessage = {
             correlationId,
@@ -25,10 +47,11 @@ const createTransaction = async (msg,channel) => {
         };
         await sendToQueue('trans_response_queue', errorMessage, channel);
         return;
-    }
+    }*/
 
     
     try {
+
         // create and save new transaction
         const transaction = new Transaction({
             userId: userId,
@@ -38,30 +61,13 @@ const createTransaction = async (msg,channel) => {
         });
 
         await transaction.save();
+
         //send success message
-        const successMessage = {
-            correlationId,
-            userId,
-            creditAmount,
-            form,
-            success: true,
-            transactionId: transaction._id,
-            message: 'Transaction created successfully'
-        };
-        await sendToQueue('trans_response_queue', successMessage, channel);
+        await sendResponse(correlationId, 'Credit added and transaction created successfully', 200,userId,transaction._id);
 
     } catch (error) {
-        // Log the error and send an error message
-        console.error('Error creating transaction:', error);
-        const errorMessage = {
-            correlationId,
-            userId,
-            creditAmount,
-            form,
-            success: false,
-            message: 'Failed to create transaction'
-        };
-        await sendToQueue('trans_response_queue', errorMessage, channel);
+        console.error(error);
+        await sendResponse(correlationId, 'Internal server error', 500);
     }
 };
 

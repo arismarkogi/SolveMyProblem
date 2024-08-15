@@ -8,19 +8,29 @@ exports.updateUser = async (req, res) => {
         if(!userId) {
             return res.status(400).json({ error: 'Missing userId' });
         }
+        const correlationId = uuidv4();
+
 
         const message = {
             type: "update",
             mes: {
+                correlationId,
                 userId,
                 username,
                 password,
                 email
             }
         };
+        responseMap.set(correlationId, res);
 
         await sendToQueue('user-service-queue', message);
-        await receiveFromQueue('user-service-queue-res', async (msg) => {
+        
+    } catch (error) {
+        console.error('Internal Error', error);
+        res.status(500).json({ error: 'Internal Error' });
+    }
+};
+/*await receiveFromQueue('user-service-queue-res', async (msg) => {
             if (!msg.success) {
                 res.status(500);
                 console.log('Error:', msg.message);
@@ -33,10 +43,4 @@ exports.updateUser = async (req, res) => {
         }
         else {
             return res.status(500).json({ error: msg.message });
-        }
-    } catch (error) {
-        console.error('Internal Error', error);
-        res.status(500).json({ error: 'Internal Error' });
-        return res.status(500).json({ error: 'Internal Error' });
-    }
-};
+        }*/

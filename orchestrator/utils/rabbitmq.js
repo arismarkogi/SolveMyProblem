@@ -5,6 +5,54 @@ var channel = null;
 
 const responseMap = new Map();
 
+const creditUpdate = async (msg) => {
+    const message_trans = {
+        type: "new",
+        mes: {
+            correlationId : msg.correlationId,
+            userId: msg.userId,
+            creditAmount: msg.creditAmount,
+            form : msg.form,
+        }
+    };
+    console.log('Sending message to transaction service:');
+    await sendToQueue('trans_queue', message_trans);
+};
+
+const deleteUser = async (msg) => {
+    const message_transaction = {
+        type: "delete",
+        mes: {
+            correlationId : msg.correlationId,
+            userId : msg.userId
+        }
+    };
+    console.log('Sending message to transaction service:');
+    await sendToQueue('trans_queue', message_transaction);
+};
+
+const deleteTransaction = async (msg) => {
+    const message_problem = {
+        type: "delete",
+        mes: {
+            correlationId : msg.correlationId,
+            userId : msg.userId
+        }
+    };
+    console.log('Sending message to transaction service:');
+    await sendToQueue('problem-service-issue', message_problem);
+};
+
+const simpleResponse = async (msg) => {
+    const res = responseMap.get(msg.correlationId);
+    if (res) {
+        res.status(msg.status).json(msg.message);
+        responseMap.delete(msg.correlationId);
+    } else {
+        console.error(`No response object found for correlationId: ${msg.correlationId}`);
+    }
+};
+
 const connectRabbitMQ = async () => {
     try {
 
@@ -23,43 +71,49 @@ const connectRabbitMQ = async () => {
         channel.prefetch(1);
     
         await consumeQueue('user-service-queue-res', async (msg) => {
-            
-            if (!msg.success) {
+            if(msg.status!==200) {
                 const res = responseMap.get(msg.correlationId);
                 if(res) {
-                    res.status(500).json({ error : 'Not enough credit or internal error' });
+                    res.status(msg.status).json({ error : msg.message });
                     responseMap.delete(msg.correlationId);
-                }
-                return;
-            } else {
+                } 
+            }
+            else {
                 console.log(msg.correlationId);
-                const message_trans = {
-                    type: "new",
-                    mes: {
-                        correlationId : msg.correlationId,
-                        userId: msg.userId,
-                        creditAmount: msg.creditAmount,
-                        form : msg.form,
-                    }
-                };
-                console.log('Sending message to transaction service:');
-                await sendToQueue('trans_queue', message_trans);
+                
+
+                switch(msg.type) {
+                    case "credit": await creditUpdate(msg); return;
+                    case "delete": await deleteUser(msg); return;
+                    case "update": await simpleResponse(msg); return;
+                    case "google_signup": await simpleResponse(msg); return;
+                    case "signup": await simpleResponse(msg); return;
+                }
             }
         });
+
+
+
         await consumeQueue('trans_response_queue', async (msg) => {
             console.log('Received message orchestration:', msg);
-            const res = responseMap.get(msg.correlationId);
-            if(res) {
-                if(!msg.success) {
-                    res.status(500).json({ error : 'Transaction failed' });
-                }
-                else {
-                res.status(200).json(msg);
-                }
-                responseMap.delete(msg.correlationId);
+            if(msg.status!==200) {
+                const res = responseMap.get(msg.correlationId);
+                if(res) {
+                    res.status(msg.status).json({ error : msg.message });
+                    responseMap.delete(msg.correlationId);
+                } 
             }
-            else console.error('No matching response found for correlation ID:', msg.correlationId);
+            else {
+                console.log(msg.correlationId);
+                
+
+                switch(msg.type) {
+                    case "new": await simpleResponse(msg); return;
+                    case "delete": await simpleResponse(msg);//deleteTransaction(msg); return;
+                }
+            }
         });
+
         consumeQueue('problem-service-issue', async (msg) => {
             // stuff todo
         });

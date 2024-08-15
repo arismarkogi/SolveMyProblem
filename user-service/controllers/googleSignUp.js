@@ -4,27 +4,58 @@ const { sendToQueue } = require('../utils/rabbitmq');
 const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
 
-exports.googleSignUp = async (req, res) => {
-    const { id, username, email } = req.body;
+const sendResponse = async (correlationId, message, status, token = null, userId = null) => {
+    const response = {
+        type: "google_signup",
+        correlationId,
+        message,
+        status,
+        token,
+        userId
+    };
+    await sendToQueue('user-service-queue-res', response);
+};
+function generateToken(user) {
+    const payload = {
+        id: user._id, // Include user ID in the payload
+        role: user.role // Include the role in the payload
+    };
+    // Sign the token with your secret key and set an expiration (e.g., 1 hour)
+    return jwt.sign(payload, process.env.JWT_SECRET_KEY, { expiresIn: '1h' });
+}
+exports.googleSignUp = async (message) => {
+    const { correlationId, id, username, email } = message;
 
-    function generateToken(user) {
-        const payload = {
-            id: user._id, // Include user ID in the payload
-            role: user.role // Include the role in the payload
-        };
-        // Sign the token with your secret key and set an expiration (e.g., 1 hour)
-        return jwt.sign(payload, process.env.JWT_SECRET_KEY, { expiresIn: '1h' });
-    }
+    
     try {
-        if (!id || !username || !email) {
-            const errorResponse = { message: 'Google ID, username, and email are required', success: false };
-            await sendToQueue('user-service-queue-res', errorResponse);
+        if(!id) {
+            await sendResponse(correlationId, 'No Google ID provided', 400);
             return;
         }
-        const existingEmailUser = await User.findOne({ email: email });
-        if (existingEmailUser) {
-            const errorResponse = { message: 'Email already used', success: false };
-            await sendToQueue('user-service-queue-res', errorResponse);
+        if (!username) {
+            await sendResponse(correlationId, 'Username is a necessary field', 400);
+            return;
+        }
+        
+        if(!email) {
+            await sendResponse(correlationId, 'Email is a necessary field', 400);
+            return;
+        }
+
+        // check email format
+        if (!validator.isEmail(email)) {
+            await sendResponse(correlationId, 'Invalid email format', 400);
+            return;
+        }
+
+        const existingUser = await User.findOne( {$or: [
+            { email: email },
+            { username: username }
+        ]});
+        //check if email or username are taken
+        if (existingUser) {
+            const field = existingUser.username === username ? 'Username' : 'Email';
+            await sendResponse(correlationId, `${field} is already taken`, 400);
             return;
         }
 
@@ -32,9 +63,10 @@ exports.googleSignUp = async (req, res) => {
         let user = await User.findOne({ googleId: id });
         if (user) {
             // Update existing user
-            await User.updateOne(
+            user = await User.findOneAndUpdate(
                 { googleId: id },
-                { $set: { username: username, email: email }}
+                { $set: { username: username, email: email }},
+                { new: true }
             );
         }
         else {
@@ -47,16 +79,9 @@ exports.googleSignUp = async (req, res) => {
             await user.save();
         }
         const token = generateToken(user);
-        const successResponse = { 
-            message: 'Google sign up successful',
-            success: true,
-            token: token,
-            userId: user._id
-        };
-        await sendToQueue('user-service-queue-res', successResponse);
+        await sendResponse(correlationId, 'Google sign up successful', 200, token, user._id);
+
     } catch (error) {
-        console.error(error);
-        const errorResponse = { message: 'Internal server error', success: false };
-        await sendToQueue('user-service-queue-res', errorResponse);
-    }
-}
+        console.error('Error in googleSignUp:', error);
+        await sendResponse(correlationId, 'Internal server error', 500);
+}}

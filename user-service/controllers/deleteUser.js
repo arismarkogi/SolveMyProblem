@@ -1,35 +1,38 @@
-const { json } = require('express');
 const User = require('../models/userModel');
 const { sendToQueue } = require('../utils/rabbitmq');
 
 const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
 
+const sendResponse = async (correlationId, message, status, userId = null) => {
+    const response = {
+        type: "delete",
+        correlationId,
+        message,
+        status,
+        userId
+    };
+    await sendToQueue('user-service-queue-res', response);
+};
 
 exports.deleteUser = async (message) => {
-    const { userId } = message;
+    const { correlationId, userId } = message;
     try{
 
     // Check for Google ID association
     const user = await User.findOne({ _id: userId },{ role: 'user' });
     if (!user) {
-        const errorResponse = { message: 'User not found', success: false };
-        await sendToQueue('user-service-queue-res', errorResponse);
+        await sendResponse(correlationId, 'User not found', 404);
         return;
-        }
+    }
+
 
     await User.deleteOne({ _id: userId });
 
-    const successResponse = { 
-        message: 'User deleted successfully',
-        success: true,
-        userId: userId
-    };
-    await sendToQueue('user-service-queue-res', successResponse);
+    await sendResponse(correlationId, 'User deleted successfully', 200, userId);
 
     } catch (error) {
-    console.error(error);
-    const errorResponse = { message: 'Internal server error', success: false };
-    await sendToQueue('user-service-queue-res', errorResponse);
+    console.error('Error in deleteUser:', error);
+    await sendResponse(correlationId, 'Internal server error', 500);
 }
 }

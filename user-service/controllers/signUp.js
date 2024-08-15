@@ -3,15 +3,43 @@ const User = require('../models/userModel');
 const { sendToQueue } = require('../utils/rabbitmq');
 
 const crypto = require('crypto');
-const jwt = require('jsonwebtoken');
+const validator = require('validator');
 
+const sendResponse = async (correlationId, message, status, userId = null) => {
+    const response = {
+        type: "new",
+        correlationId,
+        message,
+        status,
+        userId
+    };
+    await sendToQueue('user-service-queue-res', response);
+};
 exports.signUp = async (message) => {
     
-    const { username, password, email } = message;
-    try {// checking necessary fields
-        if (!username || !password || !email) {
-            const errorResponse = { message: 'Username, password, and email are required', success: false };
-            await sendToQueue('user-service-queue-res', errorResponse);
+    const {correlationId, username, password, email } = message;
+    try {
+        // checking necessary fields
+        if (!username) {
+            await sendResponse(correlationId, 'Username is a necessary field', 400);
+            return;
+        }
+        if(!password) {
+            await sendResponse(correlationId, 'Password is a necessary field', 400);
+            return;
+        }
+        if(!email) {
+            await sendResponse(correlationId, 'Email is a necessary field', 400);
+            return;
+        }
+        // check email format
+        if (!validator.isEmail(email)) {
+            await sendResponse(correlationId, 'Invalid email format', 400);
+            return;
+        }
+        // check password length
+        if (password.length < 8) {
+            await sendResponse(correlationId, 'Password must be at least 8 characters long', 400);
             return;
         }
         
@@ -20,11 +48,10 @@ exports.signUp = async (message) => {
             { email: email },
             { username: username }
         ]});
-
+        //check if email or username are taken
         if (existingUser) {
             const field = existingUser.username === username ? 'Username' : 'Email';
-            const errorResponse = { message: `${field} already exists`, success: false };
-            await sendToQueue('user-service-queue-res', errorResponse);
+            await sendResponse(correlationId, `${field} is already taken`, 400);
             return;
         }
         // hash password
@@ -39,17 +66,12 @@ exports.signUp = async (message) => {
 
         await user.save();
         
-        //send succesf response
-        const successResponse = { 
-            message: 'User created successfully', 
-            success: true,
-            userId: user._id
-        };
-        await sendToQueue('user-service-queue-res', successResponse);
+        //send success response
+        await sendResponse(correlationId, 'User created successfully', 200, user._id);
+
     } catch (error) { 
         //send error response
         console.error(error);
-        const errorResponse = { message: 'Internal server error', success: false };
-        await sendToQueue('user-service-queue-res', errorResponse);
+        await sendResponse(correlationId, 'Internal server error', 500);
     }
 }
