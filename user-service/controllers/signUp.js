@@ -7,7 +7,7 @@ const validator = require('validator');
 
 const sendResponse = async (correlationId, message, status, userId = null) => {
     const response = {
-        type: "new",
+        type: "signup",
         correlationId,
         message,
         status,

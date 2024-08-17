@@ -17,6 +17,8 @@ const connectRabbitMQ = async () => {
 
 const sendToQueue = async (queue, message, channel) => {
     try {
+        console.log('Sending message to queue:', queue);
+        console.log('Message:', message);
         channel.sendToQueue(queue, Buffer.from(JSON.stringify(message)), { persistent: true });
         //await channel.assertQueue(queue);
         //channel.sendToQueue(queue, Buffer.from(JSON.stringify(message)));

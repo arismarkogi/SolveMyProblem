@@ -2,7 +2,7 @@ const Transaction = require('../models/transactionModel');
 const {sendToQueue } = require('../utils/rabbitmq');
 
 
-const sendResponse = async (correlationId, message, status, userId =null,transactionId = null) => {
+const sendResponse = async (correlationId, message, status, channel, userId =null,transactionId = null) => {
     const response = {
         type: "new",
         correlationId,
@@ -11,9 +11,9 @@ const sendResponse = async (correlationId, message, status, userId =null,transac
         userId,
         transactionId
     };
-    await sendToQueue('trans_response_queue', response);
+    await sendToQueue('trans_response_queue', response, channel);
 };
-const createTransaction = async (msg) => {
+const createTransaction = async (msg, channel) => {
     console.log('Received message:', msg);
     if (!msg) {
         console.error('No message received');
@@ -23,15 +23,15 @@ const createTransaction = async (msg) => {
     console.log('correlationId', correlationId);
 
     if (!userId) {
-        await sendResponse(correlationId, "User's ID is required", 400);
+        await sendResponse(correlationId, "User's ID is required", 400, channel);
         return;
     }
     if(!creditAmount) {
-        await sendResponse(correlationId, 'Credit Amount is required', 400);
+        await sendResponse(correlationId, 'Credit Amount is required', 400, channel);
         return;
     }
     if(!form) {
-        await sendResponse(correlationId, 'Form is required', 400);
+        await sendResponse(correlationId, 'Form is required', 400, channel);
         return;
     }
 
@@ -63,11 +63,11 @@ const createTransaction = async (msg) => {
         await transaction.save();
 
         //send success message
-        await sendResponse(correlationId, 'Credit added and transaction created successfully', 200,userId,transaction._id);
+        await sendResponse(correlationId, 'Credit added and transaction created successfully', 200, channel, userId, transaction._id);
 
     } catch (error) {
         console.error(error);
-        await sendResponse(correlationId, 'Internal server error', 500);
+        await sendResponse(correlationId, 'Internal server error', 500, channel);
     }
 };
 
