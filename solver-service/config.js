@@ -1,5 +1,5 @@
 module.exports = {
     rabbitMQURL: process.env.RABBITMQ_URL || 'amqp://guest:guest@localhost:5672/',
-    taskQueue: 'task_queue',
-    resultQueue: 'result_queue'
+    taskQueue: 'problem-issue-req-queue',
+    resultQueue: 'problem-issue-res-queue'
 };

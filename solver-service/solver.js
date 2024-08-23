@@ -1,4 +1,4 @@
-const { connectRabbitMQ, sendToQueue } = require('./utils/rabbitmq');
+const { connectRabbitMQ, sendToQueue, consumeQueue } = require('./utils/rabbitmq');
 const { exec } = require('child_process');
 const { taskQueue, resultQueue } = require('./config');
 const fs = require('fs');
@@ -7,11 +7,13 @@ require('dotenv').config();
 
 let isSolverBusy = false;
 
-const processMessage = async (msg, connection) => {
-    const message = JSON.parse(msg.content.toString());
-    const { command, userId, locationFileContent, pythonFileContent, locationFileName, pythonFileName } = message;
+const processMessage = async (msg) => {
+    
+    isSolverBusy = true;
+        
+    const {problemId, numVehicles, depot, maxDistance, locationFileContent, locationFileName} = msg
 
-    console.log('Received message:', message);
+    console.log('Received message:', msg);
 
     // Ensure the 'uploads' directory exists
     const uploadDir = path.join(__dirname, 'uploads');
@@ -19,21 +21,24 @@ const processMessage = async (msg, connection) => {
         fs.mkdirSync(uploadDir);
     }
 
-    // Save files locally
+    // Save file lcoation file locally
+    // This will be removed after docker
     const locationFilePath = path.join(uploadDir, locationFileName);
-    const pythonFilePath = path.join(uploadDir, pythonFileName);
-
     fs.writeFileSync(locationFilePath, locationFileContent, 'utf-8');
-    fs.writeFileSync(pythonFilePath, pythonFileContent, 'utf-8');
 
-    isSolverBusy = true;
+    const command = `python3 vrpSolver.py ${locationFilePath} ${numVehicles} ${depot} ${maxDistance}`;
 
-    exec(command, { cwd: uploadDir }, (error, stdout, stderr) => {
+    const startTime = process.hrtime(); 
+
+    exec(command, (error, stdout, stderr) => {
         if (error) {
             console.error('Error executing command:', error);
             isSolverBusy = false;
             return;
         }
+
+        const [seconds, nanoseconds] = process.hrtime(startTime);
+        const duration = seconds + nanoseconds / 1e9; // Convert to seconds
 
         if (stderr) {
             console.error('Solver stderr:', stderr);
@@ -41,33 +46,55 @@ const processMessage = async (msg, connection) => {
             return;
         }
 
+        let solution = '';
+        let maxRouteDistance = 0;
+        let totalDistTravel = 0;
+
+        if (stdout.trim() === 'No solution found !') {
+            solution = 'No solution found !';
+            maxRouteDistance = 0;
+            totalDistTravel = 0;
+        } else {
+            // Parse the stdout to extract solution, maxRouteDistance, and totalDistTravel.
+            const stdoutLines = stdout.trim().split('\n');
+            
+            // Extract the solution string (everything but the totalDistTravel and maxRouteDistance)
+            solution = stdoutLines.slice(0, -2).join('\n');
+            
+            // Extract totalDistTravel and maxRouteDistance
+            const totalDistanceLine = stdoutLines.find(line => line.startsWith('Total distance traveled by all vehicles:'));
+            if (totalDistanceLine) {
+                totalDistTravel = parseInt(totalDistanceLine.match(/\d+/)[0]);
+            }
+
+            const maxDistanceLine = stdoutLines.find(line => line.startsWith('Maximum of the route distances:'));
+            if (maxDistanceLine) {
+                maxRouteDistance = parseInt(maxDistanceLine.match(/\d+/)[0]);
+            }
+        }
+
         console.log('Solver stdout:', stdout);
+        console.log('Execution Duration: ', duration);
 
+        // Construct the result message
         const resultMessage = {
-            userId,
-            result: stdout
+            problemId: problemId,
+            solution: solution,
+            maxRouteDistance: maxRouteDistance,
+            totalDistTravel: totalDistTravel,
+            executionDuration: duration
         };
-
-        sendToQueue(resultQueue, resultMessage, connection);
+        console.log(resultMessage)
+        
+        sendToQueue(resultQueue, resultMessage);
         isSolverBusy = false;
     });
 };
 
 const main = async () => {
-    const connection = await connectRabbitMQ();
-    const channel = await connection.createChannel();
-    await channel.assertQueue(taskQueue);
+    await connectRabbitMQ();
     console.log('Waiting for messages in', taskQueue);
-
-    channel.consume(taskQueue, async (msg) => {
-        if (msg !== null && !isSolverBusy) {
-            await processMessage(msg, connection);
-            channel.ack(msg);
-        } else if (msg !== null) {
-            // Requeue the message
-            setTimeout(() => channel.nack(msg), 1000);
-        }
-    });
+    await consumeQueue(taskQueue, processMessage)
 };
 
 main().catch(console.error);
