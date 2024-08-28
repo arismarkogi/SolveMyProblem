@@ -9,8 +9,8 @@ Sample message
 {
    "type": "getProblems",
    "mes": {
-       "userId": "66c324419a65cc7ffb62e48c", // valid userId format for MongoDB
-       "isAdmin": false   // true or false
+       "isAdmin": false   // true or false,
+       "userId": "66c324419a65cc7ffb62e48c" // if isAdmin === false put a  valid userId format for MongoDB, if isAdmin === true you can omit this field or put a string of your choice
        }
 }
 
