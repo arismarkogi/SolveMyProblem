@@ -9,8 +9,11 @@ const connectRabbitMQ = async () => {
         channel = await connection.createChannel();
         
         // Ensure all necessary queues are asserted
-        await channel.assertQueue('problem-issue-req-queue', { durable: false });
-        await channel.assertQueue('problem-issue-res-queue', { durable: false });
+        await channel.assertQueue('solver-to-probMan-queue', { durable: false });
+        await channel.assertQueue('probMan-to-solver-queue', { durable: false });
+        await channel.assertQueue('orch-to-probMan-queue', {durable: false});
+        await channel.assertQueue('probMan-to-orch-queue', {durable: false});
+
         
         console.log('Connected to RabbitMQ');
         return channel;

@@ -14,6 +14,7 @@ const DataSchema = new mongoose.Schema({
         default: 'pending', 
         required: true 
     },
+    hasSolution: {type: Boolean, default: false},
     solution: {type: String, default: ""},
     maxRouteDistance: {type: Number, default: 0, required: true },
     totalDistTravel: {type: Number, default: 0, required: true},

@@ -49,17 +49,18 @@ const processMessage = async (msg) => {
         let solution = '';
         let maxRouteDistance = 0;
         let totalDistTravel = 0;
+        let hasSolution = false;
 
         if (stdout.trim() === 'No solution found !') {
             solution = 'No solution found !';
-            maxRouteDistance = 0;
-            totalDistTravel = 0;
+          
         } else {
+            hasSolution = true;
             // Parse the stdout to extract solution, maxRouteDistance, and totalDistTravel.
             const stdoutLines = stdout.trim().split('\n');
             
             // Extract the solution string (everything but the totalDistTravel and maxRouteDistance)
-            solution = stdoutLines.slice(0, -2).join('\n');
+            solution = stdoutLines.slice(1, -2).join('\n');
             
             // Extract totalDistTravel and maxRouteDistance
             const totalDistanceLine = stdoutLines.find(line => line.startsWith('Total distance traveled by all vehicles:'));
@@ -79,6 +80,7 @@ const processMessage = async (msg) => {
         // Construct the result message
         const resultMessage = {
             problemId: problemId,
+            hasSolution: hasSolution,
             solution: solution,
             maxRouteDistance: maxRouteDistance,
             totalDistTravel: totalDistTravel,

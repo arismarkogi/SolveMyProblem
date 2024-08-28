@@ -3,15 +3,34 @@ const {sendToQueue} = require('../utils/rabbitmq');
 const fs = require('fs');
 const path = require('path');
 
-const submitData = async (req, res) => {
+
+
+
+/* Sample Message
+{
+    "type": "problemIssue",
+    "mes": {
+        "locationFilePath": "uploads/locations_20.json",    // something from the directory problem-management-service/uploads
+        "numVehicles": 5, // integer
+        "depot": 17,      // integer less than #locations
+        "maxDistance": 100000, // integer
+        "userId": "66c324419a65cc7ffb62e48c" // correct  format for MongoDB
+    }
+}
+
+*/
+
+
+const submitData = async (msg) => {
     try {
-        const { numVehicles, depot, maxDistance, userId } = req.body;
-        const locationFile = req.files['location'][0].path;
+
+        console.log(msg);
+        const { locationFilePath, numVehicles, depot, maxDistance, userId } = msg;
 
 
         const newProblem = new Problem({
             userId: userId,               
-            locationFile: locationFile,    
+            locationFile: locationFilePath,    
             numVehicles: numVehicles,                   
             depot: depot,                         
             maxDistance: maxDistance,                
@@ -24,7 +43,7 @@ const submitData = async (req, res) => {
         console.log("SavedProblem:", savedProblem)
 
         // Verify that files exist before reading them
-        if (!fs.existsSync(locationFile)) {
+        if (!fs.existsSync(locationFilePath)) {
             return res.status(500).json({ error: 'File upload failed' });
         }
 
@@ -33,16 +52,15 @@ const submitData = async (req, res) => {
             numVehicles,
             depot,
             maxDistance,
-            locationFileContent: fs.readFileSync(locationFile, 'utf-8'), // this will be removed after docker
-            locationFileName: path.basename(locationFile)
+            locationFileContent: fs.readFileSync(locationFilePath, 'utf-8'), // this will be removed after docker
+            locationFileName: path.basename(locationFilePath)
         };
 
-        await sendToQueue('problem-issue-req-queue', message);
+        await sendToQueue('probMan-to-solver-queue', message);
 
-        res.status(200).json({ message: 'Data submitted and sent to queue' });
+        
     } catch (error) {
         console.error('Error submitting data:', error);
-        res.status(500).json({ error: 'Error submitting data' });
     }
 };
 
