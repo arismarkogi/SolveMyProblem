@@ -2,7 +2,6 @@ const jwt = require('jsonwebtoken');
 const { sendToQueue, responseMap } = require('../utils/rabbitmq');
 const { v4: uuidv4 } = require('uuid');
 
-
 exports.signUp = async (req, res) => {
     try {
         const { username, password, email } = req.body;
@@ -33,6 +32,7 @@ exports.signUp = async (req, res) => {
         return res.status(500).json({ error: 'Internal Error' });
     }
 };
+
 
 /*console.log('this should be before status code');
         await receiveFromQueue('user-service-queue-res', async (msg) => {

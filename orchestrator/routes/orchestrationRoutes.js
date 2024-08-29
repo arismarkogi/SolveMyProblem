@@ -6,7 +6,9 @@ const healthCheckController = require('../controllers/healthCheck');
 const signupController = require('../controllers/signup');
 const searchUsersController = require('../controllers/searchUsers');
 //const googleSignUpController = require('../controllers/googleSignUp');
-//const loginController = require('../controllers/login');
+//than
+const loginController = require('../controllers/login');
+//than
 const updateUserController = require('../controllers/updateUser');
 const router = express.Router();
 
@@ -17,7 +19,10 @@ router.get('/health-check', healthCheckController.healthCheck);
 router.post('/sign-up', signupController.signUp);
 router.post('/search-users', searchUsersController.searchUsers);
 //router.post('/google-sign-up', googleSignUpController.googleSignUp);
-//router.post('/login', loginController.logIn);
+
+//than
+router.post('/login', loginController.logIn);
+//than
 router.post('/update-user', updateUserController.updateUser);
 
 module.exports = router;

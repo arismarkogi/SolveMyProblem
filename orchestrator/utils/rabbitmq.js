@@ -69,7 +69,23 @@ const connectRabbitMQ = async () => {
         await channel.assertQueue('problem-service-issue', { durable: false });
 
         channel.prefetch(1);
-    
+        await consumeQueue('user-service-queue-res', async (msg) => {
+            console.log('Received response from user-service:', msg);
+            const res = responseMap.get(msg.correlationId);
+            if (res) {
+                if (msg.status === 200) {
+                    res.status(200).json({
+                        message: msg.message,
+                        token: msg.token,
+                        userId: msg.userId
+                    });
+                } else {
+                    res.status(msg.status).json({ error: msg.message });
+                }
+                responseMap.delete(msg.correlationId);
+            } else {
+                console.error(`No response object found for correlationId: ${msg.correlationId}`);
+        /*
         await consumeQueue('user-service-queue-res', async (msg) => {
             if(msg.status!==200) {
                 const res = responseMap.get(msg.correlationId);
@@ -80,7 +96,7 @@ const connectRabbitMQ = async () => {
             }
             else {
                 console.log(msg.correlationId);
-                
+                */
 
                 switch(msg.type) {
                     case "credit": await creditUpdate(msg); return;
@@ -88,9 +104,11 @@ const connectRabbitMQ = async () => {
                     case "update": await simpleResponse(msg); return;
                     case "google_signup": await simpleResponse(msg); return;
                     case "signup": await simpleResponse(msg); return;
+                    case "login": await simpleResponse(msg); return;
                 }
             }
-        });
+        }
+    );
 
 
 
@@ -135,7 +153,7 @@ const sendToQueue = async (queue, message) => {
 };
 
 const consumeQueue = async (queue, callback) => {
-    try {
+   /* try {
         console.log('consuming');
         await channel.consume(queue, async (message) => {
             if(message !== null) {
@@ -147,7 +165,20 @@ const consumeQueue = async (queue, callback) => {
         }, { noAck: false});
     } catch (error) {
         console.error('Failed to receive message from queue:', error);
-    }
+    */
+        try {
+            console.log(`Consuming from queue: ${queue}`);
+            await channel.consume(queue, async (message) => {
+                if(message !== null) {
+                    console.log('Received message:', message.content.toString());
+                    const parsedMessage = JSON.parse(message.content.toString());
+                    await callback(parsedMessage);
+                    channel.ack(message);
+                }
+            }, { noAck: false});
+        } catch (error) {
+            console.error('Failed to receive message from queue:', error);
+        }
 }
 
 module.exports = {connectRabbitMQ, sendToQueue, responseMap};
