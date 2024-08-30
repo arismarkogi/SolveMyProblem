@@ -9,7 +9,10 @@ const searchUsersController = require('../controllers/searchUsers');
 //than
 const loginController = require('../controllers/login');
 //than
+const userProfileController = require('../controllers/userProfile');
 const updateUserController = require('../controllers/updateUser');
+
+
 const router = express.Router();
 
 router.post('/problem-issue', problemIssueController.problemIssue);
@@ -19,6 +22,7 @@ router.get('/health-check', healthCheckController.healthCheck);
 router.post('/sign-up', signupController.signUp);
 router.post('/search-users', searchUsersController.searchUsers);
 //router.post('/google-sign-up', googleSignUpController.googleSignUp);
+router.get('/user-profile', userProfileController.getUserProfile);
 
 //than
 router.post('/login', loginController.logIn);

@@ -69,7 +69,7 @@ const connectRabbitMQ = async () => {
         await channel.assertQueue('problem-service-issue', { durable: false });
 
         channel.prefetch(1);
-        await consumeQueue('user-service-queue-res', async (msg) => {
+        /*await consumeQueue('user-service-queue-res', async (msg) => {
             console.log('Received response from user-service:', msg);
             const res = responseMap.get(msg.correlationId);
             if (res) {
@@ -85,7 +85,99 @@ const connectRabbitMQ = async () => {
                 responseMap.delete(msg.correlationId);
             } else {
                 console.error(`No response object found for correlationId: ${msg.correlationId}`);
-        /*
+       */
+
+
+
+/*
+                
+                await consumeQueue('user-service-queue-res', async (msg) => {
+                    console.log('Received response from user-service:', msg);
+                    const res = responseMap.get(msg.correlationId);
+                    if (res) {
+                        if (msg.status === 200) {
+                            if (msg.type === 'login') {
+                                res.status(200).json({
+                                    message: msg.message,
+                                    token: msg.token,
+                                    userId: msg.userId
+                                });
+                            } else if (msg.type === 'credit_update') {
+                                res.status(200).json({
+                                    message: msg.message,
+                                    newCreditAmount: msg.newCreditAmount
+                                });
+                            } else {
+                                res.status(200).json({
+                                    message: msg.message
+                                });
+                            }
+                        } else {
+                            res.status(msg.status).json({ error: msg.message });
+                        }
+                        responseMap.delete(msg.correlationId);
+                    } else {
+                        console.error(`No response object found for correlationId: ${msg.correlationId}`);
+               
+
+
+
+                        */
+                        //working
+                        /*
+                        await consumeQueue('user-service-queue-res', async (msg) => {
+                            console.log('Received response from user-service:', msg);
+                            const res = responseMap.get(msg.correlationId);
+                            if (res) {
+                                if (msg.status === 200) {
+                                    console.log('Sending successful login response:', {
+                                        message: msg.message,
+                                        token: msg.token,
+                                        userId: msg.userId
+                                    });
+                                    res.status(200).json({
+                                        message: msg.message,
+                                        token: msg.token,
+                                        userId: msg.userId
+                                    });
+                                } else {
+                                    console.log('Sending error response:', { error: msg.message });
+                                    res.status(msg.status).json({ error: msg.message });
+                                }
+                                responseMap.delete(msg.correlationId);
+                            } else {
+                                console.error(`No response object found for correlationId: ${msg.correlationId}`);
+                        */
+                       
+await consumeQueue('user-service-queue-res', async (msg) => {
+    console.log('Received response from user-service:', msg);
+    const res = responseMap.get(msg.correlationId);
+    if (res) {
+        if (msg.status === 200) {
+            switch(msg.type) {
+                case 'login':
+                    res.status(200).json({
+                        message: msg.message,
+                        token: msg.token,
+                        userId: msg.userId
+                    });
+                    break;
+                case 'get_user_profile':
+                    res.status(200).json({
+                        message: msg.message,
+                        user: msg.user
+                    });
+                    break;
+                default:
+                    res.status(200).json(msg);
+            }
+        } else {
+            res.status(msg.status).json({ error: msg.message });
+        }
+        responseMap.delete(msg.correlationId);
+    } else {
+        console.error(`No response object found for correlationId: ${msg.correlationId}`);
+                                /*
         await consumeQueue('user-service-queue-res', async (msg) => {
             if(msg.status!==200) {
                 const res = responseMap.get(msg.correlationId);

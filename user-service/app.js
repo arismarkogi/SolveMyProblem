@@ -13,7 +13,7 @@ const signUpController = require('./controllers/signUp');
 const updateUserController = require('./controllers/updateUser');
 const deleteUserController = require('./controllers/deleteUser');
 const healthCheckController = require('./controllers/healthCheck');
-
+const getUserProfileController = require('./controllers/getUserProfile');
 require('dotenv').config();
 
 const app = express();
@@ -39,6 +39,7 @@ const processMessage = async (message) => {
         case "update": await updateUserController.updateUser(mes); return;
         case "delete": await deleteUserController.deleteUser(mes); return;
         case "health_check": await healthCheckController.healthCheck(mes); return;
+        case "get_user_profile": await getUserProfileController.getUserProfile(mes); return;
         default: console.log('Unknown message type:', type);
     }
 };

@@ -1,4 +1,4 @@
-const jwt = require('jsonwebtoken');
+/*const jwt = require('jsonwebtoken');
 const { sendToQueue, responseMap } = require('../utils/rabbitmq');
 const { v4: uuidv4 } = require('uuid');
 
@@ -32,8 +32,40 @@ exports.addCredit = async (req, res) => {
         res.status(500).json({ error: 'Internal Error' });
     }
 };
+*/
+const jwt = require('jsonwebtoken');
+const { sendToQueue, responseMap } = require('../utils/rabbitmq');
+const { v4: uuidv4 } = require('uuid');
 
+exports.addCredit = async (req, res) => {
+    try {
+        const { userId, creditAmount, form } = req.body;
 
+        if (!userId || !creditAmount || !form) {
+            return res.status(400).json({ error: 'Missing required fields' });
+        }
+
+        const correlationId = uuidv4();
+
+        const message_user = {
+            type: "credit_update",
+            mes: {
+                userId,
+                creditAmount,
+                form,
+                correlationId 
+            }
+        };
+        responseMap.set(correlationId, res);
+        
+        console.log(`Sending credit update request to user-service, correlationId: ${correlationId}`);
+        await sendToQueue('user-service-queue', message_user);
+        
+    } catch (error) {
+        console.error('Internal Error in addCredit:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+};
 
 
 /*await receiveFromQueue('user-service-queue-res', async (msg) => {
