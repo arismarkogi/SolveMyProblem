@@ -1,14 +1,19 @@
-Αφού εγκαταστήσετε το jmeter,
+## Installation Instructions
 
-Θα βάλετε στον φάκελο jmeter/lib/ext τα αρχεία: 
-    - saas2024-24/testing/java_files/jmeter-plugins-manager-1.10.jar
-    - saas2024-24/testing/java_files/JMeterAMQP.jar
+After installing JMeter:
 
-Θα βάλετε στον φάκελο jmeter/lib το αρχείο:
-    - saas2024-24/testing/java_files/amqp-client-5.21.0.jar
+1. Place the following files in the `jmeter/lib/ext` folder:
+    - `saas2024-24/testing/java_files/jmeter-plugins-manager-1.10.jar`
+    - `saas2024-24/testing/java_files/JMeterAMQP.jar`
 
-Για να τρέξετε τα tests:
-    - Ανοίγετε το jmeter
-    - Πηγαίνετε File -> Open -> /path/to/saas2024-24/testing/CSV Data Set Config.jmx
-    - Αφού το ανοίξετε, θα πρέπει αλλάξετε στο Test Plan -> Thread Group -> CSV Data Set Config -> Filename στο /path/to/saas2024-24/testing/generated_messages.csv
-    - Τώρα μπορείτε να τρέξετε τα tests
+2. Place the following file in the `jmeter/lib` folder:
+    - `saas2024-24/testing/java_files/amqp-client-5.21.0.jar`
+
+## Running the Tests
+
+To run the tests:
+
+1. Open JMeter.
+2. Go to `File -> Open -> /path/to/saas2024-24/testing/CSV Data Set Config.jmx`.
+3. After opening the file, you need to change the `Filename` field in `Test Plan -> Thread Group -> CSV Data Set Config` to `/path/to/saas2024-24/testing/generated_messages.csv`.
+4. Now you can run the tests.
