@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom'; // Use useNavigate instead of useHistory
 
 function SignUp() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate(); // Initialize useNavigate
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const userData = { name, email, password };
-        axios.post('/api/signup', userData)
+        const userData = { username: name, email, password };
+        axios.post('http://localhost:6900/sign-up', userData)
             .then(response => {
                 console.log('User signed up successfully:', response.data);
+                navigate('/home'); // Redirect to /home after successful sign up
             })
             .catch(error => {
                 console.error('There was an error signing up:', error);
@@ -41,4 +44,3 @@ function SignUp() {
 }
 
 export default SignUp;
-////////done

@@ -1,17 +1,18 @@
-//app.js
+const cors = require('cors');  // Import the cors middleware
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const dataRoutes = require('./routes/dataRoutes');
-const {receiveSolution}  = require('./controllers/receiveSolution');
-const {submitData} = require('./controllers/problemIssue');
-const {getProblems} = require('./controllers/getProblems');
-const{getStats} = require('./controllers/stats');
+const { receiveSolution } = require('./controllers/receiveSolution');
+const { submitData } = require('./controllers/problemIssue');
+const { getProblems } = require('./controllers/getProblems');
+const { getStats } = require('./controllers/stats');
 const { connectRabbitMQ, consumeQueue } = require('./utils/rabbitmq');
 require('dotenv').config();
 
 const app = express();
 
+app.use(cors());  // Enable CORS
 app.use(bodyParser.json());
 app.use('/', dataRoutes);
 
@@ -35,13 +36,12 @@ const processMessage = async (message) => {
     }
 };
 
-
 const main = async () => {
     try {
         // Establish the RabbitMQ connection and channel
         await connectRabbitMQ();
         await consumeQueue('solver-to-probMan-queue', receiveSolution);
-        await consumeQueue('orch-to-probMan-queue', processMessage)
+        await consumeQueue('problem-service-issue', processMessage)
     } catch (error) {
         console.error('Error in main function:', error);
         process.exit(1);
@@ -52,4 +52,3 @@ app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
     main().catch(console.error);
 });
-

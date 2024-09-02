@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const userRoutes = require('./routes/userRoutes');
 const { connectRabbitMQ, consumeQueue } = require('./utils/rabbitmq');
+const { initUserCreditQueueConsumer } = require('./controllers/creditController'); // Import the new credit controller
 
 // Import controllers individually
 const logInController = require('./controllers/logIn');
@@ -47,6 +48,7 @@ const processMessage = async (message) => {
 const main = async () => {
     await connectRabbitMQ();
     await consumeQueue('user-service-queue', processMessage);
+    await initUserCreditQueueConsumer();  // Start the consumer for credit check queue
 };
 
 app.listen(PORT, () => {

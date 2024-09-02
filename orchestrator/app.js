@@ -49,6 +49,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.listen(PORT, () => {console.log('Server running on port ' + PORT)});
 */
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -58,7 +59,15 @@ const { connectRabbitMQ } = require('./utils/rabbitmq');
 
 require('dotenv').config();
 
-app.use(cors());
+// Middleware setup
+
+// CORS setup: Allow requests from the frontend running on port 3000
+app.use(cors({
+    origin: 'http://localhost:3000', // Specify the allowed origin
+    methods: 'GET,POST,PUT,DELETE', // Specify allowed HTTP methods
+    credentials: true // Allow credentials if needed (e.g., for cookies, authentication headers)
+}));
+
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -73,10 +82,14 @@ app.use((req, res, next) => {
     next();
 });
 
+// Orchestration routes
 app.use('/', orchestrationRoutes);
 
-const PORT = process.env.PORT || 6900;
-
+// Connect to RabbitMQ and start consuming messages
 connectRabbitMQ();
 
-app.listen(PORT, () => {console.log('Server running on port ' + PORT)});
+// Start the Express server
+const PORT = process.env.PORT || 6900;
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});

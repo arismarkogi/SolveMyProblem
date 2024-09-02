@@ -13,8 +13,8 @@ const connectRabbitMQ = async () => {
         await channel.assertQueue('probMan-to-solver-queue', { durable: false });
         await channel.assertQueue('orch-to-probMan-queue', {durable: false});
         await channel.assertQueue('probMan-to-orch-queue', {durable: false});
+        await channel.assertQueue('problem-service-issue-res', { durable: false });
 
-        
         console.log('Connected to RabbitMQ');
         return channel;
     } catch (error) {
@@ -28,9 +28,9 @@ const sendToQueue = async (queue, message) => {
         if (!channel) {
             throw new Error('Channel not initialized');
         }
-        channel.sendToQueue(queue, Buffer.from(JSON.stringify(message)));
-        
-        console.log('Message sent to queue:', queue);
+        console.log(`Sending message to queue ${queue}:`, message);
+        await channel.sendToQueue(queue, Buffer.from(JSON.stringify(message)));
+        console.log(`Message successfully sent to queue: ${queue}`);
     } catch (error) {
         console.error('Failed to send message to queue:', error);
         throw error;
@@ -42,16 +42,18 @@ const consumeQueue = async (queue, callback) => {
         if (!channel) {
             throw new Error('Channel not initialized');
         }
-        await channel.consume(queue, async (msg) => {
-            if (msg !== null) {
-                const content = JSON.parse(msg.content.toString());
-                await callback(content);
-                channel.ack(msg);
+        console.log(`Attempting to consume from queue: ${queue}`);
+        await channel.consume(queue, async (message) => {
+            if (message !== null) {
+                const parsedMessage = JSON.parse(message.content.toString());
+                console.log(`Received message from queue ${queue}:`, parsedMessage);
+                await callback(parsedMessage);
+                channel.ack(message);
+                console.log(`Message from queue ${queue} acknowledged.`);
             }
-        }, { noAck: false});
-        console.log(`Consuming from queue: ${queue}`);
+        }, { noAck: false });
     } catch (error) {
-        console.error('Failed to consume from queue:', error);
+        console.error(`Failed to consume from queue: ${queue}`, error);
         throw error;
     }
 };
