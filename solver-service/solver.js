@@ -76,7 +76,7 @@ const processMessage = async (msg) => {
 
         console.log('Solver stdout:', stdout);
         console.log('Execution Duration: ', duration);
-
+        
         // Construct the result message
         const resultMessage = {
             problemId: problemId,

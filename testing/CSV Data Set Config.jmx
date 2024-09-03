@@ -15,7 +15,7 @@
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller">
-          <intProp name="LoopController.loops">-1</intProp>
+          <stringProp name="LoopController.loops">200</stringProp>
           <boolProp name="LoopController.continue_forever">false</boolProp>
         </elementProp>
       </ThreadGroup>
@@ -25,7 +25,7 @@
           <boolProp name="AMQPSampler.ExchangeDurable">false</boolProp>
           <boolProp name="AMQPSampler.ExchangeAutoDelete">false</boolProp>
           <boolProp name="AMQPSampler.ExchangeRedeclare">false</boolProp>
-          <stringProp name="AMQPSampler.Queue">orch-to-probMan-queue</stringProp>
+          <stringProp name="AMQPSampler.Queue">probMan-to-solver-queue</stringProp>
           <stringProp name="AMQPSampler.RoutingKey">jmeterRoutingKey</stringProp>
           <stringProp name="AMQPSampler.VirtualHost">/</stringProp>
           <stringProp name="AMQPSampler.MessageTTL"></stringProp>
@@ -57,7 +57,7 @@
         </com.zeroclue.jmeter.protocol.amqp.AMQPPublisher>
         <hashTree/>
         <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config">
-          <stringProp name="delimiter">\n</stringProp>
+          <stringProp name="delimiter">.json&quot;}\n</stringProp>
           <stringProp name="fileEncoding"></stringProp>
           <stringProp name="filename">/home/arismarkogi/Desktop/saas2024-24/testing/generated_messages.csv</stringProp>
           <boolProp name="ignoreFirstLine">false</boolProp>
@@ -68,7 +68,7 @@
           <stringProp name="variableNames">message</stringProp>
         </CSVDataSet>
         <hashTree/>
-        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
