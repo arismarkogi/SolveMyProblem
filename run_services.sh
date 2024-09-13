@@ -1,13 +1,11 @@
-#!/bin/bash
-
 # Start RabbitMQ and MongoDB services
-sudo systemctl start rabbitmq-server
-sudo systemctl start mongod
+Start-Service -Name RabbitMQ
+Start-Service -Name MongoDB
 
-# Run each service in a new terminal window with a specific title
-gnome-terminal --title="Orchestrator Service" -- bash -c "cd orchestrator && node app.js; exec bash"
-gnome-terminal --title="User Service" -- bash -c "cd user-service && node app.js; exec bash"
-gnome-terminal --title="Problem Management Service" -- bash -c "cd problem-management-service && node app.js; exec bash"
-gnome-terminal --title="Transaction Service" -- bash -c "cd transaction-service && node app.js; exec bash"
-gnome-terminal --title="Solver Service" -- bash -c "cd solver-service && node solver.js; exec bash"
-gnome-terminal --title="Frontend" -- bash -c "cd frontend/fe && export NODE_OPTIONS=--openssl-legacy-provider && npm start; exec bash"
+# Open each service in a new PowerShell window
+Start-Process powershell -ArgumentList "cd orchestrator; node app.js" -NoNewWindow -Wait
+Start-Process powershell -ArgumentList "cd user-service; node app.js" -NoNewWindow -Wait
+Start-Process powershell -ArgumentList "cd problem-management-service; node app.js" -NoNewWindow -Wait
+Start-Process powershell -ArgumentList "cd transaction-service; node app.js" -NoNewWindow -Wait
+Start-Process powershell -ArgumentList "cd solver-service; node solver.js" -NoNewWindow -Wait
+Start-Process powershell -ArgumentList "cd frontend/fe; $env:NODE_OPTIONS='--openssl-legacy-provider'; npm start" -NoNewWindow -Wait
