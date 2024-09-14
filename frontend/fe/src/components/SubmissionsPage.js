@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Header from './Header';
+import Footer from './Footer';
 import { useNavigate } from 'react-router-dom';
 
 function SubmissionsPage({ isAdmin }) {
@@ -25,25 +27,10 @@ function SubmissionsPage({ isAdmin }) {
     };
 
     return (
-        <div>
-            <header className="bg-light p-3 text-center">
-                <div className="container">
-                    <h1>solveME</h1>
-                    <p className="lead">solveME logo area (70%)</p>
-                </div>
-            </header>
-
-            <nav className="navbar navbar-light bg-light">
-                <div className="container">
-                    <span className="navbar-brand">{isAdmin ? 'administrator' : 'username'}</span>
-                    <span className="navbar-text">
-                        system info: date/time, health, ...
-                    </span>
-                </div>
-            </nav>
-
-            <main className="container my-5">
-                <h2>{isAdmin ? 'Activity' : 'My submissions'}</h2>
+        <div className="d-flex flex-column min-vh-100">
+            <Header />
+            <main className="container my-4 flex-grow-1">
+                <h2 className="mb-4">{isAdmin ? 'Activity' : 'My submissions'}</h2>
                 <table className="table table-bordered">
                     <thead>
                     <tr>
@@ -62,23 +49,20 @@ function SubmissionsPage({ isAdmin }) {
                             <td>{submission.createdOn}</td>
                             <td>{submission.status}</td>
                             <td>
-                                <button className="btn btn-link">view/edit</button>
-                                <button className="btn btn-link">run</button>
-                                <button className="btn btn-link">view results</button>
-                                <button className="btn btn-link">delete</button>
+                                <button className="btn btn-link text-decoration-none">view/edit</button>
+                                <button className="btn btn-link text-decoration-none">run</button>
+                                <button className="btn btn-link text-decoration-none">view results</button>
+                                <button className="btn btn-link text-decoration-none">delete</button>
                             </td>
                         </tr>
                     ))}
                     </tbody>
                 </table>
-                {!isAdmin && <button className="btn btn-primary" onClick={handleNewProblemClick}>New Problem</button>}
+                {!isAdmin && <button className="btn btn-primary mt-3"
+                                     style={{ backgroundColor: '#00A86B', borderColor: '#00A86B' }}
+                                     onClick={handleNewProblemClick}>New Problem</button>}
             </main>
-
-            <footer className="bg-light text-center p-3">
-                <div className="container">
-                    <p>footer: solveME stuff (legal, etc)</p>
-                </div>
-            </footer>
+            <Footer/>
         </div>
     );
 }

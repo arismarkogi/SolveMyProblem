@@ -219,6 +219,9 @@ const BuyCredits = ({ user, onCreditUpdate }) => {
 export default BuyCredits;*/
 import React, { useState } from 'react';
 import axios from 'axios';
+import infographic from '../center.png';  // Ensure the path is correct for the new infographic
+import Header from './Header';
+import Footer from './Footer';
 
 const BuyCredits = ({ user, onCreditUpdate }) => {
   const [amount, setAmount] = useState(0);
@@ -257,27 +260,62 @@ const BuyCredits = ({ user, onCreditUpdate }) => {
     }
   };
 
+  // return (
+  //   <div>
+  //     <h2>Buy Credits</h2>
+  //     <p>Current Credit Balance: {user.creditAmount || 0}</p>
+  //     {error && <p style={{ color: 'red' }}>{error}</p>}
+  //     {success && <p style={{ color: 'green' }}>{success}</p>}
+  //     <form onSubmit={handleBuyCredits}>
+  //       <div>
+  //         <label htmlFor="amount">Amount of credits to buy:</label>
+  //         <input
+  //           type="number"
+  //           id="amount"
+  //           value={amount}
+  //           onChange={(e) => setAmount(e.target.value)}
+  //           min="1"
+  //           required
+  //         />
+  //       </div>
+  //       <button type="submit">Buy Credits</button>
+  //     </form>
+  //   </div>
+  // );
   return (
-    <div>
-      <h2>Buy Credits</h2>
-      <p>Current Credit Balance: {user.creditAmount || 0}</p>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      {success && <p style={{ color: 'green' }}>{success}</p>}
-      <form onSubmit={handleBuyCredits}>
-        <div>
-          <label htmlFor="amount">Amount of credits to buy:</label>
-          <input
-            type="number"
-            id="amount"
-            value={amount}
-            onChange={(e) => setAmount(e.target.value)}
-            min="1"
-            required
-          />
-        </div>
-        <button type="submit">Buy Credits</button>
-      </form>
-    </div>
+      <div className="d-flex flex-column min-vh-100">
+        <Header />
+        <main className="container my-4 flex-grow-1">
+          <div className="text-center mb-4">
+            <img src={infographic} alt="big solveME" className="img-fluid" style={{ maxHeight: '400px' }} />
+          </div>
+          <div className="text-center">
+            <h2 style={{ marginBottom: '2rem' }}>Buy Credits</h2>
+            <p>Current Credit Balance: {/* Display user credit amount here */} 0</p>
+            {error && <p style={{ color: 'red' }}>{error}</p>}
+            {success && <p style={{ color: 'green' }}>{success}</p>}
+            <form onSubmit={handleBuyCredits}>
+              <div>
+                <label htmlFor="amount">Amount of credits to buy:</label>
+                <input
+                    type="number"
+                    id="amount"
+                    value={amount}
+                    onChange={(e) => setAmount(e.target.value)}
+                    min="1"
+                    required
+                    style={{ marginTop: '1rem' }}
+                />
+              </div>
+              <button type="submit" className="btn btn-primary" style={{ backgroundColor: '#00A86B', borderColor: '#00A86B', marginTop: '1rem' }}>
+                Buy Credits
+              </button>
+            </form>
+          </div>
+        </main>
+
+        <Footer />
+      </div>
   );
 };
 

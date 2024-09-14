@@ -9,6 +9,13 @@ import Footer from './Footer';
 function LandingPage() {
     const navigate = useNavigate();
 
+    // const isLoggedIn = !!localStorage.getItem('userToken');
+    //
+    // if (isLoggedIn) {
+    //     navigate('/home'); // Redirect to home if already logged in
+    // }
+    //
+
     const handleLoginClick = () => {
         navigate('/login');
     };

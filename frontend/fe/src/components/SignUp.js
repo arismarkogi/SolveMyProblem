@@ -15,6 +15,7 @@ function SignUp() {
     const handleSubmit = (event) => {
         event.preventDefault();
         const userData = { username: name, email, password };
+        console.log('Sending data:', userData);
         axios.post('http://localhost:6900/sign-up', userData)
             .then(response => {
                 console.log('User signed up successfully:', response.data);
@@ -25,26 +26,6 @@ function SignUp() {
             });
     };
 
-    // return (
-    //     <div className="container mt-5">
-    //         <h2>Sign Up</h2>
-    //         <form onSubmit={handleSubmit}>
-    //             <div className="form-group">
-    //                 <label htmlFor="name">Name</label>
-    //                 <input type="text" className="form-control" id="name" value={name} onChange={(e) => setName(e.target.value)} required />
-    //             </div>
-    //             <div className="form-group">
-    //                 <label htmlFor="email">Email address</label>
-    //                 <input type="email" className="form-control" id="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-    //             </div>
-    //             <div className="form-group">
-    //                 <label htmlFor="password">Password</label>
-    //                 <input type="password" className="form-control" id="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-    //             </div>
-    //             <button type="submit" className="btn btn-primary">Sign Up</button>
-    //         </form>
-    //     </div>
-    // );
     return (
         <div className="d-flex flex-column min-vh-100">
             <Header />
