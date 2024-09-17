@@ -44,39 +44,39 @@ function App() {
         <Router>
             <div className="App">
                 <Routes>
-                    <Route path="/" element={user ? <Navigate to="/home" /> : <LandingPage />} />
+                    <Route path="/" element={<LandingPage />} />
                     <Route path="/signup" element={<SignUp />} />
                     <Route path="/login" element={<LogIn onLogin={handleLogin} />} />
                     <Route 
                         path="/home" 
-                        element={user ? <Home user={user} /> : <Navigate to="/login" />} 
+                        element={user ? <Home user={user} /> : <Navigate to="/login" replace={true} />} 
                     />
                     <Route 
                         path="/profile" 
-                        element={user ? <Profile user={user} onLogout={handleLogout} /> : <Navigate to="/login" />} 
+                        element={user ? <Profile user={user} onLogout={handleLogout} /> : <Navigate to="/login" replace={true} />} 
                     />
                     <Route 
                         path="/submit-problem" 
-                        element={user ? <SubmitProblem user={user} /> : <Navigate to="/login" />} 
+                        element={user ? <SubmitProblem user={user} /> : <Navigate to="/login" replace={true} />} 
                     />
                     <Route 
                         path="/statistics" 
-                        element={user ? <Statistics /> : <Navigate to="/login" />} 
+                        element={user ? <Statistics /> : <Navigate to="/login" replace={true} />} 
                     />
                     <Route 
                         path="/buy-credits" 
-                        element={user ? <BuyCredits user={user} onCreditUpdate={handleCreditUpdate} /> : <Navigate to="/login" />} 
+                        element={user ? <BuyCredits user={user} onCreditUpdate={handleCreditUpdate} /> : <Navigate to="/login" replace={true} />} 
                     />
                     <Route 
                         path="/user-submissions" 
-                        element={user ? <SubmissionsPage isAdmin={false} user={user} /> : <Navigate to="/login" />} 
+                        element={user ? <SubmissionsPage isAdmin={false} user={user} /> : <Navigate to="/login" replace={true} />} 
                     />
                     <Route 
                         path="/admin-activity" 
                         element={
                             user && user.role === 'admin' 
                                 ? <SubmissionsPage isAdmin={true} user={user} /> 
-                                : <Navigate to="/" />
+                                : <Navigate to="/" replace={true} />
                         } 
                     />
                 </Routes>
@@ -86,8 +86,3 @@ function App() {
 }
 
 export default App;
-
-/*
- // <Route path="/login" element={<LogIn />} />
-                   // <Route path="/profile" element={<Profile />} />
-*/

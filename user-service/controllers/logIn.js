@@ -109,7 +109,6 @@ exports.logIn = async (message) => {
     }
 };
 */
-
 const User = require('../models/userModel');
 const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
@@ -158,7 +157,7 @@ exports.logIn = async (message) => {
             correlationId,
             status: 200,
             message: 'Login successful',
-            token,
+            token,  // Send the token as part of the response
             userId: user._id
         });
 
