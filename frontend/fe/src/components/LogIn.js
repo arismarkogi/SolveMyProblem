@@ -9,6 +9,9 @@ const LogIn = ({ onLogin }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [isAdmin, setIsAdmin] = useState(false);
+
+
   const navigate = useNavigate(); // Initialize useNavigate
 
   const handleSubmit = async (e) => {
@@ -16,15 +19,18 @@ const LogIn = ({ onLogin }) => {
     setError('');
 
     try {
-      const response = await axios.post('http://localhost:6900/login', { email, password });
+      const response = await axios.post('http://localhost:6900/login', { email, password, isAdmin });
       console.log('Full login response:', response);
       console.log('Login response data:', response.data);
 
       if (response.data && response.data.message === 'Login successful') {
-        if (response.data.token && response.data.userId) {
-          localStorage.setItem('token', response.data.token);
-          onLogin({ token: response.data.token, userId: response.data.userId });
-          navigate('/home');  // Redirect to /home after successful login
+        if (response.data.token && response.data.role) {
+          onLogin({ token: response.data.token, role: response.data.role });
+          if (response.data.role === 'admin') {
+            navigate('/admin');
+          } else {
+            navigate('/home');
+          }  // Redirect to /home after successful login
         } else {
           setError('Invalid server response. Token or userId missing.');
         }
@@ -36,7 +42,6 @@ const LogIn = ({ onLogin }) => {
     }
   };
 
-  // return (
   //   <div>
   //     <h2>Login</h2>
   //     {error && <p style={{ color: 'red' }}>{error}</p>}
@@ -76,7 +81,7 @@ const LogIn = ({ onLogin }) => {
           <div className="text-center mt-4">
             <form onSubmit={handleSubmit} className="d-inline-block">
               <div className="form-group d-inline-block">
-                <label htmlFor="email" className="d-inline-block mr-2">Username:</label>
+                <label htmlFor="email" className="d-inline-block mr-2">Email:</label>
                 <input
                     type="email"
                     className="form-control d-inline-block w-auto"
@@ -97,6 +102,18 @@ const LogIn = ({ onLogin }) => {
                     required
                 />
               </div>
+              <div className="form-check mt-3">
+                <input
+                  type="checkbox"
+                  className="form-check-input"
+                  id="adminCheck"
+                  checked={isAdmin}
+                  onChange={(e) => setIsAdmin(e.target.checked)}
+                />
+                <label className="form-check-label" htmlFor="adminCheck">
+                  Login as administrator
+                </label>
+              </div>
               <div className="mt-3">
                 <button type="submit" className="btn mx-2" style={{backgroundColor: '#00A86B', color: 'white'}}>Login
                 </button>
@@ -116,3 +133,5 @@ const LogIn = ({ onLogin }) => {
 };
 
 export default LogIn;
+
+

@@ -3,7 +3,7 @@ const User = require('../models/userModel');
 const { sendToQueue } = require('../utils/rabbitmq');
 
 exports.searchUsers = async (message) => {
-    const { username, email} = message
+    const {correlationId, username, email} = message
 
         // Build the query object
     try {
@@ -20,25 +20,28 @@ exports.searchUsers = async (message) => {
         
         // no users case
         if (users.length === 0) {
-            const noResultsResponse = {
-                message: 'No users found matching the criteria',
-                success: true,
-                users: [],
-            };
-            await sendToQueue('user-service-queue-res', noResultsResponse);
+            console.log('No matching users found');
+            await sendToQueue('user-service-queue-res', {
+                correlationId,
+                status: 200,
+                message: 'No users found matching the criteria ',
+                users: []
+            });
             return;
         }
-        //users found case
-        const successResponse = {
+        await sendToQueue('user-service-queue-res', {
+            correlationId,
+            status: 200,
             message: 'Users found successfully',
-            success: true,
-            users: users,
-        };
-        await sendToQueue('user-service-queue-res', successResponse);
+            users: users
+        });
+
     } catch (error) {
-        // error case
-        console.error(error);
-        const errorResponse = { message: 'Internal server error', success: false };
-        await sendToQueue('user-service-queue-res', errorResponse);
+        console.error('User-service: Error in search users:', error);
+        await sendToQueue('user-service-queue-res', {
+            correlationId,
+            status: 500,
+            message: 'Internal server error: ' + error.message
+        });
     }
 };

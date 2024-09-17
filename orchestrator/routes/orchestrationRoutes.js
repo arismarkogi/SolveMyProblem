@@ -8,6 +8,7 @@ const searchUsersController = require('../controllers/searchUsers');
 const loginController = require('../controllers/login');
 const userProfileController = require('../controllers/userProfile');
 const updateUserController = require('../controllers/updateUser');
+const getUserController = require('../controllers/getUserById');
 
 const router = express.Router();
 
@@ -20,5 +21,6 @@ router.post('/search-users', searchUsersController.searchUsers);
 router.get('/user-profile', userProfileController.getUserProfile);
 router.post('/login', loginController.logIn);
 router.post('/update-user', updateUserController.updateUser);
+router.get('/get-user-by-id/:userId', getUserController.getUserById);
 
 module.exports = router;

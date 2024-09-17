@@ -28,6 +28,7 @@ exports.getUserProfile = async (message) => {
             user: {
                 id: user._id,
                 username: user.username,
+                password: user.password,
                 email: user.email,
                 creditAmount: user.creditAmount
             }
