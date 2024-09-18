@@ -55,7 +55,7 @@ function App() {
                     <Route path="/login" element={<LogIn onLogin={handleLogin} />} />
                     <Route
                         path="/home"
-                        element={user ? <Home user={user} /> : <Navigate to="/login" replace={true} />}
+                        element={user ? <Home user={user} onLogout={handleLogout} /> : <Navigate to="/login" replace={true} />}
                     />
                     <Route
                         path="/profile"

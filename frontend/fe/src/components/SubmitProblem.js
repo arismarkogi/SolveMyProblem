@@ -137,12 +137,19 @@ import axios from 'axios';
 import Header from './Header';
 import Footer from './Footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // Import FontAwesomeIcon
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import {useNavigate} from "react-router-dom";
+
 
 function SubmitProblem() {
     const [inputFile, setInputFile] = useState(null);
     const [message, setMessage] = useState('');
 
-    const defaultModel = { id: '13', title: 'MySolver', notes: 'Θα είναι ωραία με το 7ο παρέα' };
+    const defaultModel = { id: '13', title: 'MySolver', notes: '' };
+
+    const navigate = useNavigate();
+
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -192,11 +199,34 @@ function SubmitProblem() {
     
         reader.readAsText(inputFile);
     };
+
+    const handleGoHome = () => {
+        navigate('/home'); // Navigate to the home page
+    };
     
     
     return (
         <div className="d-flex flex-column min-vh-100">
             <Header/>
+            <button
+                className="btn btn-light"
+                style={{
+                    position: 'absolute',
+                    top: '10px',
+                    left: '10px',
+                    borderRadius: '50%',
+                    width: '40px',
+                    height: '40px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    padding: '0',
+                    boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+                }}
+                onClick={handleGoHome}
+            >
+                <FontAwesomeIcon icon={faArrowLeft}/>
+            </button>
             <main className="container my-4 flex-grow-1">
                 <div className="bg-light p-4 rounded mb-4">
                     <h2 className="mb-4">Submit a Problem</h2>

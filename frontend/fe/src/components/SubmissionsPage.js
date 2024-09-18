@@ -4,6 +4,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './Header';
 import Footer from './Footer';
 import { useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // Import FontAwesomeIcon
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 function SubmissionsPage({ isAdmin }) {
     const [submissions, setSubmissions] = useState([]);
@@ -26,9 +28,33 @@ function SubmissionsPage({ isAdmin }) {
         navigate('/submit-problem');
     };
 
+    const handleGoHome = () => {
+        navigate('/home'); // Navigate to the home page
+    };
+
+
     return (
         <div className="d-flex flex-column min-vh-100">
-            <Header />
+            <Header/>
+            <button
+                className="btn btn-light"
+                style={{
+                    position: 'absolute',
+                    top: '10px',
+                    left: '10px',
+                    borderRadius: '50%',
+                    width: '40px',
+                    height: '40px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    padding: '0',
+                    boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+                }}
+                onClick={handleGoHome}
+            >
+                <FontAwesomeIcon icon={faArrowLeft}/>
+            </button>
             <main className="container my-4 flex-grow-1">
                 <h2 className="mb-4">{isAdmin ? 'Activity' : 'My submissions'}</h2>
                 <table className="table table-bordered">
@@ -59,7 +85,7 @@ function SubmissionsPage({ isAdmin }) {
                     </tbody>
                 </table>
                 {!isAdmin && <button className="btn btn-primary mt-3"
-                                     style={{ backgroundColor: '#00A86B', borderColor: '#00A86B' }}
+                                     style={{backgroundColor: '#00A86B', borderColor: '#00A86B'}}
                                      onClick={handleNewProblemClick}>New Problem</button>}
             </main>
             <Footer/>

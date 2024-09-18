@@ -7,10 +7,11 @@
     <list default="true" id="829892d7-26cb-47b2-a40d-f4e5c498d0f3" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/fe/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/fe/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/fe/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/fe/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/fe/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/fe/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/fe/src/components/BuyCredits.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/fe/src/components/BuyCredits.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/fe/src/components/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/fe/src/components/Home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/fe/src/components/LandingPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/fe/src/components/LandingPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/fe/src/components/SignUp.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/fe/src/components/SignUp.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/fe/src/components/LogIn.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/fe/src/components/LogIn.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/fe/src/components/SubmissionsPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/fe/src/components/SubmissionsPage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/fe/src/components/SubmitProblem.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/fe/src/components/SubmitProblem.js" afterDir="false" />
     </list>
@@ -131,7 +132,8 @@
       <workItem from="1725626173285" duration="2536000" />
       <workItem from="1726223942564" duration="9804000" />
       <workItem from="1726310467064" duration="18000" />
-      <workItem from="1726310630142" duration="8638000" />
+      <workItem from="1726310630142" duration="9235000" />
+      <workItem from="1726659716058" duration="4134000" />
     </task>
     <servers />
   </component>

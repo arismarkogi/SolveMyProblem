@@ -25,6 +25,9 @@ const LogIn = ({ onLogin }) => {
 
       if (response.data && response.data.message === 'Login successful') {
         if (response.data.token && response.data.role) {
+          localStorage.setItem('token', response.data.token);
+          localStorage.setItem('role', response.data.role);
+
           onLogin({ token: response.data.token, role: response.data.role });
           if (response.data.role === 'admin') {
             navigate('/admin');
@@ -42,34 +45,6 @@ const LogIn = ({ onLogin }) => {
     }
   };
 
-  //   <div>
-  //     <h2>Login</h2>
-  //     {error && <p style={{ color: 'red' }}>{error}</p>}
-  //     <form onSubmit={handleSubmit}>
-  //       <div>
-  //         <label htmlFor="email">Email:</label>
-  //         <input
-  //           type="email"
-  //           id="email"
-  //           value={email}
-  //           onChange={(e) => setEmail(e.target.value)}
-  //           required
-  //         />
-  //       </div>
-  //       <div>
-  //         <label htmlFor="password">Password:</label>
-  //         <input
-  //           type="password"
-  //           id="password"
-  //           value={password}
-  //           onChange={(e) => setPassword(e.target.value)}
-  //           required
-  //         />
-  //       </div>
-  //       <button type="submit">Login</button>
-  //     </form>
-  //   </div>
-  // );
   return (
       <div className="d-flex flex-column min-vh-100">
         <Header />
@@ -115,7 +90,7 @@ const LogIn = ({ onLogin }) => {
                 </label>
               </div>
               <div className="mt-3">
-                <button type="submit" className="btn mx-2" style={{backgroundColor: '#00A86B', color: 'white'}}>Login
+                <button type="submit" className="btn mx-2" style={{backgroundColor: '#00A86B', color: 'white'}} disabled={password.length < 8}>Login
                 </button>
                 <button type="button" className="btn mx-2" style={{backgroundColor: '#006B3C', color: 'white'}}
                         onClick={() => navigate('/')}>Cancel
