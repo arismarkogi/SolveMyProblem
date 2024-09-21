@@ -36,6 +36,10 @@ const AdminMainPage = () => {
     navigate(`/edit-user/${userId}`);
   };
 
+  const handleShowStatistics = () => {
+    navigate('/statistics');
+  };
+
   return (
     <div className="d-flex flex-column min-vh-100">
       <Header />
@@ -91,6 +95,16 @@ const AdminMainPage = () => {
               </div>
             </div>
           ))}
+        </div>
+
+        <div className="text-center mt-4">
+          <button 
+            className="btn btn-primary w-50" 
+            style={{backgroundColor: '#00A86B', borderColor: '#00A86B'}}
+            onClick={handleShowStatistics}
+          >
+            Show Statistics
+          </button>
         </div>
       </main>
 

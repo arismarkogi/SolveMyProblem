@@ -1,9 +1,11 @@
 const Problem = require('../models/problemModel');
 const { sendToQueue } = require('../utils/rabbitmq');
 
-const getStats = async () => {
+const getStats = async (mes) => {
     try {
         console.log("Inside getStats");
+        console.log(mes);
+        const { correlationId } = mes;
 
         // Aggregate statistics
         const stats = {};
@@ -50,35 +52,61 @@ const getStats = async () => {
             return acc;
         }, {});
 
-        // 4. Execution Time of the Last 20 finished Submissions
-        const last20SubmissionsTime = await Problem.find({status: "finished"})
+        // 4. Average Submissions per Day
+        const avgSubmissionsPerDayResult = await Problem.aggregate([
+            {
+                $group: {
+                    _id: {
+                        $dateToString: { format: "%Y-%m-%d", date: "$submissionDate" }
+                    },
+                    count: { $sum: 1 }
+                }
+            },
+            {
+                $group: {
+                    _id: null,
+                    avgSubmissionsPerDay: { $avg: "$count" }
+                }
+            }
+        ]);
+        stats.averageSubmissionsPerDay = avgSubmissionsPerDayResult[0]?.avgSubmissionsPerDay || 0;
+
+        // 5. Average Submissions per User
+        const avgSubmissionsPerUserResult = await Problem.aggregate([
+            {
+                $group: {
+                    _id: "$userId",
+                    count: { $sum: 1 }
+                }
+            },
+            {
+                $group: {
+                    _id: null,
+                    avgSubmissionsPerUser: { $avg: "$count" }
+                }
+            }
+        ]);
+        stats.averageSubmissionsPerUser = avgSubmissionsPerUserResult[0]?.avgSubmissionsPerUser || 0;
+
+        // 6. Execution Time, Total Distance Traveled, numVehicles, maxRouteDistance of the Last 20 Submissions which have feasible solution
+        const last20Submissions = await Problem.find({ hasSolution: true })
             .sort({ submissionDate: -1 })
             .limit(20)
-            .select('submissionDate hasSolution executionDuration');
-        stats.last20ExecutionTime = last20SubmissionsTime.map(submission => ({
-            submissionDate: submission.submissionDate,
-            hasSolution: submission.hasSolution,
-            executionDuration: submission.executionDuration
-        }));
-
-        // 5. Total Distance Traveled, numVehicles, maxRouteDistance of the Last 10 Submissions which have feasible solution
-        const last10Submissions = await Problem.find({hasSolution: true})
-            .sort({ submissionDate: -1 })
-            .limit(10)
-            .select('numVehicles submissionDate maxRouteDistance totalDistTravel maxRouteDistance ');
-        stats.last10Submissions = last10Submissions.map(submission => ({
+            .select('executionDuration numVehicles submissionDate maxRouteDistance totalDistTravel');
+        stats.last20Submissions = last20Submissions.map(submission => ({
+            executionDuration: submission.executionDuration,
             submissionDate: submission.submissionDate,
             totalDistTravel: submission.totalDistTravel,
             maxRotueDistance: submission.maxRouteDistance,
             numVehicles: submission.numVehicles
         }));
 
-     
         console.log('Stats: ', stats);
 
         const message = {
-            type: "stats",
-            msg: stats
+            type: "getStats",
+            correlationId: correlationId,
+            stats: stats
         };
 
         await sendToQueue('probMan-to-orch-queue', message);

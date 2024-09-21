@@ -10,6 +10,7 @@ const userProfileController = require('../controllers/userProfile');
 const updateUserController = require('../controllers/updateUser');
 const getUserController = require('../controllers/getUserById');
 const getgoogleSignUpController = require('../controllers/googleSignup');
+const getStatsController = require('../controllers/stats');
 const router = express.Router();
 
 router.post('/submit-problem', problemIssueController.problemIssue);
@@ -23,5 +24,6 @@ router.post('/login', loginController.logIn);
 router.post('/update-user', updateUserController.updateUser);
 router.get('/get-user-by-id/:userId', getUserController.getUserById);
 router.post('/google-signup', getgoogleSignUpController.googleSignUp);
+router.get('/get-stats', getStatsController.getStats)
 
 module.exports = router;
