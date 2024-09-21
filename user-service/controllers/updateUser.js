@@ -70,7 +70,7 @@ exports.updateUser = async (message) => {
     const finalMessage = {
         type:"update", 
         correlationId : correlationId,
-        userId,
+        //userId,
         status: 200,
         message: 'User updated successfully'
     };

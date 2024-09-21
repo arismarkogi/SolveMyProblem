@@ -1,0 +1,21 @@
+Installing dependencies for Transaction Service...
+
+up to date, audited 147 packages in 962ms
+
+17 packages are looking for funding
+  run `npm fund` for details
+
+5 vulnerabilities (2 moderate, 3 high)
+
+To address all issues, run:
+  npm audit fix
+
+Run `npm audit` for details.
+Starting Transaction Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/transaction-service" && node app.js
+(node:24416) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:24416) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+Server running on port 4275
+MongoDB connected
+Waiting for messages in trans_queue

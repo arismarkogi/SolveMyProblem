@@ -1,0 +1,18 @@
+Installing dependencies for Orchestrator Service...
+
+up to date, audited 147 packages in 1s
+
+17 packages are looking for funding
+  run `npm fund` for details
+
+5 vulnerabilities (2 moderate, 3 high)
+
+To address all issues, run:
+  npm audit fix
+
+Run `npm audit` for details.
+Starting Orchestrator Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/orchestrator" && node app.js
+Server running on port 6900
+Consuming from queue: user-service-queue-res
+Consuming from queue: trans_response_queue

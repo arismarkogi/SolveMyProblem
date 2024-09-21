@@ -9,7 +9,7 @@ const loginController = require('../controllers/login');
 const userProfileController = require('../controllers/userProfile');
 const updateUserController = require('../controllers/updateUser');
 const getUserController = require('../controllers/getUserById');
-
+const getgoogleSignUpController = require('../controllers/googleSignup');
 const router = express.Router();
 
 router.post('/submit-problem', problemIssueController.problemIssue);
@@ -22,5 +22,6 @@ router.get('/user-profile', userProfileController.getUserProfile);
 router.post('/login', loginController.logIn);
 router.post('/update-user', updateUserController.updateUser);
 router.get('/get-user-by-id/:userId', getUserController.getUserById);
+router.post('/google-signup', getgoogleSignUpController.googleSignUp);
 
 module.exports = router;

@@ -1,0 +1,32 @@
+(node:25236) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:25236) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+Server running on port 4217
+MongoDB connected
+Connected to RabbitMQ
+Consuming from queue: user-service-queue
+node:events:497
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: Channel closed by server: 404 (NOT-FOUND) with message "NOT_FOUND - no queue 'user-service-credit-req' in vhost '/'"
+    at Channel.accept (C:\Users\user\OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο\Έγγραφα\GitHub\saasv2\saas2024-24\node_modules\amqplib\lib\channel.js:320:19)
+    at Connection.mainAccept [as accept] (C:\Users\user\OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο\Έγγραφα\GitHub\saasv2\saas2024-24\node_modules\amqplib\lib\connection.js:582:33)
+    at Socket.go (C:\Users\user\OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο\Έγγραφα\GitHub\saasv2\saas2024-24\node_modules\amqplib\lib\connection.js:434:16)
+    at Socket.emit (node:events:519:28)
+    at emitReadable_ (node:internal/streams/readable:832:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:81:21)
+Emitted 'error' event on ChannelModel instance at:
+    at Connection.emit (node:events:519:28)
+    at Connection.onSocketError (C:\Users\user\OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο\Έγγραφα\GitHub\saasv2\saas2024-24\node_modules\amqplib\lib\connection.js:309:12)
+    at Connection.emit (node:events:519:28)
+    at Socket.go (C:\Users\user\OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο\Έγγραφα\GitHub\saasv2\saas2024-24\node_modules\amqplib\lib\connection.js:437:14)
+    at Socket.emit (node:events:519:28)
+    at emitReadable_ (node:internal/streams/readable:832:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:81:21) {
+  code: 404,
+  classId: 60,
+  methodId: 20
+}
+
+Node.js v21.6.1

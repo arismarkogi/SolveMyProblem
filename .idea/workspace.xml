@@ -5,15 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="829892d7-26cb-47b2-a40d-f4e5c498d0f3" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/frontend/fe/src/components/LandingPage.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/fe/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/fe/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/fe/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/fe/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/fe/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/fe/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/fe/src/components/BuyCredits.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/fe/src/components/BuyCredits.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/fe/src/components/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/fe/src/components/Home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/fe/src/components/LogIn.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/fe/src/components/LogIn.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/fe/src/components/SubmissionsPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/fe/src/components/SubmissionsPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/fe/src/components/SubmitProblem.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/fe/src/components/SubmitProblem.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/fe/src/components/LandingPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/fe/src/components/LandingPage.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,6 +66,7 @@
     &quot;nodejs.jest.jest_package&quot;: &quot;C:/SaaS23-24/saas2024-24/frontend/node_modules/react-scripts&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;npm.start.executor&quot;: &quot;Run&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.tailwindcss&quot;,
     &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2023.3.4\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
@@ -133,7 +128,8 @@
       <workItem from="1726223942564" duration="9804000" />
       <workItem from="1726310467064" duration="18000" />
       <workItem from="1726310630142" duration="9235000" />
-      <workItem from="1726659716058" duration="4134000" />
+      <workItem from="1726659716058" duration="4967000" />
+      <workItem from="1726745940483" duration="3343000" />
     </task>
     <servers />
   </component>

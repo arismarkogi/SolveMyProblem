@@ -29,7 +29,7 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopol
 
 const processMessage = async (message) => {
     const { type, mes } = message;
-    console.log('Received message:', mes);
+    //console.log('Received message:', mes);
 
     switch(type) {
         case "login": await logInController.logIn(mes); return;
