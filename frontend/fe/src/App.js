@@ -68,7 +68,7 @@ function App() {
                         <Route path="/profile" element={<Profile onLogout={handleLogout} />} />
                         <Route path="/submit-problem" element={<SubmitProblem />} />
                         <Route path="/statistics" element={<Statistics />} />
-                        <Route path="/buy-credits" element={<BuyCredits onCreditUpdate={handleCreditUpdate} />} />
+                        <Route path="/buy-credits" element={<BuyCredits token = {localStorage.getItem('token')} onCreditUpdate={handleCreditUpdate} />} />
                         <Route path="/user-submissions" element={<SubmissionsPage isAdmin={false} />} />
                         <Route path="/admin-activity" element={<SubmissionsPage isAdmin={true} />} />
                         <Route path="/admin" element={<AdminMainPage />} />

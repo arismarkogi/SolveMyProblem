@@ -1,10 +1,16 @@
 const User = require('../models/userModel');
 const { sendToQueue } = require('../utils/rabbitmq');
+const jwt = require('jsonwebtoken');
 
 exports.updateCredit = async (message) => {
-    const { correlationId, userId, creditAmount, form } = message;
+    const { correlationId, token, creditAmount, form } = message;
 
     try {
+        const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
+    
+        // Extract id and role from the decoded token
+        const { id, role } = decoded;
+        const userId = id;
         console.log(`User-service: Attempting to update credit for user ${userId}`);
         const user = await User.findById(userId);
         if (!user) {
@@ -26,6 +32,8 @@ exports.updateCredit = async (message) => {
             type: 'credit_update',
             correlationId,
             status: 200,
+            form:form,
+            userId: userId,
             message: 'Credit updated successfully',
             newCreditAmount: user.creditAmount
         });
