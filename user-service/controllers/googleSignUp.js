@@ -2,16 +2,17 @@ const { json } = require('express');
 const User = require('../models/userModel');
 const { sendToQueue } = require('../utils/rabbitmq');
 const crypto = require('crypto');
+const validator = require('validator');
 const jwt = require('jsonwebtoken');
 
-const sendResponse = async (correlationId, message, status, token = null, userId = null) => {
+const sendResponse = async (correlationId, message, status, token = null,role = "user", userId = null) => {
     const response = {
         type: "google_signup",
         correlationId,
         message,
         status,
         token,
-        userId
+        role
     };
     await sendToQueue('user-service-queue-res', response);
 };
@@ -48,17 +49,6 @@ exports.googleSignUp = async (message) => {
             return;
         }
 
-        const existingUser = await User.findOne( {$or: [
-            { email: email },
-            { username: username }
-        ]});
-        //check if email or username are taken
-        if (existingUser) {
-            const field = existingUser.username === username ? 'Username' : 'Email';
-            await sendResponse(correlationId, `${field} is already taken`, 400);
-            return;
-        }
-
 
         let user = await User.findOne({ googleId: id });
         if (user) {
@@ -70,7 +60,13 @@ exports.googleSignUp = async (message) => {
             );
         }
         else {
-            // Create a new user
+            const existingUser = await User.findOne( {$or: [
+                { email: email },
+            ]});
+            if (existingUser) {
+                await sendResponse(correlationId, `Email is already taken`, 400);
+                return;
+            }
             user = new User({
                 googleId: id,
                 username: username,
@@ -79,7 +75,7 @@ exports.googleSignUp = async (message) => {
             await user.save();
         }
         const token = generateToken(user);
-        await sendResponse(correlationId, 'Google sign up successful', 200, token, user._id);
+        await sendResponse(correlationId, 'Google sign up successful', 200, token,user.role, user._id);
 
     } catch (error) {
         console.error('Error in googleSignUp:', error);

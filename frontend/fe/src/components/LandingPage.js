@@ -1,12 +1,15 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { GoogleLogin } from '@react-oauth/google';
+import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {useNavigate} from 'react-router-dom';
-import infographic from '../center.png';  // Ensure the path is correct for the new infographic
+import infographic from '../center.png';
 import Header from './Header';
 import Footer from './Footer';
 import './LandingPage.css';
+import { jwtDecode } from 'jwt-decode';  // Corrected import
 
-function LandingPage() {
+function LandingPage({ onLogin }) {
     const navigate = useNavigate();
 
     const handleLoginClick = () => {
@@ -17,10 +20,42 @@ function LandingPage() {
         navigate('/signup');
     };
 
+    const  handleGoogleSignup = async (response) =>{
+        try {
+                const decoded = jwtDecode(response.credential);
+                console.log('Google signup decoded:', decoded);
+        
+
+                const signupResponse = await axios.post('http://localhost:6900/google-signup', {
+                    id: decoded.sub,
+                    username: decoded.name,
+                    email: decoded.email,
+                });
+
+                if (signupResponse.data && signupResponse.data.token) {
+                    localStorage.setItem('token', signupResponse.data.token);
+                    localStorage.setItem('role', signupResponse.data.role || 'user');
+
+                    onLogin({ 
+                        token: signupResponse.data.token, 
+                        role: signupResponse.data.role
+                    });
+
+                    navigate('/home');
+                } else {
+                    console.error('Invalid server response');
+                    // Handle error (e.g., show error message to user)
+                }
+            } catch (error) {
+                console.error('Google signup error:', error.response?.data?.error || error.message);
+                // Handle error (e.g., show error message to user)
+            }
+        };
+
     return (
         <div className="d-flex flex-column min-vh-100">
             <Header/>
-
+            
             <nav className="navbar navbar-light" style={{backgroundColor: '#F5F5F5'}}>
                 <div className="container d-flex justify-content-between">
                     <div>
@@ -32,20 +67,24 @@ function LandingPage() {
                                 style={{backgroundColor: '#00A86B', borderColor: '#00A86B'}}
                                 onClick={handleSignupClick}>Signup
                         </button>
+                        <GoogleLogin
+                            onSuccess={handleGoogleSignup}
+                            onError={() => {
+                                console.log('Login Failed');
+                            }}
+                        />
                     </div>
                 </div>
             </nav>
-
+            
             <main className="container my-4 flex-grow-1">
                 <div className="flip-container">
                     <div className="flipper">
                         <div className="front">
-                            {/* The front side with the image */}
                             <img src={infographic} alt="solveME infographic" className="img-fluid"
                                  style={{maxHeight: '400px'}}/>
                         </div>
                         <div className="back">
-                            {/* The back side with the text */}
                             <div className="about-text">
                                 <h2>About solveMyProblem</h2>
                                 <p>
@@ -68,24 +107,3 @@ function LandingPage() {
 }
 
 export default LandingPage;
-
-//
-// <main className="container my-4 flex-grow-1">
-//     <div className="text-center mb-4">
-//         <img src={infographic} alt="big solveME" className="img-fluid" style={{maxHeight: '400px'}}/>
-//     </div>
-//     <div className="text-center">
-//         <button className="btn btn-secondary mx-2"
-//                 style={{backgroundColor: '#00A86B', borderColor: '#00A86B'}}
-//                 onClick={handleAboutClick}>About
-//         </button>
-//         <button className="btn btn-secondary mx-2"
-//                 style={{backgroundColor: '#00A86B', borderColor: '#00A86B'}}
-//                 onClick={handleDemoClick}>Demo
-//         </button>
-//         <button className="btn btn-secondary mx-2"
-//                 style={{backgroundColor: '#00A86B', borderColor: '#00A86B'}}
-//                 onClick={handleInstructionsClick}>Instructions
-//         </button>
-//     </div>
-// </main>

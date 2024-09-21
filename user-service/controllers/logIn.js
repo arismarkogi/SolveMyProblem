@@ -50,7 +50,7 @@ exports.logIn = async (message) => {
             status: 200,
             message: 'Login successful',
             token,  // Send the token as part of the response
-            userId: user._id,
+            //userId: user._id,
             role: user.role
         });
 
