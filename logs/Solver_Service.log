@@ -16,3 +16,487 @@ Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτε
 Connected to RabbitMQ
 Waiting for messages in probMan-to-solver-queue
 Consuming from queue: probMan-to-solver-queue
+Installing dependencies for Solver Service...
+
+up to date, audited 155 packages in 899ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Solver Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/solver-service" && node solver.js
+Connected to RabbitMQ
+Waiting for messages in probMan-to-solver-queue
+Consuming from queue: probMan-to-solver-queue
+Installing dependencies for Solver Service...
+
+up to date, audited 155 packages in 925ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Solver Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/solver-service" && node solver.js
+Connected to RabbitMQ
+Waiting for messages in probMan-to-solver-queue
+Consuming from queue: probMan-to-solver-queue
+Installing dependencies for Solver Service...
+
+up to date, audited 155 packages in 909ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Solver Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/solver-service" && node solver.js
+Connected to RabbitMQ
+Waiting for messages in probMan-to-solver-queue
+Consuming from queue: probMan-to-solver-queue
+Installing dependencies for Solver Service...
+
+up to date, audited 155 packages in 977ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Solver Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/solver-service" && node solver.js
+Connected to RabbitMQ
+Waiting for messages in probMan-to-solver-queue
+Consuming from queue: probMan-to-solver-queue
+Installing dependencies for Solver Service...
+
+up to date, audited 155 packages in 880ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Solver Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/solver-service" && node solver.js
+Connected to RabbitMQ
+Waiting for messages in probMan-to-solver-queue
+Consuming from queue: probMan-to-solver-queue
+Installing dependencies for Solver Service...
+
+up to date, audited 155 packages in 933ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Solver Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/solver-service" && node solver.js
+Connected to RabbitMQ
+Waiting for messages in probMan-to-solver-queue
+Consuming from queue: probMan-to-solver-queue
+Received message from probMan-to-solver-queue: {
+  problemId: '66ef2e3ef93ec5c2e027eea8',
+  numVehicles: 3,
+  depot: 0,
+  maxDistance: 50,
+  locationFileContent: { Locations: [ [Object], [Object] ] },
+  pythonFileContent: 'Python code here'
+}
+Missing required fields in the message: {
+  problemId: '66ef2e3ef93ec5c2e027eea8',
+  numVehicles: 3,
+  depot: 0,
+  maxDistance: 50,
+  locationFileContent: { Locations: [ [Object], [Object] ] },
+  pythonFileContent: 'Python code here'
+}
+Installing dependencies for Solver Service...
+
+up to date, audited 155 packages in 994ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Solver Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/solver-service" && node solver.js
+Connected to RabbitMQ
+Waiting for messages in probMan-to-solver-queue
+Consuming from queue: probMan-to-solver-queue
+Received message from probMan-to-solver-queue: {
+  problemId: '66ef2fbc48f08f58176bdc4d',
+  numVehicles: 3,
+  depot: 0,
+  maxDistance: 50,
+  locationFileContent: { Locations: [ [Object], [Object] ] },
+  pythonFileContent: 'Python code here'
+}
+Missing required fields in the message: {
+  problemId: '66ef2fbc48f08f58176bdc4d',
+  numVehicles: 3,
+  depot: 0,
+  maxDistance: 50,
+  locationFileContent: { Locations: [ [Object], [Object] ] },
+  pythonFileContent: 'Python code here'
+}
+Installing dependencies for Solver Service...
+
+up to date, audited 155 packages in 902ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Solver Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/solver-service" && node solver.js
+Connected to RabbitMQ
+Waiting for messages in probMan-to-solver-queue
+Consuming from queue: probMan-to-solver-queue
+Installing dependencies for Solver Service...
+
+up to date, audited 155 packages in 912ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Solver Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/solver-service" && node solver.js
+Connected to RabbitMQ
+Waiting for messages in probMan-to-solver-queue
+Received message from probMan-to-solver-queue: {
+  problemId: '66ef31a2aca4ebfbc1aac8ee',
+  numVehicles: 3,
+  depot: 0,
+  maxDistance: 50,
+  locationFileContent: { Locations: [ [Object], [Object] ] },
+  pythonFileContent: 'Python code here'
+}
+Missing required fields in the message: {
+  problemId: '66ef31a2aca4ebfbc1aac8ee',
+  numVehicles: 3,
+  depot: 0,
+  maxDistance: 50,
+  locationFileContent: { Locations: [ [Object], [Object] ] },
+  pythonFileContent: 'Python code here'
+}
+Consuming from queue: probMan-to-solver-queue
+Received message from probMan-to-solver-queue: {
+  problemId: '66ef31d5aca4ebfbc1aac8f0',
+  numVehicles: 3,
+  depot: 0,
+  maxDistance: 50,
+  locationFileContent: { Locations: [ [Object], [Object] ] },
+  pythonFileContent: 'Python code here'
+}
+Missing required fields in the message: {
+  problemId: '66ef31d5aca4ebfbc1aac8f0',
+  numVehicles: 3,
+  depot: 0,
+  maxDistance: 50,
+  locationFileContent: { Locations: [ [Object], [Object] ] },
+  pythonFileContent: 'Python code here'
+}
+Installing dependencies for Solver Service...
+
+up to date, audited 155 packages in 910ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Solver Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/solver-service" && node solver.js
+Connected to RabbitMQ
+Waiting for messages in probMan-to-solver-queue
+Consuming from queue: probMan-to-solver-queue
+Received message from probMan-to-solver-queue: {
+  problemId: '66ef34008e6ada82daa2eb8c',
+  numVehicles: 3,
+  depot: 0,
+  maxDistance: 50,
+  locationFileContent: { Locations: [ [Object], [Object] ] },
+  pythonFileContent: 'Python code here'
+}
+Missing required fields in the message: {
+  problemId: '66ef34008e6ada82daa2eb8c',
+  numVehicles: 3,
+  depot: 0,
+  maxDistance: 50,
+  locationFileContent: { Locations: [ [Object], [Object] ] },
+  pythonFileContent: 'Python code here'
+}
+Installing dependencies for Solver Service...
+
+up to date, audited 155 packages in 968ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Solver Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/solver-service" && node solver.js
+Connected to RabbitMQ
+Waiting for messages in probMan-to-solver-queue
+Consuming from queue: probMan-to-solver-queue
+Received message from probMan-to-solver-queue: {
+  problemId: '66ef353215ab3765b55ab318',
+  numVehicles: 3,
+  depot: 0,
+  maxDistance: 50,
+  locationFileContent: { Locations: [ [Object], [Object] ] },
+  pythonFileContent: 'Python code here'
+}
+Missing required fields in the message: {
+  problemId: '66ef353215ab3765b55ab318',
+  numVehicles: 3,
+  depot: 0,
+  maxDistance: 50,
+  locationFileContent: { Locations: [ [Object], [Object] ] },
+  pythonFileContent: 'Python code here'
+}
+Installing dependencies for Solver Service...
+
+up to date, audited 155 packages in 934ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Solver Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/solver-service" && node solver.js
+Connected to RabbitMQ
+Waiting for messages in probMan-to-solver-queue
+Consuming from queue: probMan-to-solver-queue
+Installing dependencies for Solver Service...
+
+up to date, audited 155 packages in 883ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Solver Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/solver-service" && node solver.js
+Connected to RabbitMQ
+Waiting for messages in probMan-to-solver-queue
+Received message from probMan-to-solver-queue: {
+  problemId: '66ef363e4e5666545318b1c3',
+  numVehicles: 3,
+  depot: 0,
+  maxDistance: 50,
+  locationFileContent: { Locations: [ [Object], [Object] ] },
+  pythonFileContent: 'Python code here'
+}
+Missing required fields in the message: {
+  problemId: '66ef363e4e5666545318b1c3',
+  numVehicles: 3,
+  depot: 0,
+  maxDistance: 50,
+  locationFileContent: { Locations: [ [Object], [Object] ] },
+  pythonFileContent: 'Python code here'
+}
+Consuming from queue: probMan-to-solver-queue
+Received message from probMan-to-solver-queue: {
+  problemId: '66ef36594e5666545318b1c5',
+  numVehicles: 3,
+  depot: 0,
+  maxDistance: 50,
+  locationFileContent: { Locations: [ [Object], [Object] ] },
+  pythonFileContent: 'Python code here'
+}
+Missing required fields in the message: {
+  problemId: '66ef36594e5666545318b1c5',
+  numVehicles: 3,
+  depot: 0,
+  maxDistance: 50,
+  locationFileContent: { Locations: [ [Object], [Object] ] },
+  pythonFileContent: 'Python code here'
+}
+Installing dependencies for Solver Service...
+
+up to date, audited 155 packages in 896ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Solver Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/solver-service" && node solver.js
+Connected to RabbitMQ
+Waiting for messages in probMan-to-solver-queue
+Consuming from queue: probMan-to-solver-queue
+Received message from probMan-to-solver-queue: {
+  problemId: '66ef379b57596069bdd5b7d2',
+  numVehicles: 3,
+  depot: 0,
+  maxDistance: 50,
+  locationFileContent: { Locations: [ [Object], [Object] ] },
+  pythonFileContent: 'Python code here'
+}
+Missing required fields in the message: {
+  problemId: '66ef379b57596069bdd5b7d2',
+  numVehicles: 3,
+  depot: 0,
+  maxDistance: 50,
+  locationFileContent: { Locations: [ [Object], [Object] ] },
+  pythonFileContent: 'Python code here'
+}
+Installing dependencies for Solver Service...
+
+up to date, audited 155 packages in 877ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Solver Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/solver-service" && node solver.js
+Connected to RabbitMQ
+Waiting for messages in probMan-to-solver-queue
+Received message from probMan-to-solver-queue: {
+  problemId: '66ef37f5e5c6cc72feca27b6',
+  numVehicles: 3,
+  depot: 0,
+  maxDistance: 50,
+  locationFileContent: { Locations: [ [Object], [Object] ] },
+  pythonFileContent: 'Python code here'
+}
+Missing required fields in the message: {
+  problemId: '66ef37f5e5c6cc72feca27b6',
+  numVehicles: 3,
+  depot: 0,
+  maxDistance: 50,
+  locationFileContent: { Locations: [ [Object], [Object] ] },
+  pythonFileContent: 'Python code here'
+}
+Consuming from queue: probMan-to-solver-queue
+Installing dependencies for Solver Service...
+
+up to date, audited 155 packages in 883ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Solver Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/solver-service" && node solver.js
+Connected to RabbitMQ
+Waiting for messages in probMan-to-solver-queue
+Consuming from queue: probMan-to-solver-queue
+Received message from probMan-to-solver-queue: {
+  problemId: '66ef3897a77aa70e36e99744',
+  numVehicles: 3,
+  depot: 0,
+  maxDistance: 50,
+  locationFileContent: { Locations: [ [Object], [Object] ] },
+  pythonFileContent: 'Python code here'
+}
+Missing required fields in the message: {
+  problemId: '66ef3897a77aa70e36e99744',
+  numVehicles: 3,
+  depot: 0,
+  maxDistance: 50,
+  locationFileContent: { Locations: [ [Object], [Object] ] },
+  pythonFileContent: 'Python code here'
+}
+Installing dependencies for Solver Service...
+
+up to date, audited 155 packages in 874ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Solver Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/solver-service" && node solver.js
+Connected to RabbitMQ
+Waiting for messages in probMan-to-solver-queue
+Consuming from queue: probMan-to-solver-queue
+Installing dependencies for Solver Service...
+
+up to date, audited 155 packages in 884ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Solver Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/solver-service" && node solver.js
+Connected to RabbitMQ
+Waiting for messages in probMan-to-solver-queue
+Consuming from queue: probMan-to-solver-queue
+Received message from probMan-to-solver-queue: {
+  problemId: '66ef5081bddb050f63203347',
+  numVehicles: 3,
+  depot: 0,
+  maxDistance: 50,
+  locationFileContent: { Locations: [ [Object], [Object] ] },
+  pythonFileContent: 'Python code here'
+}
+Missing required fields in the message: {
+  problemId: '66ef5081bddb050f63203347',
+  numVehicles: 3,
+  depot: 0,
+  maxDistance: 50,
+  locationFileContent: { Locations: [ [Object], [Object] ] },
+  pythonFileContent: 'Python code here'
+}
+Installing dependencies for Solver Service...
+
+up to date, audited 155 packages in 881ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Solver Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/solver-service" && node solver.js
+Connected to RabbitMQ
+Waiting for messages in probMan-to-solver-queue
+Consuming from queue: probMan-to-solver-queue
+Received message from probMan-to-solver-queue: {
+  problemId: '66ef51888477096353a5fe6f',
+  numVehicles: 3,
+  depot: 0,
+  maxDistance: 50,
+  locationFileContent: { Locations: [ [Object], [Object] ] },
+  pythonFileContent: 'Python code here'
+}
+Missing required fields in the message: {
+  problemId: '66ef51888477096353a5fe6f',
+  numVehicles: 3,
+  depot: 0,
+  maxDistance: 50,
+  locationFileContent: { Locations: [ [Object], [Object] ] },
+  pythonFileContent: 'Python code here'
+}
+Installing dependencies for Solver Service...
+
+up to date, audited 155 packages in 865ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Solver Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/solver-service" && node solver.js
+Connected to RabbitMQ
+Waiting for messages in probMan-to-solver-queue
+Consuming from queue: probMan-to-solver-queue
+Received message from probMan-to-solver-queue: {
+  problemId: '66ef538d94423429b7e48ec5',
+  numVehicles: 3,
+  depot: 0,
+  maxDistance: 50,
+  locationFileContent: { Locations: [ [Object], [Object] ] },
+  pythonFileContent: 'Python code here'
+}
+Missing required fields in the message: {
+  problemId: '66ef538d94423429b7e48ec5',
+  numVehicles: 3,
+  depot: 0,
+  maxDistance: 50,
+  locationFileContent: { Locations: [ [Object], [Object] ] },
+  pythonFileContent: 'Python code here'
+}

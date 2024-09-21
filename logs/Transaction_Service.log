@@ -19,3 +19,346 @@ Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτε
 Server running on port 4275
 MongoDB connected
 Waiting for messages in trans_queue
+Installing dependencies for Transaction Service...
+
+up to date, audited 155 packages in 887ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Transaction Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/transaction-service" && node app.js
+(node:21656) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:21656) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+node:events:497
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::4275
+    at Server.setupListenHandle [as _listen2] (node:net:1893:16)
+    at listenInCluster (node:net:1941:12)
+    at Server.listen (node:net:2029:7)
+    at Function.listen (C:\Users\user\OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο\Έγγραφα\GitHub\saasv2\saas2024-24\node_modules\express\lib\application.js:635:24)
+    at Object.<anonymous> (C:\Users\user\OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο\Έγγραφα\GitHub\saasv2\saas2024-24\transaction-service\app.js:63:5)
+    at Module._compile (node:internal/modules/cjs/loader:1378:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1437:10)
+    at Module.load (node:internal/modules/cjs/loader:1212:32)
+    at Module._load (node:internal/modules/cjs/loader:1028:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:142:12)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1920:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21) {
+  code: 'EADDRINUSE',
+  errno: -4091,
+  syscall: 'listen',
+  address: '::',
+  port: 4275
+}
+
+Node.js v21.6.1
+Installing dependencies for Transaction Service...
+
+up to date, audited 155 packages in 912ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Transaction Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/transaction-service" && node app.js
+(node:25044) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:25044) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+Server running on port 4275
+MongoDB connected
+Waiting for messages in trans_queue
+Installing dependencies for Transaction Service...
+
+up to date, audited 155 packages in 903ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Transaction Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/transaction-service" && node app.js
+(node:37832) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:37832) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+Server running on port 4275
+MongoDB connected
+Waiting for messages in trans_queue
+Installing dependencies for Transaction Service...
+
+up to date, audited 155 packages in 996ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Transaction Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/transaction-service" && node app.js
+(node:8432) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:8432) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+Server running on port 4275
+MongoDB connected
+Waiting for messages in trans_queue
+Installing dependencies for Transaction Service...
+
+up to date, audited 155 packages in 956ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Transaction Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/transaction-service" && node app.js
+(node:21968) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:21968) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+Server running on port 4275
+MongoDB connected
+Waiting for messages in trans_queue
+Installing dependencies for Transaction Service...
+
+up to date, audited 155 packages in 938ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Transaction Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/transaction-service" && node app.js
+(node:2792) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2792) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+Server running on port 4275
+MongoDB connected
+Waiting for messages in trans_queue
+Installing dependencies for Transaction Service...
+
+up to date, audited 155 packages in 1s
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Transaction Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/transaction-service" && node app.js
+(node:17540) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:17540) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+Server running on port 4275
+MongoDB connected
+Waiting for messages in trans_queue
+Installing dependencies for Transaction Service...
+
+up to date, audited 155 packages in 903ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Transaction Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/transaction-service" && node app.js
+(node:31868) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:31868) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+Server running on port 4275
+MongoDB connected
+Waiting for messages in trans_queue
+Installing dependencies for Transaction Service...
+
+up to date, audited 155 packages in 932ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Transaction Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/transaction-service" && node app.js
+(node:22244) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:22244) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+Server running on port 4275
+MongoDB connected
+Waiting for messages in trans_queue
+Installing dependencies for Transaction Service...
+
+up to date, audited 155 packages in 991ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Transaction Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/transaction-service" && node app.js
+(node:35732) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:35732) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+Server running on port 4275
+MongoDB connected
+Waiting for messages in trans_queue
+Installing dependencies for Transaction Service...
+
+up to date, audited 155 packages in 1s
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Transaction Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/transaction-service" && node app.js
+(node:17248) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:17248) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+Server running on port 4275
+MongoDB connected
+Waiting for messages in trans_queue
+Installing dependencies for Transaction Service...
+
+up to date, audited 155 packages in 943ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Transaction Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/transaction-service" && node app.js
+(node:3824) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:3824) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+Server running on port 4275
+MongoDB connected
+Waiting for messages in trans_queue
+Installing dependencies for Transaction Service...
+
+up to date, audited 155 packages in 901ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Transaction Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/transaction-service" && node app.js
+(node:2432) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2432) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+Server running on port 4275
+MongoDB connected
+Waiting for messages in trans_queue
+Installing dependencies for Transaction Service...
+
+up to date, audited 155 packages in 867ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Transaction Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/transaction-service" && node app.js
+(node:17212) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:17212) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+Server running on port 4275
+MongoDB connected
+Waiting for messages in trans_queue
+Installing dependencies for Transaction Service...
+
+up to date, audited 155 packages in 869ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Transaction Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/transaction-service" && node app.js
+(node:34872) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:34872) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+Server running on port 4275
+MongoDB connected
+Waiting for messages in trans_queue
+Installing dependencies for Transaction Service...
+
+up to date, audited 155 packages in 925ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Transaction Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/transaction-service" && node app.js
+(node:11408) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:11408) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+Server running on port 4275
+MongoDB connected
+Waiting for messages in trans_queue
+Installing dependencies for Transaction Service...
+
+up to date, audited 155 packages in 889ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Transaction Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/transaction-service" && node app.js
+(node:38036) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:38036) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+Server running on port 4275
+MongoDB connected
+Waiting for messages in trans_queue
+Installing dependencies for Transaction Service...
+
+up to date, audited 155 packages in 875ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Transaction Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/transaction-service" && node app.js
+(node:26804) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:26804) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+Server running on port 4275
+MongoDB connected
+Waiting for messages in trans_queue
+Installing dependencies for Transaction Service...
+
+up to date, audited 155 packages in 879ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Transaction Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/transaction-service" && node app.js
+(node:37180) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:37180) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+Server running on port 4275
+MongoDB connected
+Waiting for messages in trans_queue
+Installing dependencies for Transaction Service...
+
+up to date, audited 155 packages in 883ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Transaction Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/transaction-service" && node app.js
+(node:8396) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:8396) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+Server running on port 4275
+MongoDB connected
+Waiting for messages in trans_queue

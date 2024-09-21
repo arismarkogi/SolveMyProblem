@@ -22,3 +22,1764 @@ Connected to RabbitMQ
 Attempting to consume from queue: solver-to-probMan-queue
 Connected to RabbitMQ
 Attempting to consume from queue: problem-service-issue
+Installing dependencies for Problem Management Service...
+
+up to date, audited 155 packages in 893ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Problem Management Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/problem-management-service" && node app.js
+(node:11712) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:11712) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+node:events:497
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::5000
+    at Server.setupListenHandle [as _listen2] (node:net:1893:16)
+    at listenInCluster (node:net:1941:12)
+    at Server.listen (node:net:2029:7)
+    at Function.listen (C:\Users\user\OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο\Έγγραφα\GitHub\saasv2\saas2024-24\node_modules\express\lib\application.js:635:24)
+    at Object.<anonymous> (C:\Users\user\OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο\Έγγραφα\GitHub\saasv2\saas2024-24\problem-management-service\app.js:61:5)
+    at Module._compile (node:internal/modules/cjs/loader:1378:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1437:10)
+    at Module.load (node:internal/modules/cjs/loader:1212:32)
+    at Module._load (node:internal/modules/cjs/loader:1028:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:142:12)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1920:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21) {
+  code: 'EADDRINUSE',
+  errno: -4091,
+  syscall: 'listen',
+  address: '::',
+  port: 5000
+}
+
+Node.js v21.6.1
+Installing dependencies for Problem Management Service...
+
+up to date, audited 155 packages in 949ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Problem Management Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/problem-management-service" && node app.js
+(node:31528) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:31528) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+Server running on port 5000
+MongoDB connected
+Connected to RabbitMQ
+Connected to RabbitMQ
+Attempting to consume from queue: solver-to-probMan-queue
+Attempting to consume from queue: problem-service-issue
+Received message from queue problem-service-issue: {
+  type: 'problemIssue',
+  userId: '66eeb10160acf2e6890094f9',
+  numVehicles: 3,
+  depot: 0,
+  maxDistance: 50,
+  locationFileContent: { Locations: [ [Object], [Object] ] },
+  pythonFileContent: 'Python code here'
+}
+Received message: {
+  type: 'problemIssue',
+  userId: '66eeb10160acf2e6890094f9',
+  numVehicles: 3,
+  depot: 0,
+  maxDistance: 50,
+  locationFileContent: { Locations: [ [Object], [Object] ] },
+  pythonFileContent: 'Python code here'
+}
+Processing problem issue message...
+Raw message received: {
+  type: 'problemIssue',
+  userId: '66eeb10160acf2e6890094f9',
+  numVehicles: 3,
+  depot: 0,
+  maxDistance: 50,
+  locationFileContent: { Locations: [ [Object], [Object] ] },
+  pythonFileContent: 'Python code here'
+}
+Missing required fields
+Message from queue problem-service-issue acknowledged.
+Installing dependencies for Problem Management Service...
+
+up to date, audited 155 packages in 907ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Problem Management Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/problem-management-service" && node app.js
+(node:4796) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:4796) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+Server running on port 5000
+MongoDB connected
+Connected to RabbitMQ
+Attempting to consume from queue: solver-to-probMan-queue
+Connected to RabbitMQ
+Attempting to consume from queue: problem-service-issue
+Received message from queue problem-service-issue: {
+  type: 'problemIssue',
+  userId: '66eeb10160acf2e6890094f9',
+  numVehicles: 3,
+  depot: 0,
+  maxDistance: 50,
+  locationFileContent: { Locations: [ [Object], [Object] ] },
+  pythonFileContent: 'Python code here'
+}
+Received message: {
+  type: 'problemIssue',
+  userId: '66eeb10160acf2e6890094f9',
+  numVehicles: 3,
+  depot: 0,
+  maxDistance: 50,
+  locationFileContent: { Locations: [ [Object], [Object] ] },
+  pythonFileContent: 'Python code here'
+}
+Processing problem issue message...
+Raw message received: {
+  type: 'problemIssue',
+  userId: '66eeb10160acf2e6890094f9',
+  numVehicles: 3,
+  depot: 0,
+  maxDistance: 50,
+  locationFileContent: { Locations: [ [Object], [Object] ] },
+  pythonFileContent: 'Python code here'
+}
+Missing required fields
+Message from queue problem-service-issue acknowledged.
+Installing dependencies for Problem Management Service...
+
+up to date, audited 155 packages in 1s
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Problem Management Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/problem-management-service" && node app.js
+(node:22144) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:22144) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+Server running on port 5000
+MongoDB connected
+Connected to RabbitMQ
+Connected to RabbitMQ
+Attempting to consume from queue: solver-to-probMan-queue
+Attempting to consume from queue: problem-service-issue
+Received message from queue problem-service-issue: {
+  type: 'problemIssue',
+  userId: '66eeb10160acf2e6890094f9',
+  numVehicles: 3,
+  depot: 0,
+  maxDistance: 50,
+  locationFileContent: { Locations: [ [Object], [Object] ] },
+  pythonFileContent: 'Python code here'
+}
+Received message: {
+  type: 'problemIssue',
+  userId: '66eeb10160acf2e6890094f9',
+  numVehicles: 3,
+  depot: 0,
+  maxDistance: 50,
+  locationFileContent: { Locations: [ [Object], [Object] ] },
+  pythonFileContent: 'Python code here'
+}
+Processing problem issue message...
+Raw message received: {
+  type: 'problemIssue',
+  userId: '66eeb10160acf2e6890094f9',
+  numVehicles: 3,
+  depot: 0,
+  maxDistance: 50,
+  locationFileContent: { Locations: [ [Object], [Object] ] },
+  pythonFileContent: 'Python code here'
+}
+Missing required fields
+Message from queue problem-service-issue acknowledged.
+Installing dependencies for Problem Management Service...
+
+up to date, audited 155 packages in 933ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Problem Management Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/problem-management-service" && node app.js
+(node:23960) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:23960) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+Server running on port 5000
+MongoDB connected
+Connected to RabbitMQ
+Connected to RabbitMQ
+Attempting to consume from queue: solver-to-probMan-queue
+Attempting to consume from queue: problem-service-issue
+Installing dependencies for Problem Management Service...
+
+up to date, audited 155 packages in 1s
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Problem Management Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/problem-management-service" && node app.js
+(node:29968) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:29968) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+Server running on port 5000
+MongoDB connected
+Connected to RabbitMQ
+Connected to RabbitMQ
+Attempting to consume from queue: solver-to-probMan-queue
+Attempting to consume from queue: problem-service-issue
+Received message from queue problem-service-issue: {
+  type: 'problemIssue',
+  userId: '66eeb10160acf2e6890094f9',
+  numVehicles: 3,
+  depot: 0,
+  maxDistance: 50,
+  locationFileContent: { Locations: [ [Object], [Object] ] },
+  pythonFileContent: 'Python code here'
+}
+Received message type: problemIssue
+Processing problem issue message...
+Raw message received: {
+  "type": "problemIssue",
+  "userId": "66eeb10160acf2e6890094f9",
+  "numVehicles": 3,
+  "depot": 0,
+  "maxDistance": 50,
+  "locationFileContent": {
+    "Locations": [
+      {
+        "Latitude": 37.999833,
+        "Longitude": 23.743177
+      },
+      {
+        "Latitude": 37.966783,
+        "Longitude": 23.778605
+      }
+    ]
+  },
+  "pythonFileContent": "Python code here"
+}
+Problem saved successfully: {
+  userId: new ObjectId('66eeb10160acf2e6890094f9'),
+  locationFile: '{"Locations":[{"Latitude":37.999833,"Longitude":23.743177},{"Latitude":37.966783,"Longitude":23.778605}]}',
+  numVehicles: 3,
+  depot: 0,
+  maxDistance: 50,
+  submissionDate: 2024-09-21T20:36:14.003Z,
+  status: 'pending',
+  hasSolution: false,
+  solution: '',
+  maxRouteDistance: 0,
+  totalDistTravel: 0,
+  executionDuration: 0,
+  _id: new ObjectId('66ef2e3ef93ec5c2e027eea8'),
+  __v: 0
+}
+Sending message to queue probMan-to-solver-queue: {
+  problemId: '66ef2e3ef93ec5c2e027eea8',
+  numVehicles: 3,
+  depot: 0,
+  maxDistance: 50,
+  locationFileContent: { Locations: [ [Object], [Object] ] },
+  pythonFileContent: 'Python code here'
+}
+Message successfully sent to queue: probMan-to-solver-queue
+Message sent to solver queue
+Message from queue problem-service-issue acknowledged.
+Installing dependencies for Problem Management Service...
+
+up to date, audited 155 packages in 918ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Problem Management Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/problem-management-service" && node app.js
+(node:34284) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:34284) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+Server running on port 5000
+MongoDB connected
+Connected to RabbitMQ
+Attempting to consume from queue: solver-to-probMan-queue
+Connected to RabbitMQ
+Attempting to consume from queue: problem-service-issue
+Received message from queue problem-service-issue: {
+  type: 'problemIssue',
+  userId: '66eeb10160acf2e6890094f9',
+  numVehicles: 3,
+  depot: 0,
+  maxDistance: 50,
+  locationFileContent: { Locations: [ [Object], [Object] ] },
+  pythonFileContent: 'Python code here'
+}
+Received message type: problemIssue
+Processing problem issue message...
+Raw message received: {
+  "type": "problemIssue",
+  "userId": "66eeb10160acf2e6890094f9",
+  "numVehicles": 3,
+  "depot": 0,
+  "maxDistance": 50,
+  "locationFileContent": {
+    "Locations": [
+      {
+        "Latitude": 37.999833,
+        "Longitude": 23.743177
+      },
+      {
+        "Latitude": 37.966783,
+        "Longitude": 23.778605
+      }
+    ]
+  },
+  "pythonFileContent": "Python code here"
+}
+Problem saved successfully: {
+  userId: new ObjectId('66eeb10160acf2e6890094f9'),
+  locationFile: '{"Locations":[{"Latitude":37.999833,"Longitude":23.743177},{"Latitude":37.966783,"Longitude":23.778605}]}',
+  pythonFile: 'Python code here',
+  numVehicles: 3,
+  depot: 0,
+  maxDistance: 50,
+  submissionDate: 2024-09-21T20:42:36.682Z,
+  status: 'pending',
+  hasSolution: false,
+  solution: '',
+  maxRouteDistance: 0,
+  totalDistTravel: 0,
+  executionDuration: 0,
+  _id: new ObjectId('66ef2fbc48f08f58176bdc4d'),
+  __v: 0
+}
+Sending message to queue probMan-to-solver-queue: {
+  problemId: '66ef2fbc48f08f58176bdc4d',
+  numVehicles: 3,
+  depot: 0,
+  maxDistance: 50,
+  locationFileContent: { Locations: [ [Object], [Object] ] },
+  pythonFileContent: 'Python code here'
+}
+Message successfully sent to queue: probMan-to-solver-queue
+Message sent to solver queue
+Message from queue problem-service-issue acknowledged.
+Installing dependencies for Problem Management Service...
+
+up to date, audited 155 packages in 899ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Problem Management Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/problem-management-service" && node app.js
+C:\Users\user\OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο\Έγγραφα\GitHub\saasv2\saas2024-24\node_modules\express\lib\router\route.js:216
+        throw new Error(msg);
+        ^
+
+Error: Route.post() requires a callback function but got a [object Undefined]
+    at Route.<computed> [as post] (C:\Users\user\OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο\Έγγραφα\GitHub\saasv2\saas2024-24\node_modules\express\lib\router\route.js:216:15)
+    at proto.<computed> [as post] (C:\Users\user\OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο\Έγγραφα\GitHub\saasv2\saas2024-24\node_modules\express\lib\router\index.js:521:19)
+    at Object.<anonymous> (C:\Users\user\OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο\Έγγραφα\GitHub\saasv2\saas2024-24\problem-management-service\routes\dataRoutes.js:11:8)
+    at Module._compile (node:internal/modules/cjs/loader:1378:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1437:10)
+    at Module.load (node:internal/modules/cjs/loader:1212:32)
+    at Module._load (node:internal/modules/cjs/loader:1028:12)
+    at Module.require (node:internal/modules/cjs/loader:1237:19)
+    at require (node:internal/modules/helpers:176:18)
+    at Object.<anonymous> (C:\Users\user\OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο\Έγγραφα\GitHub\saasv2\saas2024-24\problem-management-service\app.js:69:20)
+
+Node.js v21.6.1
+Installing dependencies for Problem Management Service...
+
+up to date, audited 155 packages in 892ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Problem Management Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/problem-management-service" && node app.js
+(node:37632) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:37632) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+Server running on port 5000
+MongoDB connected
+Connected to RabbitMQ
+Connected to RabbitMQ
+Attempting to consume from queue: solver-to-probMan-queue
+Attempting to consume from queue: problem-service-issue
+Received message from queue problem-service-issue: {
+  type: 'problemIssue',
+  userId: '66eeb10160acf2e6890094f9',
+  numVehicles: 3,
+  depot: 0,
+  maxDistance: 50,
+  locationFileContent: { Locations: [ [Object], [Object] ] },
+  pythonFileContent: 'Python code here'
+}
+Received message type: problemIssue
+Processing problem issue message...
+Raw message received: {
+  "type": "problemIssue",
+  "userId": "66eeb10160acf2e6890094f9",
+  "numVehicles": 3,
+  "depot": 0,
+  "maxDistance": 50,
+  "locationFileContent": {
+    "Locations": [
+      {
+        "Latitude": 37.999833,
+        "Longitude": 23.743177
+      },
+      {
+        "Latitude": 37.966783,
+        "Longitude": 23.778605
+      }
+    ]
+  },
+  "pythonFileContent": "Python code here"
+}
+Problem saved successfully: {
+  "userId": "66eeb10160acf2e6890094f9",
+  "locationFile": {
+    "Locations": [
+      {
+        "Latitude": 37.999833,
+        "Longitude": 23.743177
+      },
+      {
+        "Latitude": 37.966783,
+        "Longitude": 23.778605
+      }
+    ]
+  },
+  "pythonFile": "Python code here",
+  "numVehicles": 3,
+  "depot": 0,
+  "maxDistance": 50,
+  "submissionDate": "2024-09-21T20:50:42.548Z",
+  "status": "pending",
+  "hasSolution": false,
+  "solution": "",
+  "maxRouteDistance": 0,
+  "totalDistTravel": 0,
+  "executionDuration": 0,
+  "_id": "66ef31a2aca4ebfbc1aac8ee",
+  "__v": 0
+}
+Sending message to queue probMan-to-solver-queue: {
+  problemId: '66ef31a2aca4ebfbc1aac8ee',
+  numVehicles: 3,
+  depot: 0,
+  maxDistance: 50,
+  locationFileContent: { Locations: [ [Object], [Object] ] },
+  pythonFileContent: 'Python code here'
+}
+Message successfully sent to queue: probMan-to-solver-queue
+Message sent to solver queue
+Message from queue problem-service-issue acknowledged.
+Received message from queue problem-service-issue: {
+  type: 'problemIssue',
+  userId: '66eeb10160acf2e6890094f9',
+  numVehicles: 3,
+  depot: 0,
+  maxDistance: 50,
+  locationFileContent: { Locations: [ [Object], [Object] ] },
+  pythonFileContent: 'Python code here'
+}
+Received message type: problemIssue
+Processing problem issue message...
+Raw message received: {
+  "type": "problemIssue",
+  "userId": "66eeb10160acf2e6890094f9",
+  "numVehicles": 3,
+  "depot": 0,
+  "maxDistance": 50,
+  "locationFileContent": {
+    "Locations": [
+      {
+        "Latitude": 37.999833,
+        "Longitude": 23.743177
+      },
+      {
+        "Latitude": 37.966783,
+        "Longitude": 23.778605
+      }
+    ]
+  },
+  "pythonFileContent": "Python code here"
+}
+Problem saved successfully: {
+  "userId": "66eeb10160acf2e6890094f9",
+  "locationFile": {
+    "Locations": [
+      {
+        "Latitude": 37.999833,
+        "Longitude": 23.743177
+      },
+      {
+        "Latitude": 37.966783,
+        "Longitude": 23.778605
+      }
+    ]
+  },
+  "pythonFile": "Python code here",
+  "numVehicles": 3,
+  "depot": 0,
+  "maxDistance": 50,
+  "submissionDate": "2024-09-21T20:51:33.247Z",
+  "status": "pending",
+  "hasSolution": false,
+  "solution": "",
+  "maxRouteDistance": 0,
+  "totalDistTravel": 0,
+  "executionDuration": 0,
+  "_id": "66ef31d5aca4ebfbc1aac8f0",
+  "__v": 0
+}
+Sending message to queue probMan-to-solver-queue: {
+  problemId: '66ef31d5aca4ebfbc1aac8f0',
+  numVehicles: 3,
+  depot: 0,
+  maxDistance: 50,
+  locationFileContent: { Locations: [ [Object], [Object] ] },
+  pythonFileContent: 'Python code here'
+}
+Message successfully sent to queue: probMan-to-solver-queue
+Message sent to solver queue
+Message from queue problem-service-issue acknowledged.
+Installing dependencies for Problem Management Service...
+
+up to date, audited 155 packages in 888ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Problem Management Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/problem-management-service" && node app.js
+(node:17228) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:17228) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+Server running on port 5000
+MongoDB connected
+Connected to RabbitMQ
+Connected to RabbitMQ
+Attempting to consume from queue: solver-to-probMan-queue
+Attempting to consume from queue: problem-service-issue
+Received message from queue problem-service-issue: {
+  type: 'problemIssue',
+  userId: '66eeb10160acf2e6890094f9',
+  numVehicles: 3,
+  depot: 0,
+  maxDistance: 50,
+  locationFileContent: { Locations: [ [Object], [Object] ] },
+  pythonFileContent: 'Python code here'
+}
+Received message type: problemIssue
+Processing problem issue message...
+Raw message received: {
+  "type": "problemIssue",
+  "userId": "66eeb10160acf2e6890094f9",
+  "numVehicles": 3,
+  "depot": 0,
+  "maxDistance": 50,
+  "locationFileContent": {
+    "Locations": [
+      {
+        "Latitude": 37.999833,
+        "Longitude": 23.743177
+      },
+      {
+        "Latitude": 37.966783,
+        "Longitude": 23.778605
+      }
+    ]
+  },
+  "pythonFileContent": "Python code here"
+}
+Problem saved successfully: {
+  "userId": "66eeb10160acf2e6890094f9",
+  "locationFile": {
+    "Locations": [
+      {
+        "Latitude": 37.999833,
+        "Longitude": 23.743177
+      },
+      {
+        "Latitude": 37.966783,
+        "Longitude": 23.778605
+      }
+    ]
+  },
+  "pythonFile": "Python code here",
+  "numVehicles": 3,
+  "depot": 0,
+  "maxDistance": 50,
+  "submissionDate": "2024-09-21T21:00:48.987Z",
+  "status": "pending",
+  "hasSolution": false,
+  "solution": "",
+  "maxRouteDistance": 0,
+  "totalDistTravel": 0,
+  "executionDuration": 0,
+  "_id": "66ef34008e6ada82daa2eb8c",
+  "__v": 0
+}
+Sending message to queue probMan-to-solver-queue: {
+  problemId: '66ef34008e6ada82daa2eb8c',
+  numVehicles: 3,
+  depot: 0,
+  maxDistance: 50,
+  locationFileContent: { Locations: [ [Object], [Object] ] },
+  pythonFileContent: 'Python code here'
+}
+Message successfully sent to queue: probMan-to-solver-queue
+Message sent to solver queue
+Message from queue problem-service-issue acknowledged.
+Installing dependencies for Problem Management Service...
+
+up to date, audited 155 packages in 989ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Problem Management Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/problem-management-service" && node app.js
+(node:31852) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:31852) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+Server running on port 5000
+MongoDB connected
+Connected to RabbitMQ
+Connected to RabbitMQ
+Attempting to consume from queue: solver-to-probMan-queue
+Attempting to consume from queue: problem-service-issue
+Received message from queue problem-service-issue: {
+  type: 'problemIssue',
+  userId: '66eeb10160acf2e6890094f9',
+  numVehicles: 3,
+  depot: 0,
+  maxDistance: 50,
+  locationFileContent: { Locations: [ [Object], [Object] ] },
+  pythonFileContent: 'Python code here'
+}
+Received message type: problemIssue
+Processing problem issue message...
+Raw message received: {
+  "type": "problemIssue",
+  "userId": "66eeb10160acf2e6890094f9",
+  "numVehicles": 3,
+  "depot": 0,
+  "maxDistance": 50,
+  "locationFileContent": {
+    "Locations": [
+      {
+        "Latitude": 37.999833,
+        "Longitude": 23.743177
+      },
+      {
+        "Latitude": 37.966783,
+        "Longitude": 23.778605
+      }
+    ]
+  },
+  "pythonFileContent": "Python code here"
+}
+Problem saved successfully: {
+  "userId": "66eeb10160acf2e6890094f9",
+  "locationFile": {
+    "Locations": [
+      {
+        "Latitude": 37.999833,
+        "Longitude": 23.743177
+      },
+      {
+        "Latitude": 37.966783,
+        "Longitude": 23.778605
+      }
+    ]
+  },
+  "pythonFile": "Python code here",
+  "numVehicles": 3,
+  "depot": 0,
+  "maxDistance": 50,
+  "submissionDate": "2024-09-21T21:05:54.918Z",
+  "status": "pending",
+  "hasSolution": false,
+  "solution": "",
+  "maxRouteDistance": 0,
+  "totalDistTravel": 0,
+  "executionDuration": 0,
+  "_id": "66ef353215ab3765b55ab318",
+  "__v": 0
+}
+Sending message to queue probMan-to-solver-queue: {
+  problemId: '66ef353215ab3765b55ab318',
+  numVehicles: 3,
+  depot: 0,
+  maxDistance: 50,
+  locationFileContent: { Locations: [ [Object], [Object] ] },
+  pythonFileContent: 'Python code here'
+}
+Message successfully sent to queue: probMan-to-solver-queue
+Message sent to solver queue
+Message from queue problem-service-issue acknowledged.
+Installing dependencies for Problem Management Service...
+
+up to date, audited 155 packages in 961ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Problem Management Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/problem-management-service" && node app.js
+C:\Users\user\OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο\Έγγραφα\GitHub\saasv2\saas2024-24\problem-management-service\controllers\problemIssue.js:297
+const Problem = require('../models/problemModel');
+      ^
+
+SyntaxError: Identifier 'Problem' has already been declared
+    at internalCompileFunction (node:internal/vm:77:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1290:20)
+    at Module._compile (node:internal/modules/cjs/loader:1342:27)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1437:10)
+    at Module.load (node:internal/modules/cjs/loader:1212:32)
+    at Module._load (node:internal/modules/cjs/loader:1028:12)
+    at Module.require (node:internal/modules/cjs/loader:1237:19)
+    at require (node:internal/modules/helpers:176:18)
+    at Object.<anonymous> (C:\Users\user\OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο\Έγγραφα\GitHub\saasv2\saas2024-24\problem-management-service\routes\dataRoutes.js:3:24)
+    at Module._compile (node:internal/modules/cjs/loader:1378:14)
+
+Node.js v21.6.1
+Installing dependencies for Problem Management Service...
+
+up to date, audited 155 packages in 946ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Problem Management Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/problem-management-service" && node app.js
+(node:36496) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:36496) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+Server running on port 5000
+MongoDB connected
+Connected to RabbitMQ
+Attempting to consume from queue: solver-to-probMan-queue
+Connected to RabbitMQ
+Attempting to consume from queue: problem-service-issue
+Received message from queue problem-service-issue: {
+  type: 'problemIssue',
+  userId: '66eeb10160acf2e6890094f9',
+  numVehicles: 3,
+  depot: 0,
+  maxDistance: 50,
+  locationFileContent: { Locations: [ [Object], [Object] ] },
+  pythonFileContent: 'Python code here'
+}
+Received message type: problemIssue
+Processing problem issue message...
+Raw message received: {
+  "type": "problemIssue",
+  "userId": "66eeb10160acf2e6890094f9",
+  "numVehicles": 3,
+  "depot": 0,
+  "maxDistance": 50,
+  "locationFileContent": {
+    "Locations": [
+      {
+        "Latitude": 37.999833,
+        "Longitude": 23.743177
+      },
+      {
+        "Latitude": 37.966783,
+        "Longitude": 23.778605
+      }
+    ]
+  },
+  "pythonFileContent": "Python code here"
+}
+locationFileContent: {
+  "Locations": [
+    {
+      "Latitude": 37.999833,
+      "Longitude": 23.743177
+    },
+    {
+      "Latitude": 37.966783,
+      "Longitude": 23.778605
+    }
+  ]
+}
+pythonFileContent: Python code here
+Problem to be saved: {
+  "userId": "66eeb10160acf2e6890094f9",
+  "locationFile": {
+    "Locations": [
+      {
+        "Latitude": 37.999833,
+        "Longitude": 23.743177
+      },
+      {
+        "Latitude": 37.966783,
+        "Longitude": 23.778605
+      }
+    ]
+  },
+  "pythonFile": "Python code here",
+  "numVehicles": 3,
+  "depot": 0,
+  "maxDistance": 50,
+  "submissionDate": "2024-09-21T21:10:22.337Z",
+  "status": "pending",
+  "hasSolution": false,
+  "solution": "",
+  "maxRouteDistance": 0,
+  "totalDistTravel": 0,
+  "executionDuration": 0,
+  "_id": "66ef363e4e5666545318b1c3"
+}
+Problem saved successfully: {
+  "userId": "66eeb10160acf2e6890094f9",
+  "locationFile": {
+    "Locations": [
+      {
+        "Latitude": 37.999833,
+        "Longitude": 23.743177
+      },
+      {
+        "Latitude": 37.966783,
+        "Longitude": 23.778605
+      }
+    ]
+  },
+  "pythonFile": "Python code here",
+  "numVehicles": 3,
+  "depot": 0,
+  "maxDistance": 50,
+  "submissionDate": "2024-09-21T21:10:22.337Z",
+  "status": "pending",
+  "hasSolution": false,
+  "solution": "",
+  "maxRouteDistance": 0,
+  "totalDistTravel": 0,
+  "executionDuration": 0,
+  "_id": "66ef363e4e5666545318b1c3",
+  "__v": 0
+}
+Sending message to queue probMan-to-solver-queue: {
+  problemId: '66ef363e4e5666545318b1c3',
+  numVehicles: 3,
+  depot: 0,
+  maxDistance: 50,
+  locationFileContent: { Locations: [ [Object], [Object] ] },
+  pythonFileContent: 'Python code here'
+}
+Message successfully sent to queue: probMan-to-solver-queue
+Message sent to solver queue
+Message from queue problem-service-issue acknowledged.
+Received message from queue problem-service-issue: {
+  type: 'problemIssue',
+  userId: '66eeb10160acf2e6890094f9',
+  numVehicles: 3,
+  depot: 0,
+  maxDistance: 50,
+  locationFileContent: { Locations: [ [Object], [Object] ] },
+  pythonFileContent: 'Python code here'
+}
+Received message type: problemIssue
+Processing problem issue message...
+Raw message received: {
+  "type": "problemIssue",
+  "userId": "66eeb10160acf2e6890094f9",
+  "numVehicles": 3,
+  "depot": 0,
+  "maxDistance": 50,
+  "locationFileContent": {
+    "Locations": [
+      {
+        "Latitude": 37.999833,
+        "Longitude": 23.743177
+      },
+      {
+        "Latitude": 37.966783,
+        "Longitude": 23.778605
+      }
+    ]
+  },
+  "pythonFileContent": "Python code here"
+}
+locationFileContent: {
+  "Locations": [
+    {
+      "Latitude": 37.999833,
+      "Longitude": 23.743177
+    },
+    {
+      "Latitude": 37.966783,
+      "Longitude": 23.778605
+    }
+  ]
+}
+pythonFileContent: Python code here
+Problem to be saved: {
+  "userId": "66eeb10160acf2e6890094f9",
+  "locationFile": {
+    "Locations": [
+      {
+        "Latitude": 37.999833,
+        "Longitude": 23.743177
+      },
+      {
+        "Latitude": 37.966783,
+        "Longitude": 23.778605
+      }
+    ]
+  },
+  "pythonFile": "Python code here",
+  "numVehicles": 3,
+  "depot": 0,
+  "maxDistance": 50,
+  "submissionDate": "2024-09-21T21:10:49.335Z",
+  "status": "pending",
+  "hasSolution": false,
+  "solution": "",
+  "maxRouteDistance": 0,
+  "totalDistTravel": 0,
+  "executionDuration": 0,
+  "_id": "66ef36594e5666545318b1c5"
+}
+Problem saved successfully: {
+  "userId": "66eeb10160acf2e6890094f9",
+  "locationFile": {
+    "Locations": [
+      {
+        "Latitude": 37.999833,
+        "Longitude": 23.743177
+      },
+      {
+        "Latitude": 37.966783,
+        "Longitude": 23.778605
+      }
+    ]
+  },
+  "pythonFile": "Python code here",
+  "numVehicles": 3,
+  "depot": 0,
+  "maxDistance": 50,
+  "submissionDate": "2024-09-21T21:10:49.335Z",
+  "status": "pending",
+  "hasSolution": false,
+  "solution": "",
+  "maxRouteDistance": 0,
+  "totalDistTravel": 0,
+  "executionDuration": 0,
+  "_id": "66ef36594e5666545318b1c5",
+  "__v": 0
+}
+Sending message to queue probMan-to-solver-queue: {
+  problemId: '66ef36594e5666545318b1c5',
+  numVehicles: 3,
+  depot: 0,
+  maxDistance: 50,
+  locationFileContent: { Locations: [ [Object], [Object] ] },
+  pythonFileContent: 'Python code here'
+}
+Message successfully sent to queue: probMan-to-solver-queue
+Message sent to solver queue
+Message from queue problem-service-issue acknowledged.
+Installing dependencies for Problem Management Service...
+
+up to date, audited 155 packages in 897ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Problem Management Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/problem-management-service" && node app.js
+(node:33360) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:33360) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+Server running on port 5000
+MongoDB connected
+Connected to RabbitMQ
+Connected to RabbitMQ
+Attempting to consume from queue: solver-to-probMan-queue
+Attempting to consume from queue: problem-service-issue
+Received message from queue problem-service-issue: {
+  type: 'problemIssue',
+  userId: '66eeb10160acf2e6890094f9',
+  numVehicles: 3,
+  depot: 0,
+  maxDistance: 50,
+  locationFileContent: { Locations: [ [Object], [Object] ] },
+  pythonFileContent: 'Python code here'
+}
+Received message type: problemIssue
+Processing problem issue message...
+Raw message received: {
+  "type": "problemIssue",
+  "userId": "66eeb10160acf2e6890094f9",
+  "numVehicles": 3,
+  "depot": 0,
+  "maxDistance": 50,
+  "locationFileContent": {
+    "Locations": [
+      {
+        "Latitude": 37.999833,
+        "Longitude": 23.743177
+      },
+      {
+        "Latitude": 37.966783,
+        "Longitude": 23.778605
+      }
+    ]
+  },
+  "pythonFileContent": "Python code here"
+}
+locationFileContent: {
+  "Locations": [
+    {
+      "Latitude": 37.999833,
+      "Longitude": 23.743177
+    },
+    {
+      "Latitude": 37.966783,
+      "Longitude": 23.778605
+    }
+  ]
+}
+pythonFileContent: Python code here
+Problem to be saved: {
+  "userId": "66eeb10160acf2e6890094f9",
+  "locationFile": {
+    "Locations": [
+      {
+        "Latitude": 37.999833,
+        "Longitude": 23.743177
+      },
+      {
+        "Latitude": 37.966783,
+        "Longitude": 23.778605
+      }
+    ]
+  },
+  "pythonFile": "Python code here",
+  "numVehicles": 3,
+  "depot": 0,
+  "maxDistance": 50,
+  "submissionDate": "2024-09-21T21:16:11.691Z",
+  "status": "pending",
+  "hasSolution": false,
+  "solution": "",
+  "maxRouteDistance": 0,
+  "totalDistTravel": 0,
+  "executionDuration": 0,
+  "_id": "66ef379b57596069bdd5b7d2"
+}
+Problem saved successfully: {
+  "userId": "66eeb10160acf2e6890094f9",
+  "locationFile": {
+    "Locations": [
+      {
+        "Latitude": 37.999833,
+        "Longitude": 23.743177
+      },
+      {
+        "Latitude": 37.966783,
+        "Longitude": 23.778605
+      }
+    ]
+  },
+  "pythonFile": "Python code here",
+  "numVehicles": 3,
+  "depot": 0,
+  "maxDistance": 50,
+  "submissionDate": "2024-09-21T21:16:11.691Z",
+  "status": "pending",
+  "hasSolution": false,
+  "solution": "",
+  "maxRouteDistance": 0,
+  "totalDistTravel": 0,
+  "executionDuration": 0,
+  "_id": "66ef379b57596069bdd5b7d2",
+  "__v": 0
+}
+Sending message to queue probMan-to-solver-queue: {
+  problemId: '66ef379b57596069bdd5b7d2',
+  numVehicles: 3,
+  depot: 0,
+  maxDistance: 50,
+  locationFileContent: { Locations: [ [Object], [Object] ] },
+  pythonFileContent: 'Python code here'
+}
+Message successfully sent to queue: probMan-to-solver-queue
+Message sent to solver queue
+Message from queue problem-service-issue acknowledged.
+Installing dependencies for Problem Management Service...
+
+up to date, audited 155 packages in 887ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Problem Management Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/problem-management-service" && node app.js
+(node:2768) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2768) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+Server running on port 5000
+MongoDB connected
+Connected to RabbitMQ
+Attempting to consume from queue: solver-to-probMan-queue
+Connected to RabbitMQ
+Attempting to consume from queue: problem-service-issue
+Received message from queue problem-service-issue: {
+  type: 'problemIssue',
+  userId: '66eeb10160acf2e6890094f9',
+  numVehicles: 3,
+  depot: 0,
+  maxDistance: 50,
+  locationFileContent: { Locations: [ [Object], [Object] ] },
+  pythonFileContent: 'Python code here'
+}
+Received message type: problemIssue
+Processing problem issue message...
+Raw message received: {
+  "type": "problemIssue",
+  "userId": "66eeb10160acf2e6890094f9",
+  "numVehicles": 3,
+  "depot": 0,
+  "maxDistance": 50,
+  "locationFileContent": {
+    "Locations": [
+      {
+        "Latitude": 37.999833,
+        "Longitude": 23.743177
+      },
+      {
+        "Latitude": 37.966783,
+        "Longitude": 23.778605
+      }
+    ]
+  },
+  "pythonFileContent": "Python code here"
+}
+locationFileContent: {
+  "Locations": [
+    {
+      "Latitude": 37.999833,
+      "Longitude": 23.743177
+    },
+    {
+      "Latitude": 37.966783,
+      "Longitude": 23.778605
+    }
+  ]
+}
+pythonFileContent: Python code here
+Problem to be saved: {
+  "userId": "66eeb10160acf2e6890094f9",
+  "locationFile": {
+    "Locations": [
+      {
+        "Latitude": 37.999833,
+        "Longitude": 23.743177
+      },
+      {
+        "Latitude": 37.966783,
+        "Longitude": 23.778605
+      }
+    ]
+  },
+  "pythonFile": "Python code here",
+  "numVehicles": 3,
+  "depot": 0,
+  "maxDistance": 50,
+  "submissionDate": "2024-09-21T21:17:41.391Z",
+  "status": "pending",
+  "hasSolution": false,
+  "solution": "",
+  "maxRouteDistance": 0,
+  "totalDistTravel": 0,
+  "executionDuration": 0,
+  "_id": "66ef37f5e5c6cc72feca27b6"
+}
+Problem saved successfully: {
+  "userId": "66eeb10160acf2e6890094f9",
+  "locationFile": {
+    "Locations": [
+      {
+        "Latitude": 37.999833,
+        "Longitude": 23.743177
+      },
+      {
+        "Latitude": 37.966783,
+        "Longitude": 23.778605
+      }
+    ]
+  },
+  "pythonFile": "Python code here",
+  "numVehicles": 3,
+  "depot": 0,
+  "maxDistance": 50,
+  "submissionDate": "2024-09-21T21:17:41.391Z",
+  "status": "pending",
+  "hasSolution": false,
+  "solution": "",
+  "maxRouteDistance": 0,
+  "totalDistTravel": 0,
+  "executionDuration": 0,
+  "_id": "66ef37f5e5c6cc72feca27b6",
+  "__v": 0
+}
+Sending message to queue probMan-to-solver-queue: {
+  problemId: '66ef37f5e5c6cc72feca27b6',
+  numVehicles: 3,
+  depot: 0,
+  maxDistance: 50,
+  locationFileContent: { Locations: [ [Object], [Object] ] },
+  pythonFileContent: 'Python code here'
+}
+Message successfully sent to queue: probMan-to-solver-queue
+Message sent to solver queue
+Message from queue problem-service-issue acknowledged.
+Installing dependencies for Problem Management Service...
+
+up to date, audited 155 packages in 896ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Problem Management Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/problem-management-service" && node app.js
+(node:32068) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:32068) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+Server running on port 5000
+MongoDB connected
+Connected to RabbitMQ
+Connected to RabbitMQ
+Attempting to consume from queue: solver-to-probMan-queue
+Attempting to consume from queue: problem-service-issue
+Received message from queue problem-service-issue: {
+  type: 'problemIssue',
+  userId: '66ef3875b89a43c218455536',
+  numVehicles: 3,
+  depot: 0,
+  maxDistance: 50,
+  locationFileContent: { Locations: [ [Object], [Object] ] },
+  pythonFileContent: 'Python code here'
+}
+Received message type: problemIssue
+Processing problem issue message...
+Raw message received: {
+  "type": "problemIssue",
+  "userId": "66ef3875b89a43c218455536",
+  "numVehicles": 3,
+  "depot": 0,
+  "maxDistance": 50,
+  "locationFileContent": {
+    "Locations": [
+      {
+        "Latitude": 37.999833,
+        "Longitude": 23.743177
+      },
+      {
+        "Latitude": 37.966783,
+        "Longitude": 23.778605
+      }
+    ]
+  },
+  "pythonFileContent": "Python code here"
+}
+locationFileContent: {
+  "Locations": [
+    {
+      "Latitude": 37.999833,
+      "Longitude": 23.743177
+    },
+    {
+      "Latitude": 37.966783,
+      "Longitude": 23.778605
+    }
+  ]
+}
+pythonFileContent: Python code here
+Problem to be saved: {
+  "userId": "66ef3875b89a43c218455536",
+  "locationFile": {
+    "Locations": [
+      {
+        "Latitude": 37.999833,
+        "Longitude": 23.743177
+      },
+      {
+        "Latitude": 37.966783,
+        "Longitude": 23.778605
+      }
+    ]
+  },
+  "pythonFile": "Python code here",
+  "numVehicles": 3,
+  "depot": 0,
+  "maxDistance": 50,
+  "submissionDate": "2024-09-21T21:20:23.447Z",
+  "status": "pending",
+  "hasSolution": false,
+  "solution": "",
+  "maxRouteDistance": 0,
+  "totalDistTravel": 0,
+  "executionDuration": 0,
+  "_id": "66ef3897a77aa70e36e99744"
+}
+Problem saved successfully: {
+  "userId": "66ef3875b89a43c218455536",
+  "locationFile": {
+    "Locations": [
+      {
+        "Latitude": 37.999833,
+        "Longitude": 23.743177
+      },
+      {
+        "Latitude": 37.966783,
+        "Longitude": 23.778605
+      }
+    ]
+  },
+  "pythonFile": "Python code here",
+  "numVehicles": 3,
+  "depot": 0,
+  "maxDistance": 50,
+  "submissionDate": "2024-09-21T21:20:23.447Z",
+  "status": "pending",
+  "hasSolution": false,
+  "solution": "",
+  "maxRouteDistance": 0,
+  "totalDistTravel": 0,
+  "executionDuration": 0,
+  "_id": "66ef3897a77aa70e36e99744",
+  "__v": 0
+}
+Sending message to queue probMan-to-solver-queue: {
+  problemId: '66ef3897a77aa70e36e99744',
+  numVehicles: 3,
+  depot: 0,
+  maxDistance: 50,
+  locationFileContent: { Locations: [ [Object], [Object] ] },
+  pythonFileContent: 'Python code here'
+}
+Message successfully sent to queue: probMan-to-solver-queue
+Message sent to solver queue
+Message from queue problem-service-issue acknowledged.
+Installing dependencies for Problem Management Service...
+
+up to date, audited 155 packages in 881ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Problem Management Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/problem-management-service" && node app.js
+(node:36148) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:36148) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+Server running on port 5000
+MongoDB connected
+Connected to RabbitMQ
+Attempting to consume from queue: solver-to-probMan-queue
+Connected to RabbitMQ
+Attempting to consume from queue: problem-service-issue
+Installing dependencies for Problem Management Service...
+
+up to date, audited 155 packages in 876ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Problem Management Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/problem-management-service" && node app.js
+(node:2432) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2432) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+Server running on port 5000
+MongoDB connected
+Connected to RabbitMQ
+Connected to RabbitMQ
+Attempting to consume from queue: solver-to-probMan-queue
+Attempting to consume from queue: problem-service-issue
+Received message from queue problem-service-issue: {
+  type: 'problemIssue',
+  userId: '66ef3875b89a43c218455536',
+  numVehicles: 3,
+  depot: 0,
+  maxDistance: 50,
+  locationFileContent: { Locations: [ [Object], [Object] ] },
+  pythonFileContent: 'Python code here'
+}
+Received message type: problemIssue
+Processing problem issue message...
+Raw message received in problem management service: {
+  "type": "problemIssue",
+  "userId": "66ef3875b89a43c218455536",
+  "numVehicles": 3,
+  "depot": 0,
+  "maxDistance": 50,
+  "locationFileContent": {
+    "Locations": [
+      {
+        "Latitude": 37.999833,
+        "Longitude": 23.743177
+      },
+      {
+        "Latitude": 37.966783,
+        "Longitude": 23.778605
+      }
+    ]
+  },
+  "pythonFileContent": "Python code here"
+}
+Problem to be saved: {
+  "userId": "66ef3875b89a43c218455536",
+  "locationFile": "{\"Locations\":[{\"Latitude\":37.999833,\"Longitude\":23.743177},{\"Latitude\":37.966783,\"Longitude\":23.778605}]}",
+  "pythonFile": "Python code here",
+  "numVehicles": 3,
+  "depot": 0,
+  "maxDistance": 50,
+  "submissionDate": "2024-09-21T23:02:25.789Z",
+  "status": "pending",
+  "hasSolution": false,
+  "solution": "",
+  "maxRouteDistance": 0,
+  "totalDistTravel": 0,
+  "executionDuration": 0,
+  "_id": "66ef5081bddb050f63203347"
+}
+Problem saved successfully: {
+  "userId": "66ef3875b89a43c218455536",
+  "locationFile": "{\"Locations\":[{\"Latitude\":37.999833,\"Longitude\":23.743177},{\"Latitude\":37.966783,\"Longitude\":23.778605}]}",
+  "pythonFile": "Python code here",
+  "numVehicles": 3,
+  "depot": 0,
+  "maxDistance": 50,
+  "submissionDate": "2024-09-21T23:02:25.789Z",
+  "status": "pending",
+  "hasSolution": false,
+  "solution": "",
+  "maxRouteDistance": 0,
+  "totalDistTravel": 0,
+  "executionDuration": 0,
+  "_id": "66ef5081bddb050f63203347",
+  "__v": 0
+}
+Sending to solver queue: {
+  "problemId": "66ef5081bddb050f63203347",
+  "numVehicles": 3,
+  "depot": 0,
+  "maxDistance": 50,
+  "locationFileContent": {
+    "Locations": [
+      {
+        "Latitude": 37.999833,
+        "Longitude": 23.743177
+      },
+      {
+        "Latitude": 37.966783,
+        "Longitude": 23.778605
+      }
+    ]
+  },
+  "pythonFileContent": "Python code here"
+}
+Sending message to queue probMan-to-solver-queue: {
+  problemId: '66ef5081bddb050f63203347',
+  numVehicles: 3,
+  depot: 0,
+  maxDistance: 50,
+  locationFileContent: { Locations: [ [Object], [Object] ] },
+  pythonFileContent: 'Python code here'
+}
+Message successfully sent to queue: probMan-to-solver-queue
+Message sent to solver queue
+Message from queue problem-service-issue acknowledged.
+Installing dependencies for Problem Management Service...
+
+up to date, audited 155 packages in 886ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Problem Management Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/problem-management-service" && node app.js
+(node:29968) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:29968) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+Server running on port 5000
+MongoDB connected
+Connected to RabbitMQ
+Connected to RabbitMQ
+Attempting to consume from queue: solver-to-probMan-queue
+Attempting to consume from queue: problem-service-issue
+Received message from queue problem-service-issue: {
+  type: 'problemIssue',
+  userId: '66ef3875b89a43c218455536',
+  numVehicles: 3,
+  depot: 0,
+  maxDistance: 50,
+  locationFileContent: { Locations: [ [Object], [Object] ] },
+  pythonFileContent: 'Python code here'
+}
+Received message type: problemIssue
+Processing problem issue message...
+Raw message received in problem management service: {
+  "type": "problemIssue",
+  "userId": "66ef3875b89a43c218455536",
+  "numVehicles": 3,
+  "depot": 0,
+  "maxDistance": 50,
+  "locationFileContent": {
+    "Locations": [
+      {
+        "Latitude": 37.999833,
+        "Longitude": 23.743177
+      },
+      {
+        "Latitude": 37.966783,
+        "Longitude": 23.778605
+      }
+    ]
+  },
+  "pythonFileContent": "Python code here"
+}
+Extracted locationFileContent: {
+  "Locations": [
+    {
+      "Latitude": 37.999833,
+      "Longitude": 23.743177
+    },
+    {
+      "Latitude": 37.966783,
+      "Longitude": 23.778605
+    }
+  ]
+}
+Extracted pythonFileContent: Python code here
+Problem to be saved: {
+  "userId": "66ef3875b89a43c218455536",
+  "locationFile": "{\"Locations\":[{\"Latitude\":37.999833,\"Longitude\":23.743177},{\"Latitude\":37.966783,\"Longitude\":23.778605}]}",
+  "pythonFile": "Python code here",
+  "numVehicles": 3,
+  "depot": 0,
+  "maxDistance": 50,
+  "submissionDate": "2024-09-21T23:06:48.245Z",
+  "status": "pending",
+  "hasSolution": false,
+  "solution": "",
+  "maxRouteDistance": 0,
+  "totalDistTravel": 0,
+  "executionDuration": 0,
+  "_id": "66ef51888477096353a5fe6f"
+}
+Problem saved successfully: {
+  "userId": "66ef3875b89a43c218455536",
+  "locationFile": "{\"Locations\":[{\"Latitude\":37.999833,\"Longitude\":23.743177},{\"Latitude\":37.966783,\"Longitude\":23.778605}]}",
+  "pythonFile": "Python code here",
+  "numVehicles": 3,
+  "depot": 0,
+  "maxDistance": 50,
+  "submissionDate": "2024-09-21T23:06:48.245Z",
+  "status": "pending",
+  "hasSolution": false,
+  "solution": "",
+  "maxRouteDistance": 0,
+  "totalDistTravel": 0,
+  "executionDuration": 0,
+  "_id": "66ef51888477096353a5fe6f",
+  "__v": 0
+}
+Sending to solver queue: {
+  "problemId": "66ef51888477096353a5fe6f",
+  "numVehicles": 3,
+  "depot": 0,
+  "maxDistance": 50,
+  "locationFileContent": {
+    "Locations": [
+      {
+        "Latitude": 37.999833,
+        "Longitude": 23.743177
+      },
+      {
+        "Latitude": 37.966783,
+        "Longitude": 23.778605
+      }
+    ]
+  },
+  "pythonFileContent": "Python code here"
+}
+Sending message to queue probMan-to-solver-queue: {
+  problemId: '66ef51888477096353a5fe6f',
+  numVehicles: 3,
+  depot: 0,
+  maxDistance: 50,
+  locationFileContent: { Locations: [ [Object], [Object] ] },
+  pythonFileContent: 'Python code here'
+}
+Message successfully sent to queue: probMan-to-solver-queue
+Message sent to solver queue
+Message from queue problem-service-issue acknowledged.
+Installing dependencies for Problem Management Service...
+
+up to date, audited 155 packages in 1s
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Problem Management Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/problem-management-service" && node app.js
+(node:27328) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:27328) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+Server running on port 5000
+MongoDB connected
+Connected to RabbitMQ
+Connected to RabbitMQ
+Attempting to consume from queue: solver-to-probMan-queue
+Attempting to consume from queue: problem-service-issue
+Received message from queue problem-service-issue: {
+  type: 'problemIssue',
+  userId: '66ef3875b89a43c218455536',
+  numVehicles: 3,
+  depot: 0,
+  maxDistance: 50,
+  locationFileContent: { Locations: [ [Object], [Object] ] },
+  pythonFileContent: 'Python code here'
+}
+Received message type: problemIssue
+Processing problem issue message...
+Raw message received in problem management service: {
+  "type": "problemIssue",
+  "userId": "66ef3875b89a43c218455536",
+  "numVehicles": 3,
+  "depot": 0,
+  "maxDistance": 50,
+  "locationFileContent": {
+    "Locations": [
+      {
+        "Latitude": 37.999833,
+        "Longitude": 23.743177
+      },
+      {
+        "Latitude": 37.966783,
+        "Longitude": 23.778605
+      }
+    ]
+  },
+  "pythonFileContent": "Python code here"
+}
+Extracted locationFileContent: {
+  "Locations": [
+    {
+      "Latitude": 37.999833,
+      "Longitude": 23.743177
+    },
+    {
+      "Latitude": 37.966783,
+      "Longitude": 23.778605
+    }
+  ]
+}
+Extracted pythonFileContent: Python code here
+Problem to be saved: {
+  "userId": "66ef3875b89a43c218455536",
+  "locationFile": "{\"Locations\":[{\"Latitude\":37.999833,\"Longitude\":23.743177},{\"Latitude\":37.966783,\"Longitude\":23.778605}]}",
+  "pythonFile": "Python code here",
+  "numVehicles": 3,
+  "depot": 0,
+  "maxDistance": 50,
+  "submissionDate": "2024-09-21T23:15:25.656Z",
+  "status": "pending",
+  "hasSolution": false,
+  "solution": "",
+  "maxRouteDistance": 0,
+  "totalDistTravel": 0,
+  "executionDuration": 0,
+  "_id": "66ef538d94423429b7e48ec5"
+}
+Problem saved successfully: {
+  "userId": "66ef3875b89a43c218455536",
+  "locationFile": "{\"Locations\":[{\"Latitude\":37.999833,\"Longitude\":23.743177},{\"Latitude\":37.966783,\"Longitude\":23.778605}]}",
+  "pythonFile": "Python code here",
+  "numVehicles": 3,
+  "depot": 0,
+  "maxDistance": 50,
+  "submissionDate": "2024-09-21T23:15:25.656Z",
+  "status": "pending",
+  "hasSolution": false,
+  "solution": "",
+  "maxRouteDistance": 0,
+  "totalDistTravel": 0,
+  "executionDuration": 0,
+  "_id": "66ef538d94423429b7e48ec5",
+  "__v": 0
+}
+Sending to solver queue: {
+  "problemId": "66ef538d94423429b7e48ec5",
+  "numVehicles": 3,
+  "depot": 0,
+  "maxDistance": 50,
+  "locationFileContent": {
+    "Locations": [
+      {
+        "Latitude": 37.999833,
+        "Longitude": 23.743177
+      },
+      {
+        "Latitude": 37.966783,
+        "Longitude": 23.778605
+      }
+    ]
+  },
+  "pythonFileContent": "Python code here"
+}
+Sending message to queue probMan-to-solver-queue: {
+  problemId: '66ef538d94423429b7e48ec5',
+  numVehicles: 3,
+  depot: 0,
+  maxDistance: 50,
+  locationFileContent: { Locations: [ [Object], [Object] ] },
+  pythonFileContent: 'Python code here'
+}
+Message successfully sent to queue: probMan-to-solver-queue
+Message sent to solver queue
+Message from queue problem-service-issue acknowledged.

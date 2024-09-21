@@ -16,3 +16,1014 @@ Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτε
 Server running on port 6900
 Consuming from queue: user-service-queue-res
 Consuming from queue: trans_response_queue
+Installing dependencies for Orchestrator Service...
+
+up to date, audited 155 packages in 1s
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Orchestrator Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/orchestrator" && node app.js
+node:events:497
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::6900
+    at Server.setupListenHandle [as _listen2] (node:net:1893:16)
+    at listenInCluster (node:net:1941:12)
+    at Server.listen (node:net:2029:7)
+    at Function.listen (C:\Users\user\OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο\Έγγραφα\GitHub\saasv2\saas2024-24\node_modules\express\lib\application.js:635:24)
+    at Object.<anonymous> (C:\Users\user\OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο\Έγγραφα\GitHub\saasv2\saas2024-24\orchestrator\app.js:93:5)
+    at Module._compile (node:internal/modules/cjs/loader:1378:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1437:10)
+    at Module.load (node:internal/modules/cjs/loader:1212:32)
+    at Module._load (node:internal/modules/cjs/loader:1028:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:142:12)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1920:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21) {
+  code: 'EADDRINUSE',
+  errno: -4091,
+  syscall: 'listen',
+  address: '::',
+  port: 6900
+}
+
+Node.js v21.6.1
+Installing dependencies for Orchestrator Service...
+
+up to date, audited 155 packages in 905ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Orchestrator Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/orchestrator" && node app.js
+Server running on port 6900
+Consuming from queue: user-service-queue-res
+Consuming from queue: trans_response_queue
+Sending login request to user-service, correlationId: 641cf184-07ef-487f-9e2d-0aea54d96c50
+Message sent to queue: user-service-queue
+Sending credit update request to user-service, correlationId: d15808f9-b348-4553-81ce-e5fc7cb4a539
+Message sent to queue: user-service-queue
+Sending message to user-service-credit-req with User ID: 66eeb10160acf2e6890094f9
+Message sent to queue: user-service-credit-req
+Sent message to user-service-credit-req queue
+Consuming from queue: user-service-credit-res
+Received message from user-service-credit-res: {
+  correlationId: '6fsf6e',
+  success: true,
+  message: 'Credit deducted successfully'
+}
+User has sufficient credits, sending problem to problem-service-issue queue
+Message sent to queue: problem-service-issue
+Installing dependencies for Orchestrator Service...
+
+up to date, audited 155 packages in 964ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Orchestrator Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/orchestrator" && node app.js
+Server running on port 6900
+Consuming from queue: user-service-queue-res
+Consuming from queue: trans_response_queue
+Sending login request to user-service, correlationId: 611d88ce-755e-45ce-b99d-5707d2923a21
+Message sent to queue: user-service-queue
+Sending message to user-service-credit-req with User ID: 66eeb10160acf2e6890094f9
+Message sent to queue: user-service-credit-req
+Sent message to user-service-credit-req queue
+Consuming from queue: user-service-credit-res
+Received message from user-service-credit-res: {
+  correlationId: 'vugtsa',
+  success: true,
+  message: 'Credit deducted successfully'
+}
+User has sufficient credits, sending problem to problem-service-issue queue
+Message sent to queue: problem-service-issue
+Installing dependencies for Orchestrator Service...
+
+up to date, audited 155 packages in 1s
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Orchestrator Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/orchestrator" && node app.js
+Server running on port 6900
+Consuming from queue: user-service-queue-res
+Consuming from queue: trans_response_queue
+Sending login request to user-service, correlationId: bc9cdac5-ae2e-4b8e-bd19-a9eb91299c89
+Message sent to queue: user-service-queue
+Sending message to user-service-credit-req with User ID: 66eeb10160acf2e6890094f9
+Message sent to queue: user-service-credit-req
+Sent message to user-service-credit-req queue
+Consuming from queue: user-service-credit-res
+Received message from user-service-credit-res: {
+  correlationId: 'hud9z',
+  success: true,
+  message: 'Credit deducted successfully'
+}
+User has sufficient credits, sending problem to problem-service-issue queue
+Message sent to queue: problem-service-issue
+Installing dependencies for Orchestrator Service...
+
+up to date, audited 155 packages in 925ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Orchestrator Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/orchestrator" && node app.js
+Server running on port 6900
+Consuming from queue: user-service-queue-res
+Consuming from queue: trans_response_queue
+Installing dependencies for Orchestrator Service...
+
+up to date, audited 155 packages in 1s
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Orchestrator Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/orchestrator" && node app.js
+Server running on port 6900
+Consuming from queue: user-service-queue-res
+Consuming from queue: trans_response_queue
+Sending login request to user-service, correlationId: a06d8550-2350-4cd9-b966-9e3ae307ed89
+Message sent to queue: user-service-queue
+Sending message to user-service-credit-req with User ID: 66eeb10160acf2e6890094f9
+Message sent to queue: user-service-credit-req
+Sent message to user-service-credit-req queue
+Consuming from queue: user-service-credit-res
+Received message from user-service-credit-res: {
+  correlationId: '7jkzz6',
+  success: true,
+  message: 'Credit deducted successfully'
+}
+User has sufficient credits, sending problem to problem-service-issue queue
+Message sent to queue: problem-service-issue
+Installing dependencies for Orchestrator Service...
+
+up to date, audited 155 packages in 906ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Orchestrator Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/orchestrator" && node app.js
+Server running on port 6900
+Consuming from queue: user-service-queue-res
+Consuming from queue: trans_response_queue
+Sending login request to user-service, correlationId: 50f23402-2823-47b4-b75d-341bffef94ff
+Message sent to queue: user-service-queue
+Sending message to user-service-credit-req with User ID: 66eeb10160acf2e6890094f9
+Message sent to queue: user-service-credit-req
+Sent message to user-service-credit-req queue
+Consuming from queue: user-service-credit-res
+Received message from user-service-credit-res: {
+  correlationId: 'tuqmdh',
+  success: true,
+  message: 'Credit deducted successfully'
+}
+User has sufficient credits, sending problem to problem-service-issue queue
+Message sent to queue: problem-service-issue
+Installing dependencies for Orchestrator Service...
+
+up to date, audited 155 packages in 889ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Orchestrator Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/orchestrator" && node app.js
+Server running on port 6900
+Consuming from queue: user-service-queue-res
+Consuming from queue: trans_response_queue
+Sending login request to user-service, correlationId: 51c94795-9dde-4852-bb46-fb59f6f2700c
+Message sent to queue: user-service-queue
+Sending message to user-service-credit-req with User ID: 66eeb10160acf2e6890094f9
+Message sent to queue: user-service-credit-req
+Sent message to user-service-credit-req queue
+Consuming from queue: user-service-credit-res
+Received message from user-service-credit-res: {
+  correlationId: 'b23nrk',
+  success: true,
+  message: 'Credit deducted successfully'
+}
+User has sufficient credits, sending problem to problem-service-issue queue
+Message sent to queue: problem-service-issue
+Sending message to user-service-credit-req with User ID: 66eeb10160acf2e6890094f9
+Message sent to queue: user-service-credit-req
+Sent message to user-service-credit-req queue
+Consuming from queue: user-service-credit-res
+Sending message to user-service-credit-req with User ID: 66eeb10160acf2e6890094f9
+Message sent to queue: user-service-credit-req
+Sent message to user-service-credit-req queue
+Consuming from queue: user-service-credit-res
+Sending message to user-service-credit-req with User ID: 66eeb10160acf2e6890094f9
+Message sent to queue: user-service-credit-req
+Sent message to user-service-credit-req queue
+Consuming from queue: user-service-credit-res
+Sending message to user-service-credit-req with User ID: 66eeb10160acf2e6890094f9
+Message sent to queue: user-service-credit-req
+Sent message to user-service-credit-req queue
+Consuming from queue: user-service-credit-res
+Sending message to user-service-credit-req with User ID: 66eeb10160acf2e6890094f9
+Message sent to queue: user-service-credit-req
+Sent message to user-service-credit-req queue
+Consuming from queue: user-service-credit-res
+Installing dependencies for Orchestrator Service...
+
+up to date, audited 155 packages in 924ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Orchestrator Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/orchestrator" && node app.js
+Server running on port 6900
+Consuming from queue: user-service-queue-res
+Consuming from queue: trans_response_queue
+Sending login request to user-service, correlationId: eee2e9e8-3935-446c-81b7-eb775edf2d7f
+Message sent to queue: user-service-queue
+Sending login request to user-service, correlationId: d2c8d5b8-3cab-48f5-acdf-bd58a230b8ab
+Message sent to queue: user-service-queue
+Sending message to user-service-credit-req with User ID: 66eeb10160acf2e6890094f9
+Message sent to queue: user-service-credit-req
+Sent message to user-service-credit-req queue
+Consuming from queue: user-service-credit-res
+Received message from user-service-credit-res: {
+  correlationId: 'w6ib',
+  success: true,
+  message: 'Credit deducted successfully'
+}
+User has sufficient credits, sending problem to problem-service-issue queue
+Message sent to queue: problem-service-issue
+Installing dependencies for Orchestrator Service...
+
+up to date, audited 155 packages in 978ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Orchestrator Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/orchestrator" && node app.js
+Server running on port 6900
+Consuming from queue: user-service-queue-res
+Consuming from queue: trans_response_queue
+Sending login request to user-service, correlationId: 5620ae93-6079-4da2-84fd-fbdefa799948
+Message sent to queue: user-service-queue
+Sending message to user-service-credit-req with User ID: 66eeb10160acf2e6890094f9
+Message sent to queue: user-service-credit-req
+Sent message to user-service-credit-req queue
+Consuming from queue: user-service-credit-res
+Received message from user-service-credit-res: {
+  correlationId: '2eu8tf',
+  success: true,
+  message: 'Credit deducted successfully'
+}
+User has sufficient credits, sending problem to problem-service-issue queue
+Message sent to queue: problem-service-issue
+Installing dependencies for Orchestrator Service...
+
+up to date, audited 155 packages in 940ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Orchestrator Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/orchestrator" && node app.js
+Server running on port 6900
+Consuming from queue: user-service-queue-res
+Consuming from queue: trans_response_queue
+Sending login request to user-service, correlationId: dcfe9e4a-5c6d-4c4e-aed6-b5971c3ceb20
+Message sent to queue: user-service-queue
+Sending login request to user-service, correlationId: 03898e2b-40df-499f-84e2-8b4df4688cba
+Message sent to queue: user-service-queue
+Sending message to user-service-credit-req with User ID: 66eeb10160acf2e6890094f9
+Message sent to queue: user-service-credit-req
+Sent message to user-service-credit-req queue
+Consuming from queue: user-service-credit-res
+Received message from user-service-credit-res: {
+  correlationId: 'l48et9',
+  success: true,
+  message: 'Credit deducted successfully'
+}
+User has sufficient credits, sending problem to problem-service-issue queue
+Message sent to queue: problem-service-issue
+Installing dependencies for Orchestrator Service...
+
+up to date, audited 155 packages in 917ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Orchestrator Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/orchestrator" && node app.js
+Server running on port 6900
+Consuming from queue: user-service-queue-res
+Consuming from queue: trans_response_queue
+Sending login request to user-service, correlationId: 381ef870-05eb-4080-8353-7581f544aa41
+Message sent to queue: user-service-queue
+Sending message to user-service-credit-req with User ID: 66eeb10160acf2e6890094f9
+Message sent to queue: user-service-credit-req
+Sent message to user-service-credit-req queue
+Consuming from queue: user-service-credit-res
+Received message from user-service-credit-res: {
+  correlationId: 'fbi4buj',
+  success: true,
+  message: 'Credit deducted successfully'
+}
+User has sufficient credits, sending problem to problem-service-issue queue
+Message sent to queue: problem-service-issue
+Sending message to user-service-credit-req with User ID: 66eeb10160acf2e6890094f9
+Message sent to queue: user-service-credit-req
+Sent message to user-service-credit-req queue
+Consuming from queue: user-service-credit-res
+Sending message to user-service-credit-req with User ID: 66eeb10160acf2e6890094f9
+Message sent to queue: user-service-credit-req
+Sent message to user-service-credit-req queue
+Consuming from queue: user-service-credit-res
+Sending message to user-service-credit-req with User ID: 66eeb10160acf2e6890094f9
+Message sent to queue: user-service-credit-req
+Sent message to user-service-credit-req queue
+Consuming from queue: user-service-credit-res
+Sending message to user-service-credit-req with User ID: 66eeb10160acf2e6890094f9
+Message sent to queue: user-service-credit-req
+Sent message to user-service-credit-req queue
+Consuming from queue: user-service-credit-res
+Sending message to user-service-credit-req with User ID: 66eeb10160acf2e6890094f9
+Message sent to queue: user-service-credit-req
+Sent message to user-service-credit-req queue
+Consuming from queue: user-service-credit-res
+Sending message to user-service-credit-req with User ID: 66eeb10160acf2e6890094f9
+Message sent to queue: user-service-credit-req
+Sent message to user-service-credit-req queue
+Consuming from queue: user-service-credit-res
+Installing dependencies for Orchestrator Service...
+
+up to date, audited 155 packages in 899ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Orchestrator Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/orchestrator" && node app.js
+Server running on port 6900
+Consuming from queue: user-service-queue-res
+Consuming from queue: trans_response_queue
+Sending login request to user-service, correlationId: 2381f655-c5f3-4630-ae90-1e290a0ba738
+Message sent to queue: user-service-queue
+Sending message to user-service-credit-req with User ID: 66eeb10160acf2e6890094f9
+Message sent to queue: user-service-credit-req
+Sent message to user-service-credit-req queue
+Consuming from queue: user-service-credit-res
+Received message from user-service-credit-res: {
+  correlationId: '8abtp',
+  success: true,
+  message: 'Credit deducted successfully'
+}
+User has sufficient credits, sending problem to problem-service-issue queue
+Message sent to queue: problem-service-issue
+Installing dependencies for Orchestrator Service...
+
+up to date, audited 155 packages in 871ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Orchestrator Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/orchestrator" && node app.js
+Server running on port 6900
+Consuming from queue: user-service-queue-res
+Consuming from queue: trans_response_queue
+Sending login request to user-service, correlationId: ec078b0f-5141-4b14-a52d-576746d6357f
+Message sent to queue: user-service-queue
+Full request body: {
+  "userId": "66eeb10160acf2e6890094f9",
+  "numVehicles": 3,
+  "depot": 0,
+  "maxDistance": 50,
+  "locationFileContent": {
+    "Locations": [
+      {
+        "Latitude": 37.999833,
+        "Longitude": 23.743177
+      },
+      {
+        "Latitude": 37.966783,
+        "Longitude": 23.778605
+      }
+    ]
+  },
+  "pythonFileContent": "Python code here"
+}
+Sending message to user-service-credit-req with User ID: 66eeb10160acf2e6890094f9
+Message sent to queue: user-service-credit-req
+Sent message to user-service-credit-req queue
+Consuming from queue: user-service-credit-res
+Received message from user-service-credit-res: {
+  correlationId: '1veclm',
+  success: true,
+  message: 'Credit deducted successfully'
+}
+User has sufficient credits, sending problem to problem-service-issue queue
+Sending to problem-service-issue: {
+  "type": "problemIssue",
+  "userId": "66eeb10160acf2e6890094f9",
+  "numVehicles": 3,
+  "depot": 0,
+  "maxDistance": 50,
+  "locationFileContent": {
+    "Locations": [
+      {
+        "Latitude": 37.999833,
+        "Longitude": 23.743177
+      },
+      {
+        "Latitude": 37.966783,
+        "Longitude": 23.778605
+      }
+    ]
+  },
+  "pythonFileContent": "Python code here"
+}
+Message sent to queue: problem-service-issue
+Full request body: {
+  "userId": "66eeb10160acf2e6890094f9",
+  "numVehicles": 3,
+  "depot": 0,
+  "maxDistance": 50,
+  "locationFileContent": {
+    "Locations": [
+      {
+        "Latitude": 37.999833,
+        "Longitude": 23.743177
+      },
+      {
+        "Latitude": 37.966783,
+        "Longitude": 23.778605
+      }
+    ]
+  },
+  "pythonFileContent": "Python code here"
+}
+Sending message to user-service-credit-req with User ID: 66eeb10160acf2e6890094f9
+Message sent to queue: user-service-credit-req
+Sent message to user-service-credit-req queue
+Consuming from queue: user-service-credit-res
+Full request body: {
+  "userId": "66eeb10160acf2e6890094f9",
+  "numVehicles": 3,
+  "depot": 0,
+  "maxDistance": 50,
+  "locationFileContent": {
+    "Locations": [
+      {
+        "Latitude": 37.999833,
+        "Longitude": 23.743177
+      },
+      {
+        "Latitude": 37.966783,
+        "Longitude": 23.778605
+      }
+    ]
+  },
+  "pythonFileContent": "Python code here"
+}
+Sending message to user-service-credit-req with User ID: 66eeb10160acf2e6890094f9
+Message sent to queue: user-service-credit-req
+Sent message to user-service-credit-req queue
+Consuming from queue: user-service-credit-res
+Full request body: {
+  "userId": "66eeb10160acf2e6890094f9",
+  "numVehicles": 3,
+  "depot": 0,
+  "maxDistance": 50,
+  "locationFileContent": {
+    "Locations": [
+      {
+        "Latitude": 37.999833,
+        "Longitude": 23.743177
+      },
+      {
+        "Latitude": 37.966783,
+        "Longitude": 23.778605
+      }
+    ]
+  },
+  "pythonFileContent": "Python code here"
+}
+Sending message to user-service-credit-req with User ID: 66eeb10160acf2e6890094f9
+Message sent to queue: user-service-credit-req
+Sent message to user-service-credit-req queue
+Consuming from queue: user-service-credit-res
+Full request body: {
+  "userId": "66eeb10160acf2e6890094f9",
+  "numVehicles": 3,
+  "depot": 0,
+  "maxDistance": 50,
+  "locationFileContent": {
+    "Locations": [
+      {
+        "Latitude": 37.999833,
+        "Longitude": 23.743177
+      },
+      {
+        "Latitude": 37.966783,
+        "Longitude": 23.778605
+      }
+    ]
+  },
+  "pythonFileContent": "Python code here"
+}
+Sending message to user-service-credit-req with User ID: 66eeb10160acf2e6890094f9
+Message sent to queue: user-service-credit-req
+Sent message to user-service-credit-req queue
+Consuming from queue: user-service-credit-res
+Full request body: {
+  "userId": "66eeb10160acf2e6890094f9",
+  "numVehicles": 3,
+  "depot": 0,
+  "maxDistance": 50,
+  "locationFileContent": {
+    "Locations": [
+      {
+        "Latitude": 37.999833,
+        "Longitude": 23.743177
+      },
+      {
+        "Latitude": 37.966783,
+        "Longitude": 23.778605
+      }
+    ]
+  },
+  "pythonFileContent": "Python code here"
+}
+Sending message to user-service-credit-req with User ID: 66eeb10160acf2e6890094f9
+Message sent to queue: user-service-credit-req
+Sent message to user-service-credit-req queue
+Consuming from queue: user-service-credit-res
+Full request body: {
+  "userId": "66eeb10160acf2e6890094f9",
+  "numVehicles": 3,
+  "depot": 0,
+  "maxDistance": 50,
+  "locationFileContent": {
+    "Locations": [
+      {
+        "Latitude": 37.999833,
+        "Longitude": 23.743177
+      },
+      {
+        "Latitude": 37.966783,
+        "Longitude": 23.778605
+      }
+    ]
+  },
+  "pythonFileContent": "Python code here"
+}
+Sending message to user-service-credit-req with User ID: 66eeb10160acf2e6890094f9
+Message sent to queue: user-service-credit-req
+Sent message to user-service-credit-req queue
+Consuming from queue: user-service-credit-res
+Installing dependencies for Orchestrator Service...
+
+up to date, audited 155 packages in 882ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Orchestrator Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/orchestrator" && node app.js
+Server running on port 6900
+Consuming from queue: user-service-queue-res
+Consuming from queue: trans_response_queue
+Full request body: {
+  "userId": "66eeb10160acf2e6890094f9",
+  "numVehicles": 3,
+  "depot": 0,
+  "maxDistance": 50,
+  "locationFileContent": {
+    "Locations": [
+      {
+        "Latitude": 37.999833,
+        "Longitude": 23.743177
+      },
+      {
+        "Latitude": 37.966783,
+        "Longitude": 23.778605
+      }
+    ]
+  },
+  "pythonFileContent": "Python code here"
+}
+Sending message to user-service-credit-req with User ID: 66eeb10160acf2e6890094f9
+Message sent to queue: user-service-credit-req
+Sent message to user-service-credit-req queue
+Consuming from queue: user-service-credit-res
+Received message from user-service-credit-res: {
+  correlationId: 'h451ba',
+  success: true,
+  message: 'Credit deducted successfully'
+}
+User has sufficient credits, sending problem to problem-service-issue queue
+Sending to problem-service-issue: {
+  "type": "problemIssue",
+  "userId": "66eeb10160acf2e6890094f9",
+  "numVehicles": 3,
+  "depot": 0,
+  "maxDistance": 50,
+  "locationFileContent": {
+    "Locations": [
+      {
+        "Latitude": 37.999833,
+        "Longitude": 23.743177
+      },
+      {
+        "Latitude": 37.966783,
+        "Longitude": 23.778605
+      }
+    ]
+  },
+  "pythonFileContent": "Python code here"
+}
+Message sent to queue: problem-service-issue
+Sending login request to user-service, correlationId: 96c5c17d-e389-4725-b24f-ba28dd4f8c2e
+Message sent to queue: user-service-queue
+Sending login request to user-service, correlationId: 0674439d-8c80-4e0a-ad59-c41c82c6f276
+Message sent to queue: user-service-queue
+Sending login request to user-service, correlationId: dfe9fcd6-2dc1-4ed2-8e55-6a01aeec02d6
+Message sent to queue: user-service-queue
+Sending login request to user-service, correlationId: 54c1642f-3785-4d48-91db-19866297fda2
+Message sent to queue: user-service-queue
+Sending login request to user-service, correlationId: 4255976e-e8db-42bc-9480-03fe33a01194
+Message sent to queue: user-service-queue
+Sending login request to user-service, correlationId: 18f6d516-a016-4cec-884d-bec4e7124f4d
+Message sent to queue: user-service-queue
+Sending login request to user-service, correlationId: 1174c80e-559d-498a-ae1e-4e2f0b05d39a
+Message sent to queue: user-service-queue
+Sending login request to user-service, correlationId: 2ee5d84b-26c1-4901-8c89-f49eb0cbccb2
+Message sent to queue: user-service-queue
+Sending login request to user-service, correlationId: 901d2872-71fa-4edb-a9a6-549eda19e999
+Message sent to queue: user-service-queue
+Installing dependencies for Orchestrator Service...
+
+up to date, audited 155 packages in 884ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Orchestrator Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/orchestrator" && node app.js
+Server running on port 6900
+Consuming from queue: user-service-queue-res
+Consuming from queue: trans_response_queue
+Message sent to queue: user-service-queue
+Full request body: {
+  "userId": "66ef3875b89a43c218455536",
+  "numVehicles": 3,
+  "depot": 0,
+  "maxDistance": 50,
+  "locationFileContent": {
+    "Locations": [
+      {
+        "Latitude": 37.999833,
+        "Longitude": 23.743177
+      },
+      {
+        "Latitude": 37.966783,
+        "Longitude": 23.778605
+      }
+    ]
+  },
+  "pythonFileContent": "Python code here"
+}
+Sending message to user-service-credit-req with User ID: 66ef3875b89a43c218455536
+Message sent to queue: user-service-credit-req
+Sent message to user-service-credit-req queue
+Consuming from queue: user-service-credit-res
+Received message from user-service-credit-res: {
+  correlationId: '2uldf',
+  success: true,
+  message: 'Credit deducted successfully'
+}
+User has sufficient credits, sending problem to problem-service-issue queue
+Sending to problem-service-issue: {
+  "type": "problemIssue",
+  "userId": "66ef3875b89a43c218455536",
+  "numVehicles": 3,
+  "depot": 0,
+  "maxDistance": 50,
+  "locationFileContent": {
+    "Locations": [
+      {
+        "Latitude": 37.999833,
+        "Longitude": 23.743177
+      },
+      {
+        "Latitude": 37.966783,
+        "Longitude": 23.778605
+      }
+    ]
+  },
+  "pythonFileContent": "Python code here"
+}
+Message sent to queue: problem-service-issue
+Installing dependencies for Orchestrator Service...
+
+up to date, audited 155 packages in 892ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Orchestrator Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/orchestrator" && node app.js
+Server running on port 6900
+Consuming from queue: user-service-queue-res
+Consuming from queue: trans_response_queue
+Message sent to queue: user-service-queue
+Full request body: {
+  "userId": "66ef3875b89a43c218455536",
+  "numVehicles": 3,
+  "depot": 0,
+  "maxDistance": 50,
+  "locationFileContent": {
+    "Locations": [
+      {
+        "Latitude": 37.999833,
+        "Longitude": 23.743177
+      },
+      {
+        "Latitude": 37.966783,
+        "Longitude": 23.778605
+      }
+    ]
+  },
+  "pythonFileContent": "Python code here"
+}
+Message sent to queue: user-service-credit-req
+Consuming from queue: user-service-credit-res
+Error in problem issue saga: SyntaxError: "[object Object]" is not valid JSON
+    at JSON.parse (<anonymous>)
+    at exports.problemIssue (C:\Users\user\OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο\Έγγραφα\GitHub\saasv2\saas2024-24\orchestrator\controllers\problemIssue.js:153:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+Installing dependencies for Orchestrator Service...
+
+up to date, audited 155 packages in 1s
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Orchestrator Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/orchestrator" && node app.js
+Server running on port 6900
+Consuming from queue: user-service-queue-res
+Consuming from queue: trans_response_queue
+Message sent to queue: user-service-queue
+Full request body: {
+  "userId": "66ef3875b89a43c218455536",
+  "numVehicles": 3,
+  "depot": 0,
+  "maxDistance": 50,
+  "locationFileContent": {
+    "Locations": [
+      {
+        "Latitude": 37.999833,
+        "Longitude": 23.743177
+      },
+      {
+        "Latitude": 37.966783,
+        "Longitude": 23.778605
+      }
+    ]
+  },
+  "pythonFileContent": "Python code here"
+}
+Message sent to queue: user-service-credit-req
+Consuming from queue: user-service-credit-res
+Sending to problem-service-issue: {
+  "type": "problemIssue",
+  "userId": "66ef3875b89a43c218455536",
+  "numVehicles": 3,
+  "depot": 0,
+  "maxDistance": 50,
+  "locationFileContent": {
+    "Locations": [
+      {
+        "Latitude": 37.999833,
+        "Longitude": 23.743177
+      },
+      {
+        "Latitude": 37.966783,
+        "Longitude": 23.778605
+      }
+    ]
+  },
+  "pythonFileContent": "Python code here"
+}
+Message sent to queue: problem-service-issue
+Installing dependencies for Orchestrator Service...
+
+up to date, audited 155 packages in 865ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Orchestrator Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/orchestrator" && node app.js
+Server running on port 6900
+Consuming from queue: user-service-queue-res
+Consuming from queue: trans_response_queue
+Message sent to queue: user-service-queue
+Full request body: {
+  "userId": "66ef3875b89a43c218455536",
+  "numVehicles": 3,
+  "depot": 0,
+  "maxDistance": 50,
+  "locationFileContent": {
+    "Locations": [
+      {
+        "Latitude": 37.999833,
+        "Longitude": 23.743177
+      },
+      {
+        "Latitude": 37.966783,
+        "Longitude": 23.778605
+      }
+    ]
+  },
+  "pythonFileContent": "Python code here"
+}
+Message sent to queue: user-service-credit-req
+Consuming from queue: user-service-credit-res
+Sending to problem-service-issue: {
+  "type": "problemIssue",
+  "userId": "66ef3875b89a43c218455536",
+  "numVehicles": 3,
+  "depot": 0,
+  "maxDistance": 50,
+  "locationFileContent": {
+    "Locations": [
+      {
+        "Latitude": 37.999833,
+        "Longitude": 23.743177
+      },
+      {
+        "Latitude": 37.966783,
+        "Longitude": 23.778605
+      }
+    ]
+  },
+  "pythonFileContent": "Python code here"
+}
+Message sent to queue: problem-service-issue
+Full request body: {
+  "userId": "66ef3875b89a43c218455536",
+  "numVehicles": 3,
+  "depot": 0,
+  "maxDistance": 50,
+  "locationFileContent": {
+    "Locations": [
+      {
+        "Latitude": 37.999833,
+        "Longitude": 23.743177
+      },
+      {
+        "Latitude": 37.966783,
+        "Longitude": 23.778605
+      }
+    ]
+  },
+  "pythonFileContent": "Python code here"
+}
+Message sent to queue: user-service-credit-req
+Consuming from queue: user-service-credit-res
+Full request body: {
+  "userId": "66ef3875b89a43c218455536",
+  "numVehicles": 3,
+  "depot": 0,
+  "maxDistance": 50,
+  "locationFileContent": {
+    "Locations": [
+      {
+        "Latitude": 37.999833,
+        "Longitude": 23.743177
+      },
+      {
+        "Latitude": 37.966783,
+        "Longitude": 23.778605
+      }
+    ]
+  },
+  "pythonFileContent": "Python code here"
+}
+Message sent to queue: user-service-credit-req
+Consuming from queue: user-service-credit-res
+Full request body: {
+  "userId": "66ef3875b89a43c218455536",
+  "numVehicles": 3,
+  "depot": 0,
+  "maxDistance": 50,
+  "locationFileContent": {
+    "Locations": [
+      {
+        "Latitude": 37.999833,
+        "Longitude": 23.743177
+      },
+      {
+        "Latitude": 37.966783,
+        "Longitude": 23.778605
+      }
+    ]
+  },
+  "pythonFileContent": "Python code here"
+}
+Message sent to queue: user-service-credit-req
+Consuming from queue: user-service-credit-res
+Installing dependencies for Orchestrator Service...
+
+up to date, audited 155 packages in 874ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting Orchestrator Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/orchestrator" && node app.js
+Server running on port 6900
+Consuming from queue: user-service-queue-res
+Consuming from queue: trans_response_queue
+Message sent to queue: user-service-queue
+Full request body: {
+  "userId": "66ef3875b89a43c218455536",
+  "numVehicles": 3,
+  "depot": 0,
+  "maxDistance": 50,
+  "locationFileContent": {
+    "Locations": [
+      {
+        "Latitude": 37.999833,
+        "Longitude": 23.743177
+      },
+      {
+        "Latitude": 37.966783,
+        "Longitude": 23.778605
+      }
+    ]
+  },
+  "pythonFileContent": "Python code here"
+}
+Sending message to user-service-credit-req with User ID: 66ef3875b89a43c218455536
+Message sent to queue: user-service-credit-req
+Sent message to user-service-credit-req queue
+Consuming from queue: user-service-credit-res
+Received message from user-service-credit-res: {
+  correlationId: '116axf',
+  success: true,
+  message: 'Credit deducted successfully'
+}
+User has sufficient credits, sending problem to problem-service-issue queue
+Sending to problem-service-issue: {
+  "type": "problemIssue",
+  "userId": "66ef3875b89a43c218455536",
+  "numVehicles": 3,
+  "depot": 0,
+  "maxDistance": 50,
+  "locationFileContent": {
+    "Locations": [
+      {
+        "Latitude": 37.999833,
+        "Longitude": 23.743177
+      },
+      {
+        "Latitude": 37.966783,
+        "Longitude": 23.778605
+      }
+    ]
+  },
+  "pythonFileContent": "Python code here"
+}
+Message sent to queue: problem-service-issue
