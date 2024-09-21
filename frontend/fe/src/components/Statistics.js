@@ -118,7 +118,7 @@ const last20maxRotueDistance = createGraph(statistics.last20Submissions, 'Distan
                     <div className="col-md-6">
                         <div className="card">
                             <div className="card-body">
-                                <h5 className="card-title">Average Submissions per Day Duration</h5>
+                                <h5 className="card-title">Submissions per Day</h5>
                                 <p className="card-text display-4 text-center">{statistics.averageSubmissionsPerDay.toFixed(5)}</p>
                             </div>
                         </div>
@@ -129,7 +129,7 @@ const last20maxRotueDistance = createGraph(statistics.last20Submissions, 'Distan
                     <div className="col-md-6">
                         <div className="card">
                             <div className="card-body">
-                                <h5 className="card-title">Average Submissions per User</h5>
+                                <h5 className="card-title">Submissions per User</h5>
                                 <p className="card-text display-4 text-center">{statistics.averageSubmissionsPerUser.toFixed(5)}</p>
                             </div>
                         </div>
