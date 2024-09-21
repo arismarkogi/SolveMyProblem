@@ -54,13 +54,14 @@ const connectRabbitMQ = async () => {
         await channel.assertQueue('user-service-credit-req', { durable: false });
         await channel.assertQueue('user-service-credit-res', { durable: false });
         await channel.assertQueue('problem-service-issue', { durable: false });
-        await channel.assertQueue('problem-service-issue-res', { durable: false }); // Add this line
+        await channel.assertQueue('probMan-to-orch-queue', { durable: false }); // Add this line
 
         channel.prefetch(1);
 
         // Consume messages
         consumeQueue('user-service-queue-res', handleUserServiceResponse);
         consumeQueue('trans_response_queue', handleTransactionServiceResponse);
+        consumeQueue('probMan-to-orch-queue', handleProblemServiceIssue);
     } catch (error) {
         console.error('Failed to connect to RabbitMQ:', error);
         setTimeout(connectRabbitMQ, 5000);
@@ -143,8 +144,29 @@ const handleTransactionServiceResponse = async (msg) => {
     }
 };
 
+
 const handleProblemServiceIssue = async (msg) => {
     // Add logic for handling problem-service-issue messages here
+    const res = responseMap.get(msg.correlationId);
+    
+    if (res) {
+        switch (msg.type) {
+            case 'getStats':
+                res.status(200).json({
+                    stats: msg.stats
+                });
+                break;
+            case 'getProblems':
+                // TODO
+                break;
+            default:
+                res.status(200).json(msg);
+        }
+        responseMap.delete(msg.correlationId);
+    } else {
+        console.error(`No response object found for correlationId: ${msg.correlationId}`);
+    }
+
 };
 
 module.exports = { connectRabbitMQ, sendToQueue, consumeQueue, responseMap };

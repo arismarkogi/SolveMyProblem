@@ -37,7 +37,7 @@ const processMessage = async (message) => {
             await getProblems(message); 
             return;
         case "getStats": 
-            await getStats(); 
+            await getStats(message); 
             return;
         default: 
             console.log('Unknown message type:', type);
