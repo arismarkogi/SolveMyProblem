@@ -9,7 +9,7 @@ const checkAndDeductCredits = async (msg) => {
     // Connect to MongoDB
     const client = new MongoClient(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
     await client.connect();
-    const db = client.db('your_database_name');
+    const db = client.db('user-service-db');
     const usersCollection = db.collection('users');
 
     try {

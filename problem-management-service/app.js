@@ -25,16 +25,26 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopol
 const PORT = process.env.PORT || 5000;
 
 const processMessage = async (message) => {
-    const { type, mes } = message;
-    console.log('Received message:', mes);
+    const { type } = message; // Get the type directly
+    console.log('Received message:', message); // Log the raw message
 
     switch(type) {
-        case "problemIssue": await submitData(mes); return;
-        case "getProblems": await getProblems(mes); return;
-        case "getStats": await getStats(); return;
-        default: console.log('Unknown message type:', type);
+        case "problemIssue": 
+            console.log('Processing problem issue message...');
+            await submitData(message); // Pass the entire message
+            return;
+        case "getProblems": 
+            await getProblems(message); 
+            return;
+        case "getStats": 
+            await getStats(); 
+            return;
+        default: 
+            console.log('Unknown message type:', type);
     }
 };
+
+
 
 const main = async () => {
     try {

@@ -11,7 +11,6 @@ const LogIn = ({ onLogin }) => {
   const [error, setError] = useState('');
   const [isAdmin, setIsAdmin] = useState(false);
 
-
   const navigate = useNavigate(); // Initialize useNavigate
 
   const handleSubmit = async (e) => {
@@ -25,15 +24,21 @@ const LogIn = ({ onLogin }) => {
 
       if (response.data && response.data.message === 'Login successful') {
         if (response.data.token && response.data.role) {
+          // Store token and role in localStorage
           localStorage.setItem('token', response.data.token);
           localStorage.setItem('role', response.data.role);
 
+          // Log the stored token for verification
+          console.log('Stored token in localStorage:', localStorage.getItem('token'));
+
           onLogin({ token: response.data.token, role: response.data.role });
+          
+          // Redirect based on role
           if (response.data.role === 'admin') {
             navigate('/admin');
           } else {
             navigate('/home');
-          }  // Redirect to /home after successful login
+          }
         } else {
           setError('Invalid server response. Token or userId missing.');
         }
@@ -104,9 +109,6 @@ const LogIn = ({ onLogin }) => {
         <Footer/>
       </div>
   );
-
 };
 
 export default LogIn;
-
-
