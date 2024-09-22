@@ -63,13 +63,13 @@ const submitData = async (message) => {
         // Prepare the message to be sent to the queue
         const messageToQueue = {
             problemId: savedProblem._id.toString(),
-            correlationId,
-            token,
+            //correlationId,
+            //token,
             numVehicles,
             depot,
             maxDistance,
             locationFileContent,
-            pythonFileContent,
+            //pythonFileContent,
         };
 
         // Send the problem data to the queue for further processing

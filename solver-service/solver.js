@@ -13,7 +13,7 @@ const processMessage = async (msg) => {
     // Destructure message fields and check if they are correct
     const { problemId,correlationId,token, numVehicles, depot, maxDistance, locationFileContent, locationFileName } = msg;
 
-    if (!problemId || !numVehicles || !depot || !maxDistance || !locationFileContent) {
+    if (typeof problemId === undefined || typeof numVehicles === undefined || typeof depot === undefined ||typeof maxDistance === undefined || typeof locationFileContent === undefined) {
         console.error('Missing required fields in the message:', msg);
         return;
     }
@@ -97,8 +97,8 @@ const processMessage = async (msg) => {
 
             const resultMessage = {
                 problemId: problemId,
-                correlationId: correlationId,
-                token:token,
+                //correlationId: correlationId,
+                //token:token,
                 hasSolution: hasSolution,
                 solution: solution,
                 maxRouteDistance: maxRouteDistance,

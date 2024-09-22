@@ -47,7 +47,7 @@ function SubmitProblem() {
             fileContent.token = token;
     
             // Validate the file content
-            const requiredFields = ['userId', 'numVehicles', 'depot', 'maxDistance', 'locationFileContent', 'pythonFileContent'];
+            const requiredFields = [ 'numVehicles', 'depot', 'maxDistance', 'locationFileContent'];
             for (let field of requiredFields) {
                 if (!fileContent.hasOwnProperty(field)) {
                     setMessage(`Missing required field in JSON: ${field}`);
