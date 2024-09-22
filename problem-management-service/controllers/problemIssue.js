@@ -10,7 +10,15 @@ const submitData = async (message) => {
     try {
         console.log('Raw message received:', JSON.stringify(message, null, 2));
 
-        const { token,correlationId, numVehicles, depot, maxDistance, locationFileContent, pythonFileContent } = message;
+        const {
+            token,
+            correlationId,
+            numVehicles,
+            depot,
+            maxDistance,
+            locationFileContent,
+            pythonFileContent
+        } = message;
         console.log('locationFileContent:', JSON.stringify(locationFileContent, null, 2));
         console.log('pythonFileContent:', pythonFileContent);
         // Detailed validation
@@ -34,6 +42,8 @@ const submitData = async (message) => {
             await sendToQueue('probMan-to-orch-queue', {
                 type: "problem_submission",
                 status: 400,
+                correlationId,
+                token,
                 message: 'Missing required fields',
             });
             return;
@@ -63,21 +73,23 @@ const submitData = async (message) => {
         // Prepare the message to be sent to the queue
         const messageToQueue = {
             problemId: savedProblem._id.toString(),
-            //correlationId,
-            //token,
+            correlationId,
+            token,
             numVehicles,
             depot,
             maxDistance,
             locationFileContent,
-            //pythonFileContent,
+            pythonFileContent,
         };
 
         // Send the problem data to the queue for further processing
-        await sendToQueue('probMan-to-orch-queue', {
+       /* await sendToQueue('probMan-to-orch-queue', {
             type: "problem_submission",
             status: 200,
+            correlationId,
+            token,
             message: 'Problem submitted successfully',
-        });
+        });*/
         await sendToQueue('probMan-to-solver-queue', messageToQueue);
 
         console.log('Message sent to solver queue');
@@ -85,6 +97,8 @@ const submitData = async (message) => {
         await sendToQueue('probMan-to-orch-queue', {
             type: "problem_submission",
             status: 500,
+            correlationId,
+            token,
             message: 'internal server error',
         });
         console.error('Error submitting data:', error);
