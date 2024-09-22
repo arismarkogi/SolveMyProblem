@@ -115,8 +115,8 @@ function SubmitProblem() {
             const jsonData = { 
                 userId,
                 numVehicles: 3, 
-                depot: 0, 
-                maxDistance: 50,
+                depot: 1, 
+                maxDistance: 50000,
                 locationFileContent: {
                     // Example location data (replace with your real data)
                     Locations: [

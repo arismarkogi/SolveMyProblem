@@ -124,7 +124,7 @@ const processMessage = async (message) => {
                 await getProblems(message); 
                 break;
             case "getStats": 
-                await getStats(); 
+                await getStats(message); 
                 break;
             default: 
                 console.log('Unknown message type:', type);
