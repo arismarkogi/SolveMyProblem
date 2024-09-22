@@ -1,15 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Header from './Header';
 import Footer from './Footer';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
-const AdminMainPage = () => {
+const AdminMainPage = ({onLogout}) => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [users, setUsers] = useState([]);
   const [error, setError] = useState('');
   const navigate = useNavigate();
+
+  const handleLogout = () => {
+    // Clear all local storage items
+    localStorage.clear();
+    
+    // Call the onLogout function passed from App.js
+    if (typeof onLogout === 'function') {
+      onLogout();
+      navigate('/');
+    }};
+
+useEffect(() => {
+  // Check if the user is logged in
+  const token = localStorage.getItem('token');
+  const role = localStorage.getItem('role');
+  if (!token&& role !== 'admin') {
+    navigate('/');
+  }
+}, [navigate]);
+
 
   const handleSearch = async (e) => {
     e.preventDefault();
@@ -43,6 +65,25 @@ const AdminMainPage = () => {
   return (
     <div className="d-flex flex-column min-vh-100">
       <Header />
+      <button
+                className="btn btn-light"
+                style={{
+                    position: 'absolute',
+                    top: '10px',
+                    left: '10px',
+                    borderRadius: '50%',
+                    width: '40px',
+                    height: '40px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    padding: '0',
+                    boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+                }}
+                onClick={handleLogout}
+            >
+                <FontAwesomeIcon icon={faSignOutAlt}/>
+            </button>
 
       <main className="container my-4 flex-grow-1">
         <h2 className="text-center mb-4">User Search</h2>

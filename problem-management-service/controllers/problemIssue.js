@@ -233,7 +233,7 @@ const submitData = async (message) => {
 */
 
 
-/*
+
 const submitData = async (message) => {
     try {
         console.log('Raw message received:', JSON.stringify(message, null, 2));
@@ -294,7 +294,8 @@ const submitData = async (message) => {
         console.error('Error submitting data:', error);
     }
 };
-*/
+
+/*
 const submitData = async (message) => {
     try {
         console.log('Raw message received in problem management service:', JSON.stringify(message, null, 2));
@@ -346,5 +347,5 @@ const submitData = async (message) => {
     } catch (error) {
         console.error('Error submitting data:', error.stack);
     }
-};
+};*/
 module.exports = { submitData };

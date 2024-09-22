@@ -71,7 +71,7 @@ function App() {
                         <Route path="/buy-credits" element={<BuyCredits token = {localStorage.getItem('token')} onCreditUpdate={handleCreditUpdate} />} />
                         <Route path="/user-submissions" element={<SubmissionsPage isAdmin={false} />} />
                         <Route path="/admin-activity" element={<SubmissionsPage isAdmin={true} />} />
-                        <Route path="/admin" element={<AdminMainPage />} />
+                        <Route path="/admin" element={<AdminMainPage onLogout={handleLogout} />} />
                         <Route path="/edit-user/:userId" element={<UserEditPage />} />
                     </Routes>
                 </div>

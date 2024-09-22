@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from "./Header";
 import infographic from "../center.png";
@@ -13,6 +13,14 @@ function Home({ onLogout }) {
         onLogout(); // Καλούμε τη συνάρτηση που προήλθε από το App.js
         navigate('/'); // Ανακατευθύνουμε στο landing page
     };
+    useEffect(() => {
+        // Check if the user is logged in
+        const token = localStorage.getItem('token');
+        if (!token) {
+          navigate('/');
+        }
+      }, [navigate]);
+
 
     return (
         <div className="d-flex flex-column min-vh-100">
