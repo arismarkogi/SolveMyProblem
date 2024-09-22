@@ -101,7 +101,7 @@ function SubmitProblem() {
         }
     };
     */
-
+    /*
     const handleSubmit = async (event) => {
         event.preventDefault();
         
@@ -142,7 +142,68 @@ function SubmitProblem() {
             setMessage('Error submitting problem');
         }
     };
+    */
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        
+        if (!inputFile) {
+            setMessage("Please upload a file.");
+            return;
+        }
     
+        try {
+            const fileContent = await readFileAsJSON(inputFile);
+            
+            // Get userId from token
+            const userId = getUserIdFromToken();
+            if (!userId) {
+                setMessage('User is not authenticated');
+                return;
+            }
+    
+            // Add userId to the file content
+            fileContent.userId = userId;
+    
+            // Validate the file content
+            const requiredFields = ['userId', 'numVehicles', 'depot', 'maxDistance', 'locationFileContent', 'pythonFileContent'];
+            for (let field of requiredFields) {
+                if (!fileContent.hasOwnProperty(field)) {
+                    setMessage(`Missing required field in JSON: ${field}`);
+                    return;
+                }
+            }
+    
+            // Send the JSON data to the backend
+            const response = await axios.post('http://localhost:6900/submit-problem', fileContent, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+    
+            console.log('Problem submitted successfully:', response.data);
+            setMessage('Problem submitted successfully');
+        } catch (error) {
+            console.error('Error submitting the problem:', error);
+            setMessage('Error submitting problem: ' + (error.response?.data?.error || error.message));
+        }
+    };
+    
+    // Helper function to read file as JSON
+    const readFileAsJSON = (file) => {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                try {
+                    const json = JSON.parse(e.target.result);
+                    resolve(json);
+                } catch (error) {
+                    reject(new Error('Invalid JSON file'));
+                }
+            };
+            reader.onerror = (error) => reject(error);
+            reader.readAsText(file);
+        });
+    };
 
     const handleGoHome = () => {
         navigate('/home'); // Navigate to the home page
@@ -184,7 +245,7 @@ function SubmitProblem() {
                             <strong>Notes:</strong> {defaultModel.notes}
                         </div>
                     </div>
-                    <form onSubmit={handleSubmit}>
+                    {/*<form onSubmit={handleSubmit}>
                         <div className="form-group mb-3">
                             <label htmlFor="inputFile">Input File</label>
                             <input
@@ -192,6 +253,26 @@ function SubmitProblem() {
                                 className="form-control-file"
                                 id="inputFile"
                                 onChange={(e) => setInputFile(e.target.files[0])}
+                                required
+                            />
+                        </div>
+                        <button
+                            type="submit"
+                            className="btn btn-primary"
+                            style={{ backgroundColor: '#00A86B', borderColor: '#00A86B' }}
+                        >
+                            Submit
+                        </button>
+                    </form>*/}
+                    <form onSubmit={handleSubmit}>
+                        <div className="form-group mb-3">
+                            <label htmlFor="inputFile">Input File (JSON)</label>
+                            <input
+                                type="file"
+                                className="form-control-file"
+                                id="inputFile"
+                                onChange={(e) => setInputFile(e.target.files[0])}
+                                accept=".json,application/json"
                                 required
                             />
                         </div>

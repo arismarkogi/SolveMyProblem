@@ -1303,3 +1303,554 @@ Update Result: {
   matchedCount: 1
 }
 Message sent to queue: user-service-credit-res
+Installing dependencies for User Service...
+
+up to date, audited 155 packages in 880ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting User Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/user-service" && node app.js
+(node:39604) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:39604) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+Server running on port 4217
+MongoDB connected
+Connected to RabbitMQ
+Consuming from queue: user-service-queue
+Consuming from queue: user-service-credit-req
+Installing dependencies for User Service...
+
+up to date, audited 155 packages in 913ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting User Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/user-service" && node app.js
+(node:10068) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:10068) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+Server running on port 4217
+MongoDB connected
+Connected to RabbitMQ
+Consuming from queue: user-service-queue
+Consuming from queue: user-service-credit-req
+Message sent to queue: user-service-queue-res
+Received userId: 66ef3875b89a43c218455536
+(node:10068) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(node:10068) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+User data: {
+  _id: new ObjectId('66ef3875b89a43c218455536'),
+  googleId: '105000945663037705355',
+  username: 'Athanasios Kaousias',
+  email: 'ntuaflix@gmail.com',
+  creditAmount: 22,
+  role: 'user',
+  __v: 0
+}
+Update Result: {
+  acknowledged: true,
+  modifiedCount: 1,
+  upsertedId: null,
+  upsertedCount: 0,
+  matchedCount: 1
+}
+Message sent to queue: user-service-credit-res
+Installing dependencies for User Service...
+
+up to date, audited 155 packages in 904ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting User Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/user-service" && node app.js
+(node:3032) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:3032) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+Server running on port 4217
+MongoDB connected
+Connected to RabbitMQ
+Consuming from queue: user-service-queue
+Consuming from queue: user-service-credit-req
+Message sent to queue: user-service-queue-res
+Received userId: 66ef3875b89a43c218455536
+(node:3032) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(node:3032) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+User data: {
+  _id: new ObjectId('66ef3875b89a43c218455536'),
+  googleId: '105000945663037705355',
+  username: 'Athanasios Kaousias',
+  email: 'ntuaflix@gmail.com',
+  creditAmount: 21,
+  role: 'user',
+  __v: 0
+}
+Update Result: {
+  acknowledged: true,
+  modifiedCount: 1,
+  upsertedId: null,
+  upsertedCount: 0,
+  matchedCount: 1
+}
+Message sent to queue: user-service-credit-res
+Received userId: 66ef3875b89a43c218455536
+(node:3032) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(node:3032) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+User data: {
+  _id: new ObjectId('66ef3875b89a43c218455536'),
+  googleId: '105000945663037705355',
+  username: 'Athanasios Kaousias',
+  email: 'ntuaflix@gmail.com',
+  creditAmount: 20,
+  role: 'user',
+  __v: 0
+}
+Update Result: {
+  acknowledged: true,
+  modifiedCount: 1,
+  upsertedId: null,
+  upsertedCount: 0,
+  matchedCount: 1
+}
+Message sent to queue: user-service-credit-res
+Received userId: 66ef3875b89a43c218455536
+(node:3032) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(node:3032) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+User data: {
+  _id: new ObjectId('66ef3875b89a43c218455536'),
+  googleId: '105000945663037705355',
+  username: 'Athanasios Kaousias',
+  email: 'ntuaflix@gmail.com',
+  creditAmount: 19,
+  role: 'user',
+  __v: 0
+}
+Update Result: {
+  acknowledged: true,
+  modifiedCount: 1,
+  upsertedId: null,
+  upsertedCount: 0,
+  matchedCount: 1
+}
+Message sent to queue: user-service-credit-res
+Received userId: 66ef3875b89a43c218455536
+(node:3032) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(node:3032) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+User data: {
+  _id: new ObjectId('66ef3875b89a43c218455536'),
+  googleId: '105000945663037705355',
+  username: 'Athanasios Kaousias',
+  email: 'ntuaflix@gmail.com',
+  creditAmount: 18,
+  role: 'user',
+  __v: 0
+}
+Update Result: {
+  acknowledged: true,
+  modifiedCount: 1,
+  upsertedId: null,
+  upsertedCount: 0,
+  matchedCount: 1
+}
+Message sent to queue: user-service-credit-res
+Received userId: 66ef3875b89a43c218455536
+(node:3032) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(node:3032) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+User data: {
+  _id: new ObjectId('66ef3875b89a43c218455536'),
+  googleId: '105000945663037705355',
+  username: 'Athanasios Kaousias',
+  email: 'ntuaflix@gmail.com',
+  creditAmount: 17,
+  role: 'user',
+  __v: 0
+}
+Update Result: {
+  acknowledged: true,
+  modifiedCount: 1,
+  upsertedId: null,
+  upsertedCount: 0,
+  matchedCount: 1
+}
+Message sent to queue: user-service-credit-res
+Installing dependencies for User Service...
+
+up to date, audited 155 packages in 911ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting User Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/user-service" && node app.js
+(node:9412) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:9412) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+Server running on port 4217
+MongoDB connected
+Connected to RabbitMQ
+Consuming from queue: user-service-queue
+Consuming from queue: user-service-credit-req
+Message sent to queue: user-service-queue-res
+Received userId: 66ef3875b89a43c218455536
+(node:9412) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(node:9412) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+User data: {
+  _id: new ObjectId('66ef3875b89a43c218455536'),
+  googleId: '105000945663037705355',
+  username: 'Athanasios Kaousias',
+  email: 'ntuaflix@gmail.com',
+  creditAmount: 16,
+  role: 'user',
+  __v: 0
+}
+Update Result: {
+  acknowledged: true,
+  modifiedCount: 1,
+  upsertedId: null,
+  upsertedCount: 0,
+  matchedCount: 1
+}
+Message sent to queue: user-service-credit-res
+Received userId: 66ef3875b89a43c218455536
+(node:9412) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(node:9412) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+User data: {
+  _id: new ObjectId('66ef3875b89a43c218455536'),
+  googleId: '105000945663037705355',
+  username: 'Athanasios Kaousias',
+  email: 'ntuaflix@gmail.com',
+  creditAmount: 15,
+  role: 'user',
+  __v: 0
+}
+Update Result: {
+  acknowledged: true,
+  modifiedCount: 1,
+  upsertedId: null,
+  upsertedCount: 0,
+  matchedCount: 1
+}
+Message sent to queue: user-service-credit-res
+Received userId: 66ef3875b89a43c218455536
+(node:9412) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(node:9412) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+User data: {
+  _id: new ObjectId('66ef3875b89a43c218455536'),
+  googleId: '105000945663037705355',
+  username: 'Athanasios Kaousias',
+  email: 'ntuaflix@gmail.com',
+  creditAmount: 14,
+  role: 'user',
+  __v: 0
+}
+Update Result: {
+  acknowledged: true,
+  modifiedCount: 1,
+  upsertedId: null,
+  upsertedCount: 0,
+  matchedCount: 1
+}
+Message sent to queue: user-service-credit-res
+Received userId: 66ef3875b89a43c218455536
+(node:9412) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(node:9412) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+User data: {
+  _id: new ObjectId('66ef3875b89a43c218455536'),
+  googleId: '105000945663037705355',
+  username: 'Athanasios Kaousias',
+  email: 'ntuaflix@gmail.com',
+  creditAmount: 13,
+  role: 'user',
+  __v: 0
+}
+Update Result: {
+  acknowledged: true,
+  modifiedCount: 1,
+  upsertedId: null,
+  upsertedCount: 0,
+  matchedCount: 1
+}
+Message sent to queue: user-service-credit-res
+Installing dependencies for User Service...
+
+up to date, audited 155 packages in 897ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting User Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/user-service" && node app.js
+(node:39996) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:39996) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+Server running on port 4217
+MongoDB connected
+Connected to RabbitMQ
+Consuming from queue: user-service-queue
+Consuming from queue: user-service-credit-req
+Message sent to queue: user-service-queue-res
+Received userId: 66ef3875b89a43c218455536
+(node:39996) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(node:39996) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+User data: {
+  _id: new ObjectId('66ef3875b89a43c218455536'),
+  googleId: '105000945663037705355',
+  username: 'Athanasios Kaousias',
+  email: 'ntuaflix@gmail.com',
+  creditAmount: 12,
+  role: 'user',
+  __v: 0
+}
+Update Result: {
+  acknowledged: true,
+  modifiedCount: 1,
+  upsertedId: null,
+  upsertedCount: 0,
+  matchedCount: 1
+}
+Message sent to queue: user-service-credit-res
+Received userId: 66ef3875b89a43c218455536
+(node:39996) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(node:39996) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+User data: {
+  _id: new ObjectId('66ef3875b89a43c218455536'),
+  googleId: '105000945663037705355',
+  username: 'Athanasios Kaousias',
+  email: 'ntuaflix@gmail.com',
+  creditAmount: 11,
+  role: 'user',
+  __v: 0
+}
+Update Result: {
+  acknowledged: true,
+  modifiedCount: 1,
+  upsertedId: null,
+  upsertedCount: 0,
+  matchedCount: 1
+}
+Message sent to queue: user-service-credit-res
+Installing dependencies for User Service...
+
+up to date, audited 155 packages in 925ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting User Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/user-service" && node app.js
+(node:35004) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:35004) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+Server running on port 4217
+MongoDB connected
+Connected to RabbitMQ
+Consuming from queue: user-service-queue
+Consuming from queue: user-service-credit-req
+Message sent to queue: user-service-queue-res
+Received userId: 66ef3875b89a43c218455536
+(node:35004) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(node:35004) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+User data: {
+  _id: new ObjectId('66ef3875b89a43c218455536'),
+  googleId: '105000945663037705355',
+  username: 'Athanasios Kaousias',
+  email: 'ntuaflix@gmail.com',
+  creditAmount: 10,
+  role: 'user',
+  __v: 0
+}
+Update Result: {
+  acknowledged: true,
+  modifiedCount: 1,
+  upsertedId: null,
+  upsertedCount: 0,
+  matchedCount: 1
+}
+Message sent to queue: user-service-credit-res
+Message sent to queue: user-service-queue-res
+Received userId: 66ef3875b89a43c218455536
+(node:35004) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(node:35004) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+User data: {
+  _id: new ObjectId('66ef3875b89a43c218455536'),
+  googleId: '105000945663037705355',
+  username: 'Athanasios Kaousias',
+  email: 'ntuaflix@gmail.com',
+  creditAmount: 9,
+  role: 'user',
+  __v: 0
+}
+Update Result: {
+  acknowledged: true,
+  modifiedCount: 1,
+  upsertedId: null,
+  upsertedCount: 0,
+  matchedCount: 1
+}
+Message sent to queue: user-service-credit-res
+Installing dependencies for User Service...
+
+up to date, audited 155 packages in 900ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting User Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/user-service" && node app.js
+(node:12864) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:12864) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+Server running on port 4217
+MongoDB connected
+Connected to RabbitMQ
+Consuming from queue: user-service-queue
+Consuming from queue: user-service-credit-req
+Message sent to queue: user-service-queue-res
+Received userId: 66ef3875b89a43c218455536
+(node:12864) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(node:12864) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+User data: {
+  _id: new ObjectId('66ef3875b89a43c218455536'),
+  googleId: '105000945663037705355',
+  username: 'Athanasios Kaousias',
+  email: 'ntuaflix@gmail.com',
+  creditAmount: 8,
+  role: 'user',
+  __v: 0
+}
+Update Result: {
+  acknowledged: true,
+  modifiedCount: 1,
+  upsertedId: null,
+  upsertedCount: 0,
+  matchedCount: 1
+}
+Message sent to queue: user-service-credit-res
+Received userId: 66ef3875b89a43c218455536
+(node:12864) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(node:12864) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+User data: {
+  _id: new ObjectId('66ef3875b89a43c218455536'),
+  googleId: '105000945663037705355',
+  username: 'Athanasios Kaousias',
+  email: 'ntuaflix@gmail.com',
+  creditAmount: 7,
+  role: 'user',
+  __v: 0
+}
+Update Result: {
+  acknowledged: true,
+  modifiedCount: 1,
+  upsertedId: null,
+  upsertedCount: 0,
+  matchedCount: 1
+}
+Message sent to queue: user-service-credit-res
+Installing dependencies for User Service...
+
+up to date, audited 155 packages in 900ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting User Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/user-service" && node app.js
+(node:16540) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:16540) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+Server running on port 4217
+MongoDB connected
+Connected to RabbitMQ
+Consuming from queue: user-service-queue
+Consuming from queue: user-service-credit-req
+Message sent to queue: user-service-queue-res
+Installing dependencies for User Service...
+
+up to date, audited 155 packages in 890ms
+
+18 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting User Service...
+Command: cd "/c/Users/user/OneDrive - Εθνικό Μετσόβιο Πολυτεχνείο/Έγγραφα/GitHub/saasv2/saas2024-24/user-service" && node app.js
+(node:40376) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:40376) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+Server running on port 4217
+MongoDB connected
+Connected to RabbitMQ
+Consuming from queue: user-service-queue
+Consuming from queue: user-service-credit-req
+Message sent to queue: user-service-queue-res
+Received userId: 66ef3875b89a43c218455536
+(node:40376) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(node:40376) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+User data: {
+  _id: new ObjectId('66ef3875b89a43c218455536'),
+  googleId: '105000945663037705355',
+  username: 'Athanasios Kaousias',
+  email: 'ntuaflix@gmail.com',
+  creditAmount: 6,
+  role: 'user',
+  __v: 0
+}
+Update Result: {
+  acknowledged: true,
+  modifiedCount: 1,
+  upsertedId: null,
+  upsertedCount: 0,
+  matchedCount: 1
+}
+Message sent to queue: user-service-credit-res
+Received userId: 66ef3875b89a43c218455536
+(node:40376) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(node:40376) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+User data: {
+  _id: new ObjectId('66ef3875b89a43c218455536'),
+  googleId: '105000945663037705355',
+  username: 'Athanasios Kaousias',
+  email: 'ntuaflix@gmail.com',
+  creditAmount: 5,
+  role: 'user',
+  __v: 0
+}
+Update Result: {
+  acknowledged: true,
+  modifiedCount: 1,
+  upsertedId: null,
+  upsertedCount: 0,
+  matchedCount: 1
+}
+Message sent to queue: user-service-credit-res
+Received userId: 66ef3875b89a43c218455536
+(node:40376) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(node:40376) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+User data: {
+  _id: new ObjectId('66ef3875b89a43c218455536'),
+  googleId: '105000945663037705355',
+  username: 'Athanasios Kaousias',
+  email: 'ntuaflix@gmail.com',
+  creditAmount: 4,
+  role: 'user',
+  __v: 0
+}
+Update Result: {
+  acknowledged: true,
+  modifiedCount: 1,
+  upsertedId: null,
+  upsertedCount: 0,
+  matchedCount: 1
+}
+Message sent to queue: user-service-credit-res
