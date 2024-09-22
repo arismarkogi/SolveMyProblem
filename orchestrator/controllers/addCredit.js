@@ -11,7 +11,7 @@ exports.addCredit = async (req, res) => {
         }
 
         const correlationId = uuidv4();
-
+        
         const message_user = {
             type: "credit_update",
             mes: {

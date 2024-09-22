@@ -35,9 +35,10 @@ const deleteUser = async (msg) => {
 };
 
 const sendProblem = async (msg) => {
+    const { type, ...otherFields } = msg; 
     const problemMessage = {
         type: "problemIssue",
-        ...msg
+        ...otherFields
     };
     await sendToQueue('problem-service-issue', problemMessage);
     const message_trans = {

@@ -30,6 +30,16 @@ exports.updateCredit = async (message) => {
             });
             return;
         }
+        if(user.creditAmount+parseInt(creditAmount)<0){
+            console.log(`User-service: User ${userId} does not have enough credit`);
+            await sendToQueue('user-service-queue-res', {
+                type: tp,
+                correlationId,
+                status: 404,
+                message: 'User does not have enough credit'
+            });
+            return;
+        }
 
         user.creditAmount += parseInt(creditAmount);
         await user.save();
