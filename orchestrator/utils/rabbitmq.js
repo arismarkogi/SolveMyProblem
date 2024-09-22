@@ -1,4 +1,6 @@
 const amqplib = require('amqplib');
+const { TokenExpiredError } = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 
 let connection = null;
 let channel = null;
@@ -6,12 +8,14 @@ let channel = null;
 const responseMap = new Map();
 
 // Utility functions to handle specific messages
+
+
 const creditUpdate = async (msg) => {
     const message_trans = {
         type: "new",
         mes: {
             correlationId: msg.correlationId,
-            userId: msg.userId,
+            token: msg.token,
             creditAmount: msg.creditAmount,
             form: msg.form,
         }
@@ -28,6 +32,25 @@ const deleteUser = async (msg) => {
         }
     };
     await sendToQueue('trans_queue', message_transaction);
+};
+
+const sendProblem = async (msg) => {
+    const problemMessage = {
+        type: "problemIssue",
+        ...msg
+    };
+    await sendToQueue('problem-service-issue', problemMessage);
+    const message_trans = {
+        type: "new",
+        mes: {
+            correlationId: msg.correlationId,
+            token: msg.token,
+            creditAmount: -1,
+            form: "spend",
+        }
+    };
+    await sendToQueue('trans_queue', message_trans);
+
 };
 
 const simpleResponse = async (msg) => {
@@ -98,32 +121,28 @@ const consumeQueue = async (queue, callback) => {
 
 // Handlers for specific queues
 const handleUserServiceResponse = async (msg) => {
-    const res = responseMap.get(msg.correlationId);
-    if (res) {
-        if (msg.status === 200) {
-            switch (msg.type) {
-                case 'login':
-                    res.status(200).json({
-                        message: msg.message,
-                        token: msg.token,
-                        userId: msg.userId
-                    });
-                    break;
-                case 'get_user_profile':
-                    res.status(200).json({
-                        message: msg.message,
-                        user: msg.user
-                    });
-                    break;
-                default:
-                    res.status(200).json(msg);
-            }
-        } else {
-            res.status(msg.status).json({ error: msg.message });
+    if(msg.status!==200) {
+        const res = responseMap.get(msg.correlationId);
+        if(res) {
+            res.status(msg.status).json({ error : msg.message });
+            responseMap.delete(msg.correlationId);
+        } 
+    }
+    else {
+        switch(msg.type) {
+            case "credit_update": await creditUpdate(msg); break;
+            case "delete": await deleteUser(msg); break;
+            case "update": await simpleResponse(msg); break;
+            case "google_signup": await simpleResponse(msg); break;
+            case "signup": await simpleResponse(msg); break;
+            case "login": await simpleResponse(msg); break;
+            case "send_problem": await sendProblem(msg); break;
+            default: const res = responseMap.get(msg.correlationId);
+                        if(res) {
+                            res.status(400).json({error : "Invalid message type"});
+                        }
+                        responseMap.delete(msg.correlationId);
         }
-        responseMap.delete(msg.correlationId);
-    } else {
-        console.error(`No response object found for correlationId: ${msg.correlationId}`);
     }
 };
 
@@ -140,6 +159,12 @@ const handleTransactionServiceResponse = async (msg) => {
             case "delete":
                 await simpleResponse(msg);
                 break;
+            default:
+                const res = responseMap.get(msg.correlationId);
+                if (res) {
+                    res.status(400).json({ error: "Invalid message type" });
+                }
+                responseMap.delete(msg.correlationId);
         }
     }
 };

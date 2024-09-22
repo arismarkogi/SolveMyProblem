@@ -8,11 +8,12 @@ const jwt = require('jsonwebtoken');
 const sendResponse = async (correlationId, message, status, token = null,role = "user", userId = null) => {
     const response = {
         type: "google_signup",
-        correlationId,
-        message,
-        status,
-        token,
-        role
+        correlationId : correlationId,
+        status : status,
+        message : { 
+            token : token,
+            role : role
+        }
     };
     await sendToQueue('user-service-queue-res', response);
 };

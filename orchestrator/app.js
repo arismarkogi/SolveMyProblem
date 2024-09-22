@@ -75,6 +75,7 @@ app.use(express.urlencoded({ limit: '50mb', extended: true }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
 // Middleware to parse the Authorization header
 app.use((req, res, next) => {
     const authHeader = req.headers.authorization;

@@ -9,9 +9,12 @@ const sendResponse = async (correlationId, message, status, userId = null) => {
     const response = {
         type: "signup",
         correlationId,
-        message,
         status,
-        userId
+        message : {
+            message,
+
+            userId
+        }
     };
     await sendToQueue('user-service-queue-res', response);
 };

@@ -13,10 +13,17 @@ exports.updateCredit = async (message) => {
         const userId = id;
         console.log(`User-service: Attempting to update credit for user ${userId}`);
         const user = await User.findById(userId);
+
+        if (form == "purchase"){
+            tp = "credit_update";
+        }else if (form == "spend"){
+            tp = "send_problem";
+        }
+
         if (!user) {
             console.log(`User-service: User ${userId} not found`);
             await sendToQueue('user-service-queue-res', {
-                type: 'credit_update',
+                type: tp,
                 correlationId,
                 status: 404,
                 message: 'User not found'
@@ -29,11 +36,9 @@ exports.updateCredit = async (message) => {
 
         console.log(`User-service: Credit updated successfully for user ${userId}`);
         await sendToQueue('user-service-queue-res', {
-            type: 'credit_update',
-            correlationId,
+            type: tp,
+            ...message,
             status: 200,
-            form:form,
-            userId: userId,
             message: 'Credit updated successfully',
             newCreditAmount: user.creditAmount
         });
@@ -47,4 +52,4 @@ exports.updateCredit = async (message) => {
             message: 'Internal server error'
         });
     }
-};
+}; 

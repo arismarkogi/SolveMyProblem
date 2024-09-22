@@ -31,7 +31,7 @@ function LandingPage({ onLogin }) {
                     username: decoded.name,
                     email: decoded.email,
                 });
-
+                console.log('Google signup response:', signupResponse.data);
                 if (signupResponse.data && signupResponse.data.token) {
                     localStorage.setItem('token', signupResponse.data.token);
                     localStorage.setItem('role', signupResponse.data.role || 'user');
