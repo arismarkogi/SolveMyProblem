@@ -35,17 +35,11 @@ const deleteUser = async (msg) => {
 };
 
 const sendProblem = async (msg) => {
-    const { type, ...otherFields } = msg; 
-    const problemMessage = {
-        type: "problemIssue",
-        ...otherFields
-    };
-    await sendToQueue('problem-service-issue', problemMessage);
+    const { type, ...rest } = msg;
     const message_trans = {
         type: "new",
         mes: {
-            correlationId: msg.correlationId,
-            token: msg.token,
+            ...rest,
             creditAmount: -1,
             form: "spend",
         }
@@ -53,6 +47,15 @@ const sendProblem = async (msg) => {
     await sendToQueue('trans_queue', message_trans);
 
 };
+
+const sendProblem2 = async (msg) => {
+    const { type, ...rest } = msg;
+    const problemMessage = {
+        type: "problemIssue",
+        ...rest
+    };
+    await sendToQueue('problem-service-issue', problemMessage);
+}
 
 const simpleResponse = async (msg) => {
     const res = responseMap.get(msg.correlationId);
@@ -148,51 +151,71 @@ const handleUserServiceResponse = async (msg) => {
 };
 
 const handleTransactionServiceResponse = async (msg) => {
-    if (msg.status !== 200) {
-        const res = responseMap.get(msg.correlationId);
-        if (res) {
-            res.status(msg.status).json({ error: msg.message });
-            responseMap.delete(msg.correlationId);
-        }
-    } else {
-        switch (msg.type) {
-            case "new":
-            case "delete":
-                await simpleResponse(msg);
-                break;
-            default:
-                const res = responseMap.get(msg.correlationId);
-                if (res) {
-                    res.status(400).json({ error: "Invalid message type" });
-                }
-                responseMap.delete(msg.correlationId);
-        }
+    const res = responseMap.get(msg.correlationId);
+  
+    if (!res) {
+      console.error(`No response object found for correlationId: ${msg.correlationId}`);
+      return;
     }
-};
+  
+    if (msg.status !== 200) {
+      res.status(msg.status).json({ error: msg.message });
+      responseMap.delete(msg.correlationId);
+      return;
+    }
+  
+    switch (msg.type) {
+      case "new":
+        await simpleResponse(msg);
+        break;
+      case "problemIssue":
+        await sendProblem2(msg);
+        break;
+
+      case "delete":
+        await simpleResponse(msg);
+        break;
+  
+      default:
+        res.status(400).json({ error: "Invalid message type" });
+        responseMap.delete(msg.correlationId);
+    }
+  };
+  
 
 
-const handleProblemServiceIssue = async (msg) => {
-    // Add logic for handling problem-service-issue messages here
+  const handleProblemServiceIssue = async (msg) => {
     const res = responseMap.get(msg.correlationId);
     
-    if (res) {
-        switch (msg.type) {
-            case 'getStats':
-                res.status(200).json({
-                    stats: msg.stats
-                });
-                break;
-            case 'getProblems':
-                // TODO
-                break;
-            default:
-                res.status(200).json(msg);
-        }
-        responseMap.delete(msg.correlationId);
-    } else {
+    if (!res) {
         console.error(`No response object found for correlationId: ${msg.correlationId}`);
+        return;
     }
-
+    
+    if (msg.status !== 200) {
+        res.status(msg.status).json({ error: msg.message });
+        responseMap.delete(msg.correlationId);
+        return;
+    } 
+    switch (msg.type) {
+        case 'getStats':
+            res.status(200).json({
+                stats: msg.stats
+                });
+            break;
+        case 'getProblems':
+            // TODO: Implement getProblems logic
+            res.status(200).json({ message: "getProblems not implemented yet" });
+            break;
+        case 'problem_complete':
+            console.log("xixixiixixixixixiixxiixixixixixixixixixixiixixixixixixixixixiixixixixixixixiixixixixixixixix");
+        default:
+            res.status(200).json(msg);
+        
+    }
+    console.log("asdasdasdasdasdasdsad");
+    responseMap.delete(msg.correlationId);
+    console.log("axaxxacacxgahsdjvxbcvbncvbnxcvnbxcvnbcxvnbxbc,mbxcmvn");
 };
 
 module.exports = { connectRabbitMQ, sendToQueue, consumeQueue, responseMap };

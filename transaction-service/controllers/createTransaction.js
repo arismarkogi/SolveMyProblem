@@ -3,15 +3,29 @@ const { sendToQueue } = require('../utils/rabbitmq');
 const jwt = require('jsonwebtoken');
 
 // Reusable response function
-const sendResponse = async (correlationId, message, status, channel, token = null, transactionId = null) => {
-    const response = {
+const sendResponse = async (msg, message, status, channel, transactionId = null) => {
+    let response = {
         type: "new",
-        correlationId,
+        correlationId: msg.correlationId,
+        form: msg.form,
         message,
         status,
-        token,
+        token: msg.token,
         transactionId
     };
+
+    if (msg.form === "spend") {
+        const { type, ...rest } = msg;
+
+        response = {
+            type: "problemIssue",
+            ...rest,
+            status,
+            message,
+            transactionId
+        };
+    }
+
     await sendToQueue('trans_response_queue', response, channel);
 };
 
@@ -30,30 +44,29 @@ const createTransaction = async (msg, channel) => {
     // Check if token is provided
     if (!token) {
         console.log('User-service: Missing token');
-        await sendResponse(correlationId, "JWT token must be provided", 400, channel);
+        await sendResponse(msg, "JWT token must be provided", 400, channel, null);
         return;
     }
 
     try {
         // Verify the token and extract user details
         const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
-        const { id, role } = decoded;
-        const userId = id;
+        const { id: userId } = decoded;
 
         // Validate other required fields
-        if (!creditAmount) {
-            await sendResponse(correlationId, 'Credit Amount is required', 400, channel);
+        if (creditAmount === undefined) {
+            await sendResponse(msg, 'Credit Amount is required', 400, channel, null);
             return;
         }
 
         if (!form) {
-            await sendResponse(correlationId, 'Form is required', 400, channel);
+            await sendResponse(msg, 'Form is required', 400, channel, null);
             return;
         }
 
         // Create and save the new transaction
         const transaction = new Transaction({
-            userId: userId,
+            userId,
             amount: creditAmount,
             createdAt: new Date(),
             type: form
@@ -62,15 +75,13 @@ const createTransaction = async (msg, channel) => {
         await transaction.save();
 
         // Send success message
-        await sendResponse(correlationId, 'Credit updated successfully', 200, channel, token, transaction._id);
-
+        await sendResponse(msg, 'Credit updated successfully', 200, channel, transaction._id);
     } catch (error) {
+        console.error('Error in createTransaction:', error);
         if (error.name === 'JsonWebTokenError') {
-            console.error('Invalid JWT token:', error);
-            await sendResponse(correlationId, 'Invalid JWT token', 401, channel);
+            await sendResponse(msg, 'Invalid JWT token', 401, channel, null);
         } else {
-            console.error('Internal server error:', error);
-            await sendResponse(correlationId, 'Internal server error', 500, channel);
+            await sendResponse(msg, 'Internal server error', 500, channel, null);
         }
     }
 };

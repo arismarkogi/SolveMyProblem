@@ -1,5 +1,6 @@
 
 const Problem = require('../models/problemModel');
+const { sendToQueue } = require('../utils/rabbitmq');
 
 const receiveSolution = async (msg) => {
     try {
@@ -20,6 +21,14 @@ const receiveSolution = async (msg) => {
         // Ensure the problem ID is valid
         if (!problemId) {
             console.error('Problem ID is missing or invalid');
+            sendToQueue('probMan-to-orch-queue', {
+                type: "problem_complete",
+                status: 400,
+                correlationId,
+                token,
+                message: 'Problem ID is missing or invalid'
+            }
+            )
             return;
         }
 
@@ -41,12 +50,39 @@ const receiveSolution = async (msg) => {
 
         // Check if the update was successful
         if (!updatedProblem) {
-            console.error(`Problem with ID ${problemId} not found in the database.`);
+            const message= `Problem with ID ${problemId} not found in the database.`
+            console.error(message);
+            sendToQueue('probMan-to-orch-queue', {
+                type: "problem_complete",
+                status: 404,
+                correlationId,
+                token,
+                message
+            }
+            )
+
         } else {
+            message = 'Problem updated successfully:'
             console.log('Problem updated successfully:', updatedProblem);
+            sendToQueue('probMan-to-orch-queue', {
+                type: "problem_complete",
+                status: 200,
+                correlationId,
+                token,
+                message
+            }
+            )
         }
     } catch (error) {
         console.error('Error occurred while receiving solution and updating problem:', error);
+        sendToQueue('probMan-to-orch-queue', {
+            type: "problem_complete",
+            status: 500,
+            correlationId,
+            token,
+            message: 'Internal server error'
+        }
+        )
     }
 };
 
