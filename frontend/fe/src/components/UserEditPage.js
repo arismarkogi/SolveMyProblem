@@ -93,7 +93,9 @@ const UserEditPage = () => {
   const handleGoHome = () => {
     navigate('/admin'); // Navigate to the admin page
   };
-
+  const handleViewSubmissions = () => {
+    navigate(`/user-submissions/${userId}`, { state: { userId } });
+  };
   return (
     <div className="d-flex flex-column min-vh-100">
       <Header />
@@ -161,6 +163,14 @@ const UserEditPage = () => {
               <button type="submit" className="btn btn-primary" style={{backgroundColor: '#00A86B', borderColor: '#00A86B'}}>
                 Update User
               </button>
+              <div className="mt-3">
+              <button 
+                  className="btn btn-secondary" 
+                 onClick={handleViewSubmissions}
+              >
+                View User Submissions
+              </button>
+        </div>
             </div>
             <button type="button" className="btn btn-danger" onClick={handleDeleteUser}>
               Delete User

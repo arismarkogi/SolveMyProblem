@@ -1,53 +1,39 @@
-var ObjectId = require('mongoose').Types.ObjectId;
+const ObjectId = require('mongoose').Types.ObjectId;
 const Problem = require('../models/problemModel');
-const {sendToQueue} = require('../utils/rabbitmq');
+const jwt = require('jsonwebtoken');
 
-
-/*
-Sample message
-
-{
-   "type": "getProblems",
-   "mes": {
-       "isAdmin": false   // true or false,
-       "userId": "66c324419a65cc7ffb62e48c" // if isAdmin === false put a  valid userId format for MongoDB, if isAdmin === true you can omit this field or put a string of your choice
-       }
-}
-
-*/
-
-
-const getProblems = async (msg) => {
+const getProblems = async (req, res) => {
     try {
-        console.log('Received message:', msg);
+        console.log('Received request:', req.query);
 
-        const { userId, isAdmin } = msg;
-    
-        var problems = []
+        let { userId, token } = req.query;
 
-        if(isAdmin === true){
-            problems = await Problem.find().select('-_id -__v').exec();
-        } else if (isAdmin === false) {
-            problems = await Problem.find({userId: new ObjectId(userId)}).select('-_id -__v').exec();
-        } else {
-            // Throw an error if isAdmin is neither true nor false
-            throw new Error('Invalid value for isAdmin');
+        if (!token) {
+            return res.status(401).json({ error: 'No token provided' });
         }
-        
-        
+
+        if (!userId) {
+            try {
+                const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
+                // Extract id from the decoded token
+                userId = decoded.id;
+            } catch (error) {
+                return res.status(401).json({ error: 'Invalid token' });
+            }
+        }
+
+        if (!userId) {
+            return res.status(400).json({ error: 'User ID is required' });
+        }
+
+        const problems = await Problem.find({ userId: new ObjectId(userId) }).select('-_id -__v').exec();
+
         console.log('Problems Found:', problems);
 
-        const message = {
-            type: "getProblems",
-            msg: problems
-        };
-        console.log(message)
-
-        await sendToQueue('probMan-to-orch-queue', message);
-
-
+        res.json({ problems });
     } catch (error) {
-        console.error('Error finding solved problems:', error);
+        console.error('Error finding problems:', error);
+        res.status(500).json({ error: 'An error occurred while fetching problems', details: error.message });
     }
 };
 

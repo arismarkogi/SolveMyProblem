@@ -3,39 +3,70 @@ import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './Header';
 import Footer from './Footer';
-import { useNavigate } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // Import FontAwesomeIcon
+import { useNavigate, useLocation, useParams } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
-function SubmissionsPage({ isAdmin }) {
+function SubmissionsPage() {
     const [submissions, setSubmissions] = useState([]);
-    const navigate = useNavigate(); // Προσθήκη του useNavigate
+    const navigate = useNavigate();
+    const location = useLocation();
+    const { userId } = useParams();
+    const [role, setRole] = useState('');
 
     useEffect(() => {
-        const endpoint = isAdmin ? 'http://localhost:5000/admin-activity' : 'http://localhost:5000/user-submissions';
-        console.log(`Fetching data from: ${endpoint}`); // Διαγνωστικό μήνυμα
-        axios.get(endpoint)
-            .then(response => {
-                console.log('Data fetched successfully:', response.data); // Διαγνωστικό μήνυμα
-                setSubmissions(response.data);
-            })
-            .catch(error => {
-                console.error('There was an error fetching the submissions:', error);
+        const token = localStorage.getItem('token');
+        const userRole = localStorage.getItem('role');
+        if (!token) {
+            navigate('/');
+            return;
+        }
+        setRole(userRole);
+
+        fetchSubmissions(token, userRole === 'admin' ? userId : null);
+    }, [navigate, location, userId]);
+
+    const fetchSubmissions = async (token, adminUserId) => {
+        try {
+            const config = {
+                headers: { Authorization: `Bearer ${token}` }
+            };
+
+            const response = await axios.get('http://localhost:5000/getProblems', {
+                ...config,
+                params: {
+                    userId: adminUserId,
+                    token: token
+                }
             });
-    }, [isAdmin]);
+
+            console.log('Data fetched successfully:', response.data);
+            setSubmissions(response.data.problems || []);
+        } catch (error) {
+            console.error('There was an error fetching the submissions:', error);
+        }
+    };
 
     const handleNewProblemClick = () => {
         navigate('/submit-problem');
     };
 
-    const handleGoHome = () => {
-        navigate('/home'); // Navigate to the home page
+    const handleGoBack = () => {
+        if (role === 'admin') {
+            navigate(`/edit-user/${userId}`);
+        } else {
+            navigate('/home');
+        }
     };
 
+    const formatDate = (dateString) => {
+        const date = new Date(dateString);
+        return `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
+    };
 
     return (
         <div className="d-flex flex-column min-vh-100">
-            <Header/>
+            <Header />
             <button
                 className="btn btn-light"
                 style={{
@@ -51,44 +82,48 @@ function SubmissionsPage({ isAdmin }) {
                     padding: '0',
                     boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
                 }}
-                onClick={handleGoHome}
+                onClick={handleGoBack}
             >
-                <FontAwesomeIcon icon={faArrowLeft}/>
+                <FontAwesomeIcon icon={faArrowLeft} />
             </button>
             <main className="container my-4 flex-grow-1">
-                <h2 className="mb-4">{isAdmin ? 'Activity' : 'My submissions'}</h2>
+                <h2 className="mb-4">{role === 'admin' ? `User Submissions for ID: ${userId}` : 'My submissions'}</h2>
                 <table className="table table-bordered">
                     <thead>
-                    <tr>
-                        {isAdmin && <th>Creator</th>}
-                        <th>Name</th>
-                        <th>Created On</th>
-                        <th>Status</th>
-                        <th>Actions</th>
-                    </tr>
+                        <tr>
+                            <th>Name (ID)</th>
+                            <th>Submission Date and Time</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
                     </thead>
                     <tbody>
-                    {submissions.map((submission, index) => (
-                        <tr key={index}>
-                            {isAdmin && <td>{submission.creator}</td>}
-                            <td>{submission.name}</td>
-                            <td>{submission.createdOn}</td>
-                            <td>{submission.status}</td>
-                            <td>
-                                <button className="btn btn-link text-decoration-none">view/edit</button>
-                                <button className="btn btn-link text-decoration-none">run</button>
-                                <button className="btn btn-link text-decoration-none">view results</button>
-                                <button className="btn btn-link text-decoration-none">delete</button>
-                            </td>
-                        </tr>
-                    ))}
+                        {submissions.map((submission) => (
+                            <tr key={submission._id}>
+                                <td>{submission._id}</td>
+                                <td>{formatDate(submission.submissionDate)}</td>
+                                <td>{submission.status}</td>
+                                <td>
+                                    <button className="btn btn-link text-decoration-none">view/edit</button>
+                                    <button className="btn btn-link text-decoration-none">run</button>
+                                    <button className="btn btn-link text-decoration-none">view results</button>
+                                    <button className="btn btn-link text-decoration-none">delete</button>
+                                </td>
+                            </tr>
+                        ))}
                     </tbody>
                 </table>
-                {!isAdmin && <button className="btn btn-primary mt-3"
-                                     style={{backgroundColor: '#00A86B', borderColor: '#00A86B'}}
-                                     onClick={handleNewProblemClick}>New Problem</button>}
+                {role !== 'admin' && (
+                    <button
+                        className="btn btn-primary mt-3"
+                        style={{ backgroundColor: '#00A86B', borderColor: '#00A86B' }}
+                        onClick={handleNewProblemClick}
+                    >
+                        New Problem
+                    </button>
+                )}
             </main>
-            <Footer/>
+            <Footer />
         </div>
     );
 }
