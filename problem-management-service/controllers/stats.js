@@ -92,10 +92,11 @@ const getStats = async (mes) => {
         const last20Submissions = await Problem.find({ hasSolution: true })
             .sort({ submissionDate: -1 })
             .limit(20)
-            .select('executionDuration numVehicles submissionDate maxRouteDistance totalDistTravel');
+            .select('executionDuration numVehicles maxDistance submissionDate maxRouteDistance totalDistTravel');
         stats.last20Submissions = last20Submissions.map(submission => ({
             executionDuration: submission.executionDuration,
             submissionDate: submission.submissionDate,
+            maxDistance: submission.maxDistance,
             totalDistTravel: submission.totalDistTravel,
             maxRotueDistance: submission.maxRouteDistance,
             numVehicles: submission.numVehicles

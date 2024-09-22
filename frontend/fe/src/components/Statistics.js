@@ -40,70 +40,83 @@ function Statistics() {
     // Data for charts
 
     const statusCountsData = {
-    labels: ['Finished', 'Pending'],
-    datasets: [{
-        label: 'Submission Status',
-        data: [statistics.statusCounts.finished, statistics.statusCounts.pending],
-        backgroundColor: ['#00A86B', '#FF6347'],
-    }],
-    options: {
-        plugins: {
-            tooltip: {
-                callbacks: {
-                    label: (context) => {
-                        const label = context.label || '';
-                        const value = context.raw || 0;
-                        return `${label}: ${value}`;
-                    },
-                },
-            },
-        },
-    },
-};
-
-const solutionCountsData = {
-    labels: ['Has Solution', 'No Solution'],
-    datasets: [{
-        label: 'Submission Status',
-        data: [statistics.solutionCounts.hasSolution, statistics.solutionCounts.noSolution],
-        backgroundColor: ['#00A86B', '#FF6347'],
-    }],
-    options: {
-        plugins: {
-            tooltip: {
-                callbacks: {
-                    label: (context) => {
-                        const label = context.label || '';
-                        const value = context.raw || 0;
-                        return `${label}: ${value}`;
-                    },
-                },
-            },
-        },
-    },
-};
-
-
-const createGraph = (submissions, label, durationField) => {
-    return {
-        labels: submissions.map(item => new Date(item.submissionDate).toLocaleDateString()),
+        labels: ['Finished', 'Pending'],
         datasets: [{
-            label: label,
-            data: submissions.map(item => item[durationField]),
-            backgroundColor: 'rgba(0, 168, 107, 0.2)', // Adjust for fill color if needed
-            borderColor: '#00A86B', // Line color
-            fill: true, // Set to false if you don't want the area under the line filled
-            tension: 0.3, // Adjusts the curvature of the line
+            label: 'Submission Status',
+            data: [statistics.statusCounts.finished, statistics.statusCounts.pending],
+            backgroundColor: ['#00A86B', '#FF6347'],
         }],
+        options: {
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        label: (context) => {
+                            const label = context.label || '';
+                            const value = context.raw || 0;
+                            return `${label}: ${value}`;
+                        },
+                    },
+                },
+            },
+        },
     };
-};
 
-// Example usage:
-const last20executionDuration = createGraph(statistics.last20Submissions, 'Time (seconds)', 'executionDuration');
-const last20numVehicles = createGraph(statistics.last20Submissions, 'Cardinality', 'numVehicles');
-const last20totalDistTravel= createGraph(statistics.last20Submissions, 'Distance (metres)', 'totalDistTravel');
-const last20maxRotueDistance = createGraph(statistics.last20Submissions, 'Distance (mentres)', 'maxRotueDistance');
+    const solutionCountsData = {
+        labels: ['Has Solution', 'No Solution'],
+        datasets: [{
+            label: 'Submission Status',
+            data: [statistics.solutionCounts.hasSolution, statistics.solutionCounts.noSolution],
+            backgroundColor: ['#00A86B', '#FF6347'],
+        }],
+        options: {
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        label: (context) => {
+                            const label = context.label || '';
+                            const value = context.raw || 0;
+                            return `${label}: ${value}`;
+                        },
+                    },
+                },
+            },
+        },
+    };
 
+
+    // Updated function to handle multiple datasets
+    const createGraph = (submissions, datasetsInfo) => {
+        return {
+            labels: submissions.map(item => new Date(item.submissionDate).toLocaleDateString()),
+            datasets: datasetsInfo.map(info => ({
+                label: info.label,
+                data: submissions.map(item => item[info.field]),
+                backgroundColor: info.backgroundColor || 'rgba(0, 168, 107, 0.2)', // Adjust for fill color if needed
+                borderColor: info.borderColor || '#00A86B', // Line color
+                fill: info.fill || false, // Set to true if you want the area under the line filled
+                tension: 0.3, // Adjusts the curvature of the line
+            }))
+        };
+    };
+
+    // Example usage for multiple datasets in one chart:
+    const last20executionDuration = createGraph(statistics.last20Submissions, [
+        { label: 'Time (seconds)', field: 'executionDuration' }
+    ]);
+    
+    const last20numVehicles = createGraph(statistics.last20Submissions, [
+        { label: 'Cardinality', field: 'numVehicles' }
+    ]);
+
+    const last20totalDistTravel= createGraph(statistics.last20Submissions, [
+        { label: 'Distance (metres)', field: 'totalDistTravel' }
+    ]);
+
+    // **Combined graph for maxRouteDistance and maxDistance in the same plot**
+    const last20maxDistanceComparison = createGraph(statistics.last20Submissions, [
+        { label: 'Max Route Distance (metres)', field: 'maxRotueDistance', borderColor: '#00A86B', backgroundColor: 'rgba(0, 168, 107, 0.2)' },
+        { label: 'Max Distance Constraint (metres)', field: 'maxDistance', borderColor: '#FF6347', backgroundColor: 'rgba(255, 99, 71, 0.2)' }
+    ]);
 
     return (
         <div className="d-flex flex-column min-vh-100">
@@ -111,8 +124,6 @@ const last20maxRotueDistance = createGraph(statistics.last20Submissions, 'Distan
 
             <main className="container my-4 flex-grow-1">
                 <h2 className="text-center mb-4">Statistics Overview</h2>
-
-
 
                 <div className="row mb-4">
                     <div className="col-md-6">
@@ -123,8 +134,6 @@ const last20maxRotueDistance = createGraph(statistics.last20Submissions, 'Distan
                             </div>
                         </div>
                     </div>
-                
-
 
                     <div className="col-md-6">
                         <div className="card">
@@ -135,7 +144,6 @@ const last20maxRotueDistance = createGraph(statistics.last20Submissions, 'Distan
                         </div>
                     </div>
                 </div>
-
 
                 <div className="row mb-4">
                     <div className="col-md-6">
@@ -154,7 +162,6 @@ const last20maxRotueDistance = createGraph(statistics.last20Submissions, 'Distan
                             </div>
                         </div>
                     </div>
-                    
                 </div>
 
                 <div className="row mb-4">
@@ -168,9 +175,6 @@ const last20maxRotueDistance = createGraph(statistics.last20Submissions, 'Distan
                     </div>
                 </div>
 
-
-
-
                 <div className="row mb-4">
                     <div className="col-md-12">
                         <div className="card">
@@ -182,12 +186,13 @@ const last20maxRotueDistance = createGraph(statistics.last20Submissions, 'Distan
                     </div>
                 </div>
 
+                {/* Combined chart for maxRouteDistance and maxDistance */}
                 <div className="row mb-4">
                     <div className="col-md-12">
                         <div className="card">
                             <div className="card-body">
-                                <h5 className="card-title">Maximumn Distance of a route for the Last 20 Submissions</h5>
-                                <Line data={last20maxRotueDistance} />
+                                <h5 className="card-title">Max Route Distance and Max Distance Constraint for the Last 20 Submissions</h5>
+                                <Line data={last20maxDistanceComparison} />
                             </div>
                         </div>
                     </div>
@@ -214,7 +219,6 @@ const last20maxRotueDistance = createGraph(statistics.last20Submissions, 'Distan
                         </div>
                     </div>
                 </div>
-
                 
             </main>
 
