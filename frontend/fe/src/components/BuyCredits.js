@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState ,useEffect} from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import infographic from '../center.png';  // Ensure the path is correct for the new infographic
@@ -13,12 +13,20 @@ const BuyCredits = ({ token, onCreditUpdate }) => {
   const [success, setSuccess] = useState('');
   console.log('token');
   const navigate = useNavigate();
+  useEffect(() => {
+    // Check if the user is logged in
+    const token = localStorage.getItem('token');
+    if (!token) {
+      navigate('/');
+    }
+  }, [navigate]);
 
   const handleBuyCredits = async (e) => {
     e.preventDefault();
     setError('');
     setSuccess('');
 
+    
     try {
       
       const response = await axios.post('http://localhost:6900/add-credit', {

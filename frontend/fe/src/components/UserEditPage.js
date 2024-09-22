@@ -3,6 +3,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Header from './Header';
 import Footer from './Footer';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 const UserEditPage = () => {
   const [username, setUsername] = useState('');
@@ -14,25 +16,35 @@ const UserEditPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const response = await axios.get(`http://localhost:6900/get-user-by-id/${userId}`, {
-          headers: {
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
-          }
-        });
-        const userData = response.data.user;
-        setUsername(userData.username);
-        setEmail(userData.email);
-        // Note: We don't set the password for security reasons
-      } catch (error) {
-        setError('Failed to fetch user data');
-        console.error('Error fetching user data:', error);
+    const checkAuth = () => {
+      const token = localStorage.getItem('token');
+      const role = localStorage.getItem('role');
+      if (!token || role !== 'admin') {
+        navigate('/');
+      } else {
+        fetchUserData();
       }
     };
 
-    fetchUserData();
-  }, [userId]);
+    checkAuth();
+  }, [userId, navigate]);
+
+  const fetchUserData = async () => {
+    try {
+      const response = await axios.get(`http://localhost:6900/get-user-by-id/${userId}`, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+      });
+      const userData = response.data.user;
+      setUsername(userData.username);
+      setEmail(userData.email);
+      // Note: We don't set the password for security reasons
+    } catch (error) {
+      setError('Failed to fetch user data');
+      console.error('Error fetching user data:', error);
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -49,6 +61,8 @@ const UserEditPage = () => {
         }
       );
       setSuccessMessage('User updated successfully');
+      // Clear password field after successful update
+      setPassword('');
     } catch (error) {
       setError('Failed to update user');
       console.error('Error updating user:', error);
@@ -76,9 +90,32 @@ const UserEditPage = () => {
     }
   };
 
+  const handleGoHome = () => {
+    navigate('/admin'); // Navigate to the admin page
+  };
+
   return (
     <div className="d-flex flex-column min-vh-100">
       <Header />
+      <button
+        className="btn btn-light"
+        style={{
+          position: 'absolute',
+          top: '10px',
+          left: '10px',
+          borderRadius: '50%',
+          width: '40px',
+          height: '40px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: '0',
+          boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+        }}
+        onClick={handleGoHome}
+      >
+        <FontAwesomeIcon icon={faArrowLeft} />
+      </button>
 
       <main className="container my-4 flex-grow-1">
         <h2 className="text-center mb-4">Edit User</h2>
@@ -123,9 +160,6 @@ const UserEditPage = () => {
             <div>
               <button type="submit" className="btn btn-primary" style={{backgroundColor: '#00A86B', borderColor: '#00A86B'}}>
                 Update User
-              </button>
-              <button type="button" className="btn btn-secondary ms-2" onClick={() => navigate('/admin')}>
-                Back to Admin Page
               </button>
             </div>
             <button type="button" className="btn btn-danger" onClick={handleDeleteUser}>
