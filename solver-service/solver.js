@@ -15,6 +15,13 @@ const processMessage = async (msg) => {
 
     if (typeof problemId === undefined || typeof numVehicles === undefined || typeof depot === undefined ||typeof maxDistance === undefined || typeof locationFileContent === undefined) {
         console.error('Missing required fields in the message:', msg);
+        sendToQueue(resultQueue, {
+            problemId,
+            correlationId,
+            token,
+            status: 400,
+            message: 'Missing required fields'
+        });
         return;
     }
 
@@ -53,6 +60,13 @@ const processMessage = async (msg) => {
             if (error) {
                 console.error('Error executing command:', error);
                 isSolverBusy = false;
+                sendToQueue(resultQueue, {
+                    problemId,
+                    correlationId,
+                    token,
+                    status: 500,
+                    message: 'Internal server error'
+                });
                 return;
             }
 
@@ -62,6 +76,13 @@ const processMessage = async (msg) => {
             if (stderr) {
                 console.error('Solver stderr:', stderr);
                 isSolverBusy = false;
+                sendToQueue(resultQueue, {
+                    problemId,
+                    correlationId,
+                    token,
+                    status: 500,
+                    message: 'Internal server error'
+                });
                 return;
             }
 
@@ -97,8 +118,8 @@ const processMessage = async (msg) => {
 
             const resultMessage = {
                 problemId: problemId,
-                //correlationId: correlationId,
-                //token:token,
+                correlationId: correlationId,
+                token:token,
                 hasSolution: hasSolution,
                 solution: solution,
                 maxRouteDistance: maxRouteDistance,
@@ -118,6 +139,13 @@ const processMessage = async (msg) => {
     } catch (error) {
         console.error('Error processing message in solver-service:', error);
         isSolverBusy = false;
+        sendToQueue(resultQueue, {
+            problemId,
+            correlationId,
+            token,
+            status: 500,
+            message: 'Internal server error'
+        });
     }
 };
 
