@@ -22,6 +22,7 @@ exports.searchUsers = async (message) => {
         if (users.length === 0) {
             console.log('No matching users found');
             await sendToQueue('user-service-queue-res', {
+                type: 'search',
                 correlationId,
                 status: 200,
                 message: 'No users found matching the criteria ',
@@ -30,6 +31,7 @@ exports.searchUsers = async (message) => {
             return;
         }
         await sendToQueue('user-service-queue-res', {
+            type: 'search',
             correlationId,
             status: 200,
             message: 'Users found successfully',
@@ -39,6 +41,7 @@ exports.searchUsers = async (message) => {
     } catch (error) {
         console.error('User-service: Error in search users:', error);
         await sendToQueue('user-service-queue-res', {
+            type: 'search',
             correlationId,
             status: 500,
             message: 'Internal server error: ' + error.message

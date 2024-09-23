@@ -57,6 +57,17 @@ const sendProblem2 = async (msg) => {
     await sendToQueue('problem-service-issue', problemMessage);
 }
 
+const searchUsers = async (msg) => {
+    const res = responseMap.get(msg.correlationId);
+    console.log("searchUsers", msg);
+    if (res) {
+        res.status(msg.status).json(msg);
+        responseMap.delete(msg.correlationId);
+    } else {
+        console.error(`No response object found for correlationId: ${msg.correlationId}`);
+    }
+};
+
 const simpleResponse = async (msg) => {
     const res = responseMap.get(msg.correlationId);
     if (res) {
@@ -141,6 +152,9 @@ const handleUserServiceResponse = async (msg) => {
             case "signup": await simpleResponse(msg); break;
             case "login": await simpleResponse(msg); break;
             case "send_problem": await sendProblem(msg); break;
+            case "get_user_profile": await searchUsers(msg); break;
+            case "get_user_by_token": await searchUsers(msg); break;
+            case "search": await searchUsers(msg); break;
             default: const res = responseMap.get(msg.correlationId);
                         if(res) {
                             res.status(400).json({error : "Invalid message type"});
@@ -181,10 +195,10 @@ const handleTransactionServiceResponse = async (msg) => {
         responseMap.delete(msg.correlationId);
     }
   };
-  
 
 
-  const handleProblemServiceIssue = async (msg) => {
+
+ const handleProblemServiceIssue = async (msg) => {
     const res = responseMap.get(msg.correlationId);
     
     if (!res) {

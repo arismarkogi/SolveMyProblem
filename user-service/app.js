@@ -14,6 +14,7 @@ const updateUserController = require('./controllers/updateUser');
 const deleteUserController = require('./controllers/deleteUser');
 const healthCheckController = require('./controllers/healthCheck');
 const getUserProfileController = require('./controllers/getUserProfile');
+const getUserController = require('./controllers/getUser');
 require('dotenv').config();
 
 const app = express();
@@ -40,6 +41,7 @@ const processMessage = async (message) => {
         case "delete": await deleteUserController.deleteUser(mes); return;
         case "health_check": await healthCheckController.healthCheck(mes); return;
         case "get_user_profile": await getUserProfileController.getUserProfile(mes); return;
+        case "get_user_by_token": await getUserController.getUser(mes); return;
         default: console.log('Unknown message type:', type);
     }
 };
@@ -47,7 +49,6 @@ const processMessage = async (message) => {
 const main = async () => {
     await connectRabbitMQ();
     await consumeQueue('user-service-queue', processMessage);
-    //await initUserCreditQueueConsumer();  // Start the consumer for credit check queue
 };
 
 app.listen(PORT, () => {

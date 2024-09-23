@@ -3,14 +3,14 @@ const { sendToQueue } = require('../utils/rabbitmq');
 const jwt = require('jsonwebtoken');
 
 // Reusable response function
-const sendResponse = async (msg, message, status, channel, transactionId = null) => {
+const sendResponse = async (msg, message, status, channel, token=null, transactionId = null) => {
     let response = {
         type: "new",
         correlationId: msg.correlationId,
         form: msg.form,
         message,
         status,
-        token: msg.token,
+        token: token,
         transactionId
     };
 
@@ -28,6 +28,7 @@ const sendResponse = async (msg, message, status, channel, transactionId = null)
 
     await sendToQueue('trans_response_queue', response, channel);
 };
+
 
 const createTransaction = async (msg, channel) => {
     console.log('Received message:', msg);
@@ -51,8 +52,9 @@ const createTransaction = async (msg, channel) => {
     try {
         // Verify the token and extract user details
         const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
-        const { id: userId } = decoded;
-
+        const { id, role } = decoded;
+        const userId = id;
+        console.log(`User-service: Attempting to update credit for user ${userId}`);
         // Validate other required fields
         if (creditAmount === undefined) {
             await sendResponse(msg, 'Credit Amount is required', 400, channel, null);

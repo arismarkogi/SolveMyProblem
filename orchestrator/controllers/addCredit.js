@@ -23,7 +23,7 @@ exports.addCredit = async (req, res) => {
         };
         responseMap.set(correlationId, res);
         
-        console.log(`Sending credit update request to user-service, correlationId: ${correlationId}`);
+        console.log(`Sending credit update request to user-service, correlationId: ${correlationId}`, token);
         await sendToQueue('user-service-queue', message_user);
         
     } catch (error) {

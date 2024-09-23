@@ -10,6 +10,7 @@ function Home({ onLogout }) {
     const navigate = useNavigate();
 
     const handleLogout = () => {
+        localStorage.clear();
         onLogout(); // Καλούμε τη συνάρτηση που προήλθε από το App.js
         navigate('/'); // Ανακατευθύνουμε στο landing page
     };
