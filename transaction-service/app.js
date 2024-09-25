@@ -9,7 +9,6 @@ const deleteUserTransactionsController = require('./controllers/deleteUserTransa
 const getUserTransactionsController = require('./controllers/getUserTransactions');
 const healthCheckController = require('./controllers/healthCheck');
 
-
 require('dotenv').config();
 
 const app = express();

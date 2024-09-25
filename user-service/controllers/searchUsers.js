@@ -1,6 +1,7 @@
 const { json } = require('express');
 const User = require('../models/userModel');
 const { sendToQueue } = require('../utils/rabbitmq');
+const jwt = require('jsonwebtoken');
 
 exports.searchUsers = async (message) => {
     const {correlationId, username, email} = message
@@ -22,6 +23,9 @@ exports.searchUsers = async (message) => {
         if (users.length === 0) {
             console.log('No matching users found');
             await sendToQueue('user-service-queue-res', {
+                headers: {
+                    origin : `Bearer ${jwt.sign({origin : process.env.ORIGIN }, process.env.JWT_SECRET_ORIGIN_KEY)}`,
+                },
                 type: 'search',
                 correlationId,
                 status: 200,
@@ -31,6 +35,9 @@ exports.searchUsers = async (message) => {
             return;
         }
         await sendToQueue('user-service-queue-res', {
+            headers: {
+                origin : `Bearer ${jwt.sign({origin : process.env.ORIGIN }, process.env.JWT_SECRET_ORIGIN_KEY)}`,
+            },
             type: 'search',
             correlationId,
             status: 200,
@@ -41,6 +48,9 @@ exports.searchUsers = async (message) => {
     } catch (error) {
         console.error('User-service: Error in search users:', error);
         await sendToQueue('user-service-queue-res', {
+            headers: {
+                origin : `Bearer ${jwt.sign({origin : process.env.ORIGIN }, process.env.JWT_SECRET_ORIGIN_KEY)}`,
+            },
             type: 'search',
             correlationId,
             status: 500,

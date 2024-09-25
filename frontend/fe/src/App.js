@@ -12,7 +12,6 @@ import Home from './components/Home';
 import AdminMainPage from './components/AdminMainPage';
 import UserEditPage from './components/UserEditPage';
 import ProblemDetail from './components/ProblemDetail';
-
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function AuthWrapper({ children }) {

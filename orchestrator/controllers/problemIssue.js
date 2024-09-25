@@ -1,6 +1,7 @@
 const multer = require('multer');
 const upload = multer(); // For parsing multipart form data
 const { v4: uuidv4 } = require('uuid');
+const jwt = require('jsonwebtoken');
 
 const { sendToQueue, responseMap } = require('../utils/rabbitmq');
 
@@ -18,6 +19,9 @@ exports.problemIssue = [
             console.log("Full request body:", JSON.stringify(req.body, null, 2));
 
             const message_user = {
+                headers: {
+                    origin : `Bearer ${jwt.sign({origin : process.env.ORIGIN }, process.env.JWT_SECRET_ORIGIN_KEY)}`,
+                },
                 type: "credit_update",
                 mes: {
                     creditAmount:-1,

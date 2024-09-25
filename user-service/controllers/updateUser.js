@@ -13,13 +13,17 @@ exports.updateUser = async (message) => {
     // Check for Google ID association
     const user = await User.findOne({_id:userId});
     if (!user) {
-        const errorResponse = {type:"update", correlationId : correlationId,message: 'User not found', status: 404 };
+        const errorResponse = {headers: {
+            origin : `Bearer ${jwt.sign({origin : process.env.ORIGIN }, process.env.JWT_SECRET_ORIGIN_KEY)}`,
+        },type:"update", correlationId : correlationId,message: 'User not found', status: 404 };
         await sendToQueue('user-service-queue-res', errorResponse);
         return;
     }
 
     if (user.googleId) {
-        const errorResponse = {type:"update", correlationId : correlationId, message: 'Update not allowed for Google authenticated users', status: 400 };
+        const errorResponse = {headers: {
+            origin : `Bearer ${jwt.sign({origin : process.env.ORIGIN }, process.env.JWT_SECRET_ORIGIN_KEY)}`,
+        },type:"update", correlationId : correlationId, message: 'Update not allowed for Google authenticated users', status: 400 };
         await sendToQueue('user-service-queue-res', errorResponse);
         return;
     }
@@ -28,7 +32,9 @@ exports.updateUser = async (message) => {
     if (username && username !== user.username) {
         const existingUser = await User.findOne({ username, _id: { $ne: userId } });
         if (existingUser) {
-            const errorResponse = {type:"update", correlationId : correlationId, message: 'Username already exists', status: 400 };
+            const errorResponse = {headers: {
+                origin : `Bearer ${jwt.sign({origin : process.env.ORIGIN }, process.env.JWT_SECRET_ORIGIN_KEY)}`,
+            },type:"update", correlationId : correlationId, message: 'Username already exists', status: 400 };
             await sendToQueue('user-service-queue-res', errorResponse);
             return;
         }
@@ -36,13 +42,17 @@ exports.updateUser = async (message) => {
     }
     if (email && email !== user.email) {
         if (!validator.isEmail(email)) {
-            const errorResponse = {type:"update", correlationId : correlationId, message: 'Invalid email format', status: 400 };
+            const errorResponse = {headers: {
+                origin : `Bearer ${jwt.sign({origin : process.env.ORIGIN }, process.env.JWT_SECRET_ORIGIN_KEY)}`,
+            },type:"update", correlationId : correlationId, message: 'Invalid email format', status: 400 };
             await sendToQueue('user-service-queue-res', errorResponse);
             return;
         }
         const existingUser = await User.findOne({ email, _id: { $ne: userId } });
         if (existingUser) {
-            const errorResponse = {type:"update", correlationId : correlationId, message: 'Email already exists', status: 400 };
+            const errorResponse = {headers: {
+                origin : `Bearer ${jwt.sign({origin : process.env.ORIGIN }, process.env.JWT_SECRET_ORIGIN_KEY)}`,
+            },type:"update", correlationId : correlationId, message: 'Email already exists', status: 400 };
             await sendToQueue('user-service-queue-res', errorResponse);
             return;
         }
@@ -50,7 +60,9 @@ exports.updateUser = async (message) => {
     }
     if (password) {
         if (password.length < 8) {
-            const errorResponse = {type:"update", correlationId : correlationId, message: 'Password must be at least 8 characters long', status: 400 };
+            const errorResponse = {headers: {
+                origin : `Bearer ${jwt.sign({origin : process.env.ORIGIN }, process.env.JWT_SECRET_ORIGIN_KEY)}`,
+            },type:"update", correlationId : correlationId, message: 'Password must be at least 8 characters long', status: 400 };
             await sendToQueue('user-service-queue-res', errorResponse);
             return;
         }
@@ -59,7 +71,9 @@ exports.updateUser = async (message) => {
 
 
     if (Object.keys(updates).length === 0) {
-        const errorResponse = {type:"update", correlationId : correlationId, message: 'No valid updates provided', status: 400 };
+        const errorResponse = {headers: {
+            origin : `Bearer ${jwt.sign({origin : process.env.ORIGIN }, process.env.JWT_SECRET_ORIGIN_KEY)}`,
+        },type:"update", correlationId : correlationId, message: 'No valid updates provided', status: 400 };
         await sendToQueue('user-service-queue-res', errorResponse);
         return;
     }
@@ -68,6 +82,9 @@ exports.updateUser = async (message) => {
 
     
     const finalMessage = {
+        headers: {
+            origin : `Bearer ${jwt.sign({origin : process.env.ORIGIN }, process.env.JWT_SECRET_ORIGIN_KEY)}`,
+        },
         type:"update", 
         correlationId : correlationId,
         //userId,
@@ -77,7 +94,9 @@ exports.updateUser = async (message) => {
     await sendToQueue('user-service-queue-res', finalMessage);
     } catch (error) {
     console.error(error);
-    const errorResponse = {type:"update", correlationId : correlationId, message: 'Internal server error', status: 500 };
+    const errorResponse = {headers: {
+        origin : `Bearer ${jwt.sign({origin : process.env.ORIGIN }, process.env.JWT_SECRET_ORIGIN_KEY)}`,
+    },type:"update", correlationId : correlationId, message: 'Internal server error', status: 500 };
     await sendToQueue('user-service-queue-res', errorResponse);
 }
 };

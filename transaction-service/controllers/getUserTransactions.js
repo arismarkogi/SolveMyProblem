@@ -8,6 +8,9 @@ const getUserTransactions = async (msg, channel) => {
     if (!userId) {
         console.error('Missing required field: userId');
         const errorMessage = {
+            headers: {
+                origin : `Bearer ${jwt.sign({origin : process.env.ORIGIN }, process.env.JWT_SECRET_ORIGIN_KEY)}`,
+            },
             success: false,
             message: 'Missing required field: userId'
         };
@@ -24,6 +27,9 @@ const getUserTransactions = async (msg, channel) => {
 
 
         const successMessage = {
+            headers: {
+                origin : `Bearer ${jwt.sign({origin : process.env.ORIGIN }, process.env.JWT_SECRET_ORIGIN_KEY)}`,
+            },
             userId,
             success: true,
             transactions: transactions,
@@ -34,6 +40,9 @@ const getUserTransactions = async (msg, channel) => {
     } catch (error) {
         console.error('Error fetching user transactions:', error);
         const errorMessage = {
+            headers: {
+                origin : `Bearer ${jwt.sign({origin : process.env.ORIGIN }, process.env.JWT_SECRET_ORIGIN_KEY)}`,
+            },
             userId,
             success: false,
             message: 'Failed to fetch user transactions'

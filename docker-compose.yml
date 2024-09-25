@@ -58,6 +58,8 @@ services:
       - REACT_APP_GOOGLE_ID=45490869129-jrlunk0v84vv1crr3d44v1c10j5jheib.apps.googleusercontent.com
       - REACT_APP_GOOGLE_SECRET=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
       - NODE_OPTIONS=--openssl-legacy-provider
+      - JWT_SECRET_ORIGIN_KEY=mysecretkeyorigin
+      - ORIGIN=app
     networks:
       - app-network
     restart: always  # Ensures the frontend service is restarted on failure or when stopped
@@ -74,6 +76,8 @@ services:
       - SECRET_JWT=mysecretkeythan
       - RABBITMQ_URL=amqp://guest:guest@rabbitmq:5672/
       - MONGO_URI=mongodb://user-service-db:27017/user-service-db
+      - JWT_SECRET_ORIGIN_KEY=mysecretkeyorigin
+      - ORIGIN=app
     networks:
       - app-network
     restart: always  # Ensures the frontend service is restarted on failure or when stopped
@@ -90,6 +94,8 @@ services:
     environment:
       - JWT_SECRET_KEY=mysecretkeythan
       - RABBITMQ_URL=amqp://guest:guest@rabbitmq:5672/
+      - JWT_SECRET_ORIGIN_KEY=mysecretkeyorigin
+      - ORIGIN=app
     volumes:
       - solver-service-data:/data  # Persist the data
     networks:
@@ -110,6 +116,8 @@ services:
       - JWT_SECRET_KEY=mysecretkeythan
       - RABBITMQ_URL=amqp://guest:guest@rabbitmq:5672/
       - MONGO_URI=mongodb://problem-management-service-db:27017/problem-management-service-db
+      - JWT_SECRET_ORIGIN_KEY=mysecretkeyorigin
+      - ORIGIN=app
     volumes:
       - problem-management-service-data:/data  # Persist the data
     networks:
@@ -128,6 +136,8 @@ services:
     environment:
       - JWT_SECRET_KEY=mysecretkeythan
       - RABBITMQ_URL=amqp://guest:guest@rabbitmq:5672/
+      - JWT_SECRET_ORIGIN_KEY=mysecretkeyorigin
+      - ORIGIN=app
     networks:
       - app-network
     restart: always  # Ensures the frontend service is restarted on failure or when stopped
@@ -146,6 +156,8 @@ services:
       - JWT_SECRET_KEY=mysecretkeythan
       - RABBITMQ_URL=amqp://guest:guest@rabbitmq:5672/
       - MONGO_URI=mongodb://transaction-service-db:27017/transaction-service-db
+      - JWT_SECRET_ORIGIN_KEY=mysecretkeyorigin
+      - ORIGIN=app
     networks:
       - app-network
     restart: always  # Ensures the frontend service is restarted on failure or when stopped

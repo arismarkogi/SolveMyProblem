@@ -8,6 +8,7 @@ import Header from './Header';
 import Footer from './Footer';
 import './LandingPage.css';
 import { jwtDecode } from 'jwt-decode';  // Corrected import
+const sign = require('jwt-encode');  // Corrected import
 
 function LandingPage({ onLogin }) {
     const navigate = useNavigate();
@@ -23,7 +24,7 @@ function LandingPage({ onLogin }) {
     const  handleGoogleSignup = async (response) =>{
         try {
                 const decoded = jwtDecode(response.credential);
-                console.log('Google signup decoded:', decoded);
+                console.log('Google signup decoded:', process.env.REACT_APP_JWT_SECRET_ORIGIN_KEY);
         
 
                 const signupResponse = await axios.post('http://localhost:6900/google-signup', {

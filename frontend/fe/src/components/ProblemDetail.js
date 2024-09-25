@@ -3,6 +3,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Header from './Header';
 import Footer from './Footer';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // Import FontAwesomeIcon
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 function ProblemDetail() {
   const { problemId } = useParams(); // Get problemId from URL
@@ -59,7 +61,7 @@ function ProblemDetail() {
           }}
           onClick={handleGoBack}
         >
-          Back
+          <FontAwesomeIcon icon={faArrowLeft} />
         </button>
 
         <h2>Problem Details</h2>

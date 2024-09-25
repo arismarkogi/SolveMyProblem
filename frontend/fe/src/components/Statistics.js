@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 import Header from './Header';
 import Footer from './Footer';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // Import FontAwesomeIcon
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 import { Line, Pie } from 'react-chartjs-2';
 import {
@@ -22,9 +25,12 @@ ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, ArcEleme
 
 function Statistics() {
     const [statistics, setStatistics] = useState({});
-    
+    const navigate = useNavigate();
     useEffect(() => {
-        axios.get('http://localhost:6900/get-stats')
+        axios.get('http://localhost:6900/get-stats', { 
+                headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            }})
             .then(response => {
                 setStatistics(response.data.stats);
             })
@@ -118,10 +124,34 @@ function Statistics() {
         { label: 'Max Distance Constraint (metres)', field: 'maxDistance', borderColor: '#FF6347', backgroundColor: 'rgba(255, 99, 71, 0.2)' }
     ]);
 
+    const handleGoBack = () => {
+        navigate(-1); // Go back to the previous page
+    }
+
     return (
         <div className="d-flex flex-column min-vh-100">
             <Header />
-
+            <div className="container my-4 flex-grow-1">
+            <button
+            className="btn btn-light mb-3"
+            style={{
+                position: 'absolute',
+                top: '10px',
+                left: '10px',
+                borderRadius: '50%',
+                width: '40px',
+                height: '40px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: '0',
+                boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+            }}    
+            onClick={handleGoBack}
+            >
+            <FontAwesomeIcon icon={faArrowLeft} />
+            </button>
+            </div>
             <main className="container my-4 flex-grow-1">
                 <h2 className="text-center mb-4">Statistics Overview</h2>
 

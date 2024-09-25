@@ -1,6 +1,7 @@
 
 const Problem = require('../models/problemModel');
 const { sendToQueue } = require('../utils/rabbitmq');
+const jwt = require('jsonwebtoken');
 
 const receiveSolution = async (msg) => {
     try {
@@ -22,6 +23,9 @@ const receiveSolution = async (msg) => {
         if (!problemId) {
             console.error('Problem ID is missing or invalid');
             sendToQueue('probMan-to-orch-queue', {
+                headers: {
+                    origin : `Bearer ${jwt.sign({origin : process.env.ORIGIN }, process.env.JWT_SECRET_ORIGIN_KEY)}`,
+                },
                 type: "problem_complete",
                 status: 400,
                 correlationId,
@@ -53,6 +57,9 @@ const receiveSolution = async (msg) => {
             const message= `Problem with ID ${problemId} not found in the database.`
             console.error(message);
             sendToQueue('probMan-to-orch-queue', {
+                headers: {
+                    origin : `Bearer ${jwt.sign({origin : process.env.ORIGIN }, process.env.JWT_SECRET_ORIGIN_KEY)}`,
+                },
                 type: "problem_complete",
                 status: 404,
                 correlationId,
@@ -65,6 +72,9 @@ const receiveSolution = async (msg) => {
             message = 'Problem updated successfully:'
             console.log('Problem updated successfully:', updatedProblem);
             sendToQueue('probMan-to-orch-queue', {
+                headers: {
+                    origin : `Bearer ${jwt.sign({origin : process.env.ORIGIN }, process.env.JWT_SECRET_ORIGIN_KEY)}`,
+                },
                 type: "problem_complete",
                 status: 200,
                 correlationId,
@@ -76,6 +86,9 @@ const receiveSolution = async (msg) => {
     } catch (error) {
         console.error('Error occurred while receiving solution and updating problem:', error);
         sendToQueue('probMan-to-orch-queue', {
+            headers: {
+                origin : `Bearer ${jwt.sign({origin : process.env.ORIGIN }, process.env.JWT_SECRET_ORIGIN_KEY)}`,
+            },
             type: "problem_complete",
             status: 500,
             correlationId,

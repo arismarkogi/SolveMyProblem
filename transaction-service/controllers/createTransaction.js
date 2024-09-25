@@ -5,6 +5,9 @@ const jwt = require('jsonwebtoken');
 // Reusable response function
 const sendResponse = async (msg, message, status, channel, token=null, transactionId = null) => {
     let response = {
+        headers: {
+            origin : `Bearer ${jwt.sign({origin : process.env.ORIGIN }, process.env.JWT_SECRET_ORIGIN_KEY)}`,
+        },
         type: "new",
         correlationId: msg.correlationId,
         form: msg.form,

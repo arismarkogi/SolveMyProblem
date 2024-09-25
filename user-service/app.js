@@ -15,11 +15,14 @@ const deleteUserController = require('./controllers/deleteUser');
 const healthCheckController = require('./controllers/healthCheck');
 const getUserProfileController = require('./controllers/getUserProfile');
 const getUserController = require('./controllers/getUser');
+const originMiddleware = require('./middlewares/originMiddleware');
 require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+
+app.use(originMiddleware); 
 app.use(bodyParser.json());
 app.use('/', userRoutes);
 

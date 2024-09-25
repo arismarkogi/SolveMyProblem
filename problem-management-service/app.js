@@ -8,11 +8,15 @@ const { submitData } = require('./controllers/problemIssue');
 const { getProblems } = require('./controllers/getProblems');
 const { getStats } = require('./controllers/stats');
 const { connectRabbitMQ, consumeQueue } = require('./utils/rabbitmq');
+const originMiddleware = require('./middlewares/originMiddleware');
+const verifyToken = require('./middlewares/authMiddleware');
 require('dotenv').config();
 
 const app = express();
-app.use(cors());
 
+app.use(cors());
+//app.use(originMiddleware);
+app.use(verifyToken);
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
 

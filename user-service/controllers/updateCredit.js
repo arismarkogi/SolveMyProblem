@@ -23,6 +23,9 @@ exports.updateCredit = async (message) => {
         if (!user) {
             console.log(`User-service: User ${userId} not found`);
             await sendToQueue('user-service-queue-res', {
+                headers: {
+                    origin : `Bearer ${jwt.sign({origin : process.env.ORIGIN }, process.env.JWT_SECRET_ORIGIN_KEY)}`,
+                },
                 type: tp,
                 correlationId,
                 status: 404,
@@ -33,6 +36,9 @@ exports.updateCredit = async (message) => {
         if(user.creditAmount+parseInt(creditAmount)<0){
             console.log(`User-service: User ${userId} does not have enough credit`);
             await sendToQueue('user-service-queue-res', {
+                headers: {
+                    origin : `Bearer ${jwt.sign({origin : process.env.ORIGIN }, process.env.JWT_SECRET_ORIGIN_KEY)}`,
+                },
                 type: tp,
                 correlationId,
                 status: 404,
@@ -46,6 +52,9 @@ exports.updateCredit = async (message) => {
 
         console.log(`User-service: Credit updated successfully for user ${userId}`);
         await sendToQueue('user-service-queue-res', {
+            headers: {
+                origin : `Bearer ${jwt.sign({origin : process.env.ORIGIN }, process.env.JWT_SECRET_ORIGIN_KEY)}`,
+            },
             type: tp,
             ...message,
             status: 200,
@@ -56,6 +65,9 @@ exports.updateCredit = async (message) => {
     } catch (error) {
         console.error('User-service: Error updating credit:', error);
         await sendToQueue('user-service-queue-res', {
+            headers: {
+                origin : `Bearer ${jwt.sign({origin : process.env.ORIGIN }, process.env.JWT_SECRET_ORIGIN_KEY)}`,
+            },
             type: 'credit_update',
             correlationId,
             status: 500,

@@ -56,7 +56,7 @@ const UserEditPage = () => {
         { userId, username, email, password },
         {
           headers: {
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
+            'Authorization': `Bearer ${localStorage.getItem('token')}`,
           }
         }
       );
@@ -76,7 +76,7 @@ const UserEditPage = () => {
           { userId },
           {
             headers: {
-              'Authorization': `Bearer ${localStorage.getItem('token')}`
+              'Authorization': `Bearer ${localStorage.getItem('token')}`,
             }
           }
         );

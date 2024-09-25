@@ -62,6 +62,9 @@ const submitData = async (message) => {
         if (missingFields.length > 0) {
             console.error('Missing required fields:', missingFields.join(', '));
             await sendToQueue('probMan-to-orch-queue', {
+                headers: {
+                    origin : `Bearer ${jwt.sign({origin : process.env.ORIGIN }, process.env.JWT_SECRET_ORIGIN_KEY)}`,
+                },
                 type: "problem_submission",
                 status: 400,
                 correlationId,
@@ -94,6 +97,9 @@ const submitData = async (message) => {
 
         // Prepare the message to be sent to the queue
         const messageToQueue = {
+            headers: {
+                origin : `Bearer ${jwt.sign({origin : process.env.ORIGIN }, process.env.JWT_SECRET_ORIGIN_KEY)}`,
+            },
             problemId: savedProblem._id.toString(),
             correlationId,
             token,
@@ -117,6 +123,9 @@ const submitData = async (message) => {
         console.log('Message sent to solver queue');
     } catch (error) {
         await sendToQueue('probMan-to-orch-queue', {
+            headers: {
+                origin : `Bearer ${jwt.sign({origin : process.env.ORIGIN }, process.env.JWT_SECRET_ORIGIN_KEY)}`,
+            },
             type: "problem_submission",
             status: 500,
             correlationId,

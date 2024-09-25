@@ -2,6 +2,7 @@ const { connectRabbitMQ, sendToQueue, consumeQueue } = require('./utils/rabbitmq
 const { exec } = require('child_process');
 const { taskQueue, resultQueue } = require('./config');
 const fs = require('fs');
+const jwt = require('jsonwebtoken');
 const path = require('path');
 require('dotenv').config();
 
@@ -16,6 +17,9 @@ const processMessage = async (msg) => {
     if (typeof problemId === undefined || typeof numVehicles === undefined || typeof depot === undefined ||typeof maxDistance === undefined || typeof locationFileContent === undefined) {
         console.error('Missing required fields in the message:', msg);
         sendToQueue(resultQueue, {
+            headers: {
+                origin : `Bearer ${jwt.sign({origin : process.env.ORIGIN }, process.env.JWT_SECRET_ORIGIN_KEY)}`,
+            },
             problemId,
             correlationId,
             token,
@@ -61,6 +65,9 @@ const processMessage = async (msg) => {
                 console.error('Error executing command:', error);
                 isSolverBusy = false;
                 sendToQueue(resultQueue, {
+                    headers: {
+                        origin : `Bearer ${jwt.sign({origin : process.env.ORIGIN }, process.env.JWT_SECRET_ORIGIN_KEY)}`,
+                    },
                     problemId,
                     correlationId,
                     token,
@@ -77,6 +84,9 @@ const processMessage = async (msg) => {
                 console.error('Solver stderr:', stderr);
                 isSolverBusy = false;
                 sendToQueue(resultQueue, {
+                    headers: {
+                        origin : `Bearer ${jwt.sign({origin : process.env.ORIGIN }, process.env.JWT_SECRET_ORIGIN_KEY)}`,
+                    },
                     problemId,
                     correlationId,
                     token,
@@ -117,6 +127,9 @@ const processMessage = async (msg) => {
             }
 
             const resultMessage = {
+                headers: {
+                    origin : `Bearer ${jwt.sign({origin : process.env.ORIGIN }, process.env.JWT_SECRET_ORIGIN_KEY)}`,
+                },
                 problemId: problemId,
                 correlationId: correlationId,
                 token:token,
@@ -140,6 +153,9 @@ const processMessage = async (msg) => {
         console.error('Error processing message in solver-service:', error);
         isSolverBusy = false;
         sendToQueue(resultQueue, {
+            headers: {
+                origin : `Bearer ${jwt.sign({origin : process.env.ORIGIN }, process.env.JWT_SECRET_ORIGIN_KEY)}`,
+            },
             problemId,
             correlationId,
             token,

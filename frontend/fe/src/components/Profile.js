@@ -19,7 +19,7 @@ const Profile = ({ user, onLogout }) => {
 
         const response = await axios.get('http://localhost:6900/user-profile', {
           headers: {
-            'Authorization': `Bearer ${token}`
+            'Authorization': `Bearer ${token}`,
           }
         });
         console.log('Profile response:', response.data);

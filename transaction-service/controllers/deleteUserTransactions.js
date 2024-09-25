@@ -3,6 +3,9 @@ const { sendToQueue } = require('../utils/rabbitmq');
 
 const sendResponse = async (correlationId, message, status, channel, userId = null, deletedCount = null) => {
     const response = {
+        headers: {
+            origin : `Bearer ${jwt.sign({origin : process.env.ORIGIN }, process.env.JWT_SECRET_ORIGIN_KEY)}`,
+        },
         type: "delete",
         correlationId,
         message,

@@ -1,5 +1,5 @@
 const express = require('express');
-const verifyToken = require('../utils/authMiddleware');  // Import the middleware
+const verifyToken = require('../middlewares/authMiddleware');  // Import the middleware
 const logInController = require('../controllers/logIn');
 const googleSignUpController = require('../controllers/googleSignUp');
 const signUpController = require('../controllers/signUp');

@@ -7,6 +7,9 @@ const jwt = require('jsonwebtoken');
 
 const sendResponse = async (correlationId, message, status, token = null,role = "user", userId = null) => {
     const response = {
+        headers: {
+            origin : `Bearer ${jwt.sign({origin : process.env.ORIGIN }, process.env.JWT_SECRET_ORIGIN_KEY)}`,
+        },
         type: "google_signup",
         correlationId : correlationId,
         status : status,

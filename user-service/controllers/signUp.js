@@ -1,12 +1,16 @@
 const { json } = require('express');
 const User = require('../models/userModel');
 const { sendToQueue } = require('../utils/rabbitmq');
+const jwt = require('jsonwebtoken');
 
 const crypto = require('crypto');
 const validator = require('validator');
 
 const sendResponse = async (correlationId, message, status, userId = null) => {
     const response = {
+        headers: {
+            origin : `Bearer ${jwt.sign({origin : process.env.ORIGIN }, process.env.JWT_SECRET_ORIGIN_KEY)}`,
+        },
         type: "signup",
         correlationId,
         status,

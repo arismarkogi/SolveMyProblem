@@ -4,6 +4,9 @@ import axios from 'axios';
 import Header from './Header';
 import Footer from './Footer';
 import infographic from '../center.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // Import FontAwesomeIcon
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import sign from 'jwt-encode';
 
 const LogIn = ({ onLogin }) => {
   const [email, setEmail] = useState('');
@@ -18,7 +21,7 @@ const LogIn = ({ onLogin }) => {
     setError('');
 
     try {
-      const response = await axios.post('http://localhost:6900/login', { email, password, isAdmin });
+      const response = await axios.post('http://localhost:6900/login',{ email, password, isAdmin });
       console.log('Full login response:', response);
       console.log('Login response data:', response.data);
 
@@ -50,11 +53,33 @@ const LogIn = ({ onLogin }) => {
     }
   };
 
+  const handleGoBack = () => {
+    navigate(-1); // Go back to the previous page
+  }
+
   return (
       <div className="d-flex flex-column min-vh-100">
         <Header />
-
         <main className="container my-4 flex-grow-1">
+        <button
+          className="btn btn-light mb-3"
+          style={{
+            position: 'absolute',
+            top: '10px',
+            left: '10px',
+            borderRadius: '50%',
+            width: '40px',
+            height: '40px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '0',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+          }}
+          onClick={handleGoBack}
+        >
+          <FontAwesomeIcon icon={faArrowLeft} />
+        </button>
           <div className="text-center mb-4">
             <img src={infographic} alt="big solveME" className="img-fluid" style={{maxHeight: '400px'}}/>
           </div>

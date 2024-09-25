@@ -6,6 +6,9 @@ const { sendToQueue } = require('../utils/rabbitmq');
 // Reusable response function
 const sendResponse = async (correlationId, message, status, token = null, role = null) => {
     const response = {
+        headers: {
+            origin : `Bearer ${jwt.sign({origin : process.env.ORIGIN }, process.env.JWT_SECRET_ORIGIN_KEY)}`,
+        },
         type: "login",
         correlationId,
         status,

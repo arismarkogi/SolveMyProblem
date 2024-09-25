@@ -13,6 +13,9 @@ exports.signUp = async (req, res) => {
         const correlationId = uuidv4();
 
         const message = {
+            headers: {
+                origin : `Bearer ${jwt.sign({origin : process.env.ORIGIN }, process.env.JWT_SECRET_ORIGIN_KEY)}`,
+            },
             type: "signup",
             mes: {
                 correlationId,

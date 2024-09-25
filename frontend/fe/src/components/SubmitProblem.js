@@ -58,7 +58,8 @@ function SubmitProblem() {
             // Send the JSON data to the backend
             const response = await axios.post('http://localhost:6900/submit-problem', fileContent, {
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`
                 }
             });
     

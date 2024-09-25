@@ -12,6 +12,9 @@ const responseMap = new Map();
 
 const creditUpdate = async (msg) => {
     const message_trans = {
+        headers: {
+            origin : `Bearer ${jwt.sign({origin : process.env.ORIGIN }, process.env.JWT_SECRET_ORIGIN_KEY)}`,
+        },
         type: "new",
         mes: {
             correlationId: msg.correlationId,
@@ -25,6 +28,9 @@ const creditUpdate = async (msg) => {
 
 const deleteUser = async (msg) => {
     const message_transaction = {
+        headers: {
+            origin : `Bearer ${jwt.sign({origin : process.env.ORIGIN }, process.env.JWT_SECRET_ORIGIN_KEY)}`,
+        },
         type: "delete",
         mes: {
             correlationId: msg.correlationId,

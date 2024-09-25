@@ -29,7 +29,8 @@ function SubmissionsPage() {
     const fetchSubmissions = async (token, adminUserId) => {
         try {
             const config = {
-                headers: { Authorization: `Bearer ${token}` }
+                headers: { Authorization: `Bearer ${token}`,
+             }
             };
 
             const response = await axios.get('http://localhost:5000/getProblems', {

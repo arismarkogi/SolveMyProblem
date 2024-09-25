@@ -40,7 +40,7 @@ useEffect(() => {
     try {
       const response = await axios.post('http://localhost:6900/search-users', { username, email }, {
         headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
+          'Authorization': `Bearer ${localStorage.getItem('token')}`,
         }
       });
       
