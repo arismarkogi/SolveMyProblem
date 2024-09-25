@@ -145,7 +145,7 @@ services:
     environment:
       - JWT_SECRET_KEY=mysecretkeythan
       - RABBITMQ_URL=amqp://guest:guest@rabbitmq:5672/
-      - MONGO_URI=mongodb://transaction-service-db:27017/problem-management-service-db
+      - MONGO_URI=mongodb://transaction-service-db:27017/transaction-service-db
     networks:
       - app-network
     restart: always  # Ensures the frontend service is restarted on failure or when stopped
