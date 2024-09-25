@@ -41,6 +41,7 @@ services:
     environment:
       - REACT_APP_GOOGLE_ID=45490869129-jrlunk0v84vv1crr3d44v1c10j5jheib.apps.googleusercontent.com 
       - REACT_APP_GOOGLE_SECRET=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 
+      - NODE_OPTIONS=--openssl-legacy-provider
     networks:
       - app-network
 
