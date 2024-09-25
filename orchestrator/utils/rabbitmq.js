@@ -207,8 +207,14 @@ const handleTransactionServiceResponse = async (msg) => {
     }
     
     if (msg.status !== 200) {
-        res.status(msg.status).json({ error: msg.message });
-        responseMap.delete(msg.correlationId);
+        if(msg.status !== undefined) {
+            res.status(msg.status).json({ error: msg.message });
+            responseMap.delete(msg.correlationId);
+        }
+        else {
+            res.status(400).json({ error: "Message status error" });
+            responseMap.delete(msg.correlationId);
+        }
         return;
     } 
     switch (msg.type) {

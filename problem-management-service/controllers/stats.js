@@ -107,6 +107,7 @@ const getStats = async (mes) => {
         const message = {
             type: "getStats",
             correlationId: correlationId,
+            status: 200,
             stats: stats
         };
 
@@ -114,6 +115,13 @@ const getStats = async (mes) => {
 
     } catch (error) {
         console.error('Error finding solved problems:', error);
+        const message = {
+            type: "getStats",
+            correlationId: correlationId,
+            status: 500,
+            message: 'Internal Server Error'
+        };
+        await sendToQueue('probMan-to-orch-queue', message);
     }
 };
 
