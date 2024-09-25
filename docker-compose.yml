@@ -1,8 +1,5 @@
-version: '3.8'  # Latest version for docker-compose
-
-
 services:
-  # user service database
+  # User service database
   user-service-db:
     image: mongo:latest
     container_name: user-service-db
@@ -10,8 +7,10 @@ services:
       - "27017:27017"
     volumes:
       - user-service-db-data:/data/db  # Persist the data
-    
+    networks:
+      - app-network
 
+  # Transaction service database
   transaction-service-db:
     image: mongo:latest
     container_name: transaction-service-db
@@ -19,8 +18,10 @@ services:
       - "27018:27017"
     volumes:
       - transaction-service-db-data:/data/db  # Persist the data
-    
+    networks:
+      - app-network
   
+  # Problem Management service database
   problem-management-service-db:
     image: mongo:latest
     container_name: problem-management-service-db
@@ -28,16 +29,19 @@ services:
       - "27019:27017"
     volumes:
       - problem-management-service-db-data:/data/db  # Persist the data
-    
+    networks:
+      - app-network
   
   # Frontend Service
   frontend:
-    build: ./frontend  # Build from the Dockerfile in the ./frontend directory
+    build:
+      context: ./frontend/fe
+      dockerfile: Dockerfile  # Explicitly specify the Dockerfile path
     ports:
       - "3000:3000"
     environment:
-      - REACT_APP_GOOGLE_ID=45490869129-jrlunk0v84vv1crr3d44v1c10j5jheib.apps.googleusercontent.com 
-      - REACT_APP_GOOGLE_SECRET=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 
+      - REACT_APP_GOOGLE_ID=45490869129-jrlunk0v84vv1crr3d44v1c10j5jheib.apps.googleusercontent.com
+      - REACT_APP_GOOGLE_SECRET=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
       - NODE_OPTIONS=--openssl-legacy-provider
     networks:
       - app-network
@@ -51,23 +55,29 @@ services:
       - user-service-db
       - rabbitmq
     environment:
-      - SECRET_JWT=mysecretkeythan 
-       
+      - SECRET_JWT=mysecretkeythan
+    networks:
+      - app-network
 
   # Solver Service
   solver-service:
-    build: ./solver-service  # Build from the Dockerfile in ./solver-service directory
+    build: 
+      context: ./solver-service  # Build from the Dockerfile in ./solver-service directory
+      dockerfile: Dockerfile  # Explicitly specify the Dockerfile path
     ports:
       - "6789:6789"
     depends_on:
       - rabbitmq
     volumes:
       - solver-service-data:/data  # Persist the data
-    
+    networks:
+      - app-network
 
   # Problem Management Service
   problem-management-service:
-    build: ./problem-management-service  # Build from the Dockerfile in ./problem-management-service directory
+    build: 
+      context: ./problem-management-service  # Build from the Dockerfile in ./problem-management-service directory
+      dockerfile: Dockerfile  # Explicitly specify the Dockerfile path
     ports:
       - "5000:5000"
     depends_on:
@@ -77,11 +87,14 @@ services:
       - JWT_SECRET_KEY=mysecretkeythan
     volumes:
       - problem-management-service-data:/data  # Persist the data
-    
+    networks:
+      - app-network
 
   # Orchestrator Service
   orchestrator:
-    build: ./orchestrator  # Build from the Dockerfile in ./orchestrator directory
+    build: 
+      context: ./orchestrator  # Build from the Dockerfile in ./orchestrator directory
+      dockerfile: Dockerfile  # Explicitly specify the Dockerfile path
     ports:
       - "6900:6900"
     depends_on:
@@ -91,9 +104,11 @@ services:
     networks:
       - app-network
   
-   # Problem Management Service
+  # Transaction Service
   transaction-service:
-    build: ./transaction-service  # Build from the Dockerfile in ./problem-management-service directory
+    build:
+      context: ./transaction-service  # Build from the Dockerfile in ./transaction-service directory
+      dockerfile: Dockerfile  # Explicitly specify the Dockerfile path
     ports:
       - "4275:4275"
     depends_on:
@@ -101,7 +116,8 @@ services:
       - rabbitmq
     environment:
       - JWT_SECRET_KEY=mysecretkeythan
-    
+    networks:
+      - app-network
 
   # RabbitMQ
   rabbitmq:
@@ -110,17 +126,18 @@ services:
     ports:
       - "5672:5672"
       - "15672:15672"
-    
-  
-  volumes:
-    user-service-db-data:  # Named volume for user-service-db
-    transaction-service-db-data:  # Named volume for transaction-service-db
-    problem-management-service-db-data:  # Named volume for problem-management-service-db
-    problem-management-service-data:  # Named volume for problem-management-service
-    solver-service-data:  # Named volume for solver-service
- 
+    networks:
+      - app-network
 
-  
+# Define volumes globally
+volumes:
+  user-service-db-data:  # Named volume for user-service-db
+  transaction-service-db-data:  # Named volume for transaction-service-db
+  problem-management-service-db-data:  # Named volume for problem-management-service-db
+  problem-management-service-data:  # Named volume for problem-management-service
+  solver-service-data:  # Named volume for solver-service
 
-
-   
+# Define networks globally
+networks:
+  app-network:
+    driver: bridge
