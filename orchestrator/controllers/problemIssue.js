@@ -1,11 +1,8 @@
 const multer = require('multer');
-
 const upload = multer(); // For parsing multipart form data
 const { v4: uuidv4 } = require('uuid');
 
 const { sendToQueue, responseMap } = require('../utils/rabbitmq');
-
-
 
 exports.problemIssue = [
     upload.none(),

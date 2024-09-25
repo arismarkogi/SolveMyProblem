@@ -1,5 +1,4 @@
 const cors = require('cors');  // Import the cors middleware
-
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -12,10 +11,11 @@ const { connectRabbitMQ, consumeQueue } = require('./utils/rabbitmq');
 require('dotenv').config();
 
 const app = express();
+app.use(cors());
+
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
-app.use(cors());  // Enable CORS
 app.use(bodyParser.json());
 app.use('/', dataRoutes);
 
@@ -50,6 +50,7 @@ const processMessage = async (message) => {
         console.error('Error processing message:', error);
     }
 };
+
 const main = async () => {
     try {
         // Establish the RabbitMQ connection and channel

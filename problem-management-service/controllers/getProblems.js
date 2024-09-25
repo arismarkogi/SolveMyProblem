@@ -26,7 +26,8 @@ const getProblems = async (req, res) => {
             return res.status(400).json({ error: 'User ID is required' });
         }
 
-        const problems = await Problem.find({ userId: new ObjectId(userId) }).select('-_id -__v').exec();
+        // Don't exclude _id to ensure you get the problem IDs
+        const problems = await Problem.find({ userId: new ObjectId(userId) }).select('-__v').exec();
 
         console.log('Problems Found:', problems);
 

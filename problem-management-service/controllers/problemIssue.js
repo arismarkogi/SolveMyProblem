@@ -5,6 +5,28 @@ const Problem = require('../models/problemModel');
 const { sendToQueue } = require('../utils/rabbitmq');
 const jwt = require('jsonwebtoken');
 
+const deleteProblem = async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const problem = await Problem.findById(id);
+        if (!problem) {
+            return res.status(404).json({ message: 'Problem not found' });
+        }
+
+        if (problem.status !== 'finished') {
+            return res.status(400).json({ message: 'Cannot delete problem. The problem is not finished.' });
+        }
+
+        await Problem.findByIdAndDelete(id);
+        res.status(200).json({ message: 'Problem deleted successfully' });
+    } catch (error) {
+        console.error('Error deleting problem:', error);
+        res.status(500).json({ message: 'Server error while deleting problem' });
+    }
+};
+
+
 
 const submitData = async (message) => {
     try {
@@ -105,4 +127,4 @@ const submitData = async (message) => {
     }
 };
 
-module.exports = { submitData };
+module.exports = { submitData, deleteProblem };

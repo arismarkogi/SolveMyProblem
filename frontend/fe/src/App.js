@@ -11,6 +11,7 @@ import SubmissionsPage from './components/SubmissionsPage';
 import Home from './components/Home';
 import AdminMainPage from './components/AdminMainPage';
 import UserEditPage from './components/UserEditPage';
+import ProblemDetail from './components/ProblemDetail';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -74,6 +75,7 @@ function App() {
                         <Route path="/admin-activity" element={<SubmissionsPage isAdmin={true} />} />
                         <Route path="/admin" element={<AdminMainPage onLogout={handleLogout} />} />
                         <Route path="/edit-user/:userId" element={<UserEditPage />} />
+                        <Route path="/problem/:problemId" element={<ProblemDetail />} />
                     </Routes>
                 </div>
             </AuthWrapper>

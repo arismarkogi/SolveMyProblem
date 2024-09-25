@@ -64,6 +64,41 @@ function SubmissionsPage() {
         return `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
     };
 
+    const generateUniqueId = () => {
+        return 'ID-' + Math.random().toString(36).substr(2, 9) + '-' + Date.now();
+    };
+
+
+  const handleViewResults = (problemId) => {
+    navigate(`/problem/${problemId}`);  // Navigate to the ProblemDetail page
+  };
+
+
+  const handleDelete = async (id) => {
+    console.log('Attempting to delete problem with ID:', id);
+    const token = localStorage.getItem('token');
+    if (!id) {
+        console.error('No ID provided, cannot delete problem.');
+        return;
+    }
+    try {
+        const config = {
+            headers: { Authorization: `Bearer ${token}` }
+        };
+        const response = await axios.delete(`http://localhost:5000/deleteProblem/${id}`, config);
+        console.log('Problem deleted:', response.data);
+        // Refresh the submissions after deletion
+        fetchSubmissions(token, role === 'admin' ? userId : null);
+    } catch (error) {
+        console.error('Error deleting problem:', error);
+        if (error.response && error.response.status === 400) {
+            alert('Cannot delete problem. The problem is not finished.');
+        } else {
+            alert('Server error while deleting problem.');
+        }
+    }
+};
+
     return (
         <div className="d-flex flex-column min-vh-100">
             <Header />
@@ -98,16 +133,16 @@ function SubmissionsPage() {
                         </tr>
                     </thead>
                     <tbody>
-                        {submissions.map((submission) => (
-                            <tr key={submission._id}>
-                                <td>{submission._id}</td>
+                        {submissions.map((submission, index) => (
+                            <tr key={submission._id || index}>
+                                <td>{submission._id || generateUniqueId()}</td> {/* Use _id if available, otherwise generate one */}
                                 <td>{formatDate(submission.submissionDate)}</td>
                                 <td>{submission.status}</td>
                                 <td>
-                                    <button className="btn btn-link text-decoration-none">view/edit</button>
-                                    <button className="btn btn-link text-decoration-none">run</button>
-                                    <button className="btn btn-link text-decoration-none">view results</button>
-                                    <button className="btn btn-link text-decoration-none">delete</button>
+                                    <button className="btn btn-link text-decoration-none"
+                                    onClick={() => handleViewResults(submission._id)}>view results</button>
+                                    <button className="btn btn-link text-decoration-none"    
+                                    onClick={() => handleDelete(submission._id)}>delete</button>
                                 </td>
                             </tr>
                         ))}
