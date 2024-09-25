@@ -10,8 +10,7 @@ services:
       - "27017:27017"
     volumes:
       - user-service-db-data:/data/db  # Persist the data
-    networks:
-      - app-network
+    
 
   transaction-service-db:
     image: mongo:latest
@@ -20,8 +19,7 @@ services:
       - "27018:27017"
     volumes:
       - transaction-service-db-data:/data/db  # Persist the data
-    networks:
-      - app-network
+    
   
   problem-management-service-db:
     image: mongo:latest
@@ -30,8 +28,7 @@ services:
       - "27019:27017"
     volumes:
       - problem-management-service-db-data:/data/db  # Persist the data
-    networks:
-      - app-network
+    
   
   # Frontend Service
   frontend:
@@ -55,9 +52,7 @@ services:
       - rabbitmq
     environment:
       - SECRET_JWT=mysecretkeythan 
-    networks:
-      - app-network
-    
+       
 
   # Solver Service
   solver-service:
@@ -68,8 +63,7 @@ services:
       - rabbitmq
     volumes:
       - solver-service-data:/data  # Persist the data
-    networks:
-      - app-network
+    
 
   # Problem Management Service
   problem-management-service:
@@ -83,8 +77,7 @@ services:
       - JWT_SECRET_KEY=mysecretkeythan
     volumes:
       - problem-management-service-data:/data  # Persist the data
-    networks:
-      - app-network
+    
 
   # Orchestrator Service
   orchestrator:
@@ -108,8 +101,7 @@ services:
       - rabbitmq
     environment:
       - JWT_SECRET_KEY=mysecretkeythan
-    networks:
-      - app-network
+    
 
   # RabbitMQ
   rabbitmq:
@@ -118,8 +110,7 @@ services:
     ports:
       - "5672:5672"
       - "15672:15672"
-    networks:
-      - app-network
+    
   
   volumes:
     user-service-db-data:  # Named volume for user-service-db
@@ -127,9 +118,7 @@ services:
     problem-management-service-db-data:  # Named volume for problem-management-service-db
     problem-management-service-data:  # Named volume for problem-management-service
     solver-service-data:  # Named volume for solver-service
-  
-  networks:
-    app-network:  # Create a user-defined bridge network
+ 
 
   
 
