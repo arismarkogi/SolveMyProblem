@@ -1,0 +1,136 @@
+version: '3.8'  # Latest version for docker-compose
+
+
+services:
+  # user service database
+  user-service-db:
+    image: mongo:latest
+    container_name: user-service-db
+    ports:
+      - "27017:27017"
+    volumes:
+      - user-service-db-data:/data/db  # Persist the data
+    networks:
+      - app-network
+
+  transaction-service-db:
+    image: mongo:latest
+    container_name: transaction-service-db
+    ports:
+      - "27018:27017"
+    volumes:
+      - transaction-service-db-data:/data/db  # Persist the data
+    networks:
+      - app-network
+  
+  problem-management-service-db:
+    image: mongo:latest
+    container_name: problem-management-service-db
+    ports:
+      - "27019:27017"
+    volumes:
+      - problem-management-service-db-data:/data/db  # Persist the data
+    networks:
+      - app-network
+  
+  # Frontend Service
+  frontend:
+    build: ./frontend  # Build from the Dockerfile in the ./frontend directory
+    ports:
+      - "3000:3000"
+    environment:
+      - REACT_APP_GOOGLE_ID=45490869129-jrlunk0v84vv1crr3d44v1c10j5jheib.apps.googleusercontent.com 
+      - REACT_APP_GOOGLE_SECRET=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 
+    networks:
+      - app-network
+
+  # User Service
+  user-service:
+    build: ./user-service  # Build from the Dockerfile in ./user-service directory
+    ports:
+      - "4217:4217"
+    depends_on:
+      - user-service-db
+      - rabbitmq
+    environment:
+      - SECRET_JWT=mysecretkeythan 
+    networks:
+      - app-network
+    
+
+  # Solver Service
+  solver-service:
+    build: ./solver-service  # Build from the Dockerfile in ./solver-service directory
+    ports:
+      - "6789:6789"
+    depends_on:
+      - rabbitmq
+    volumes:
+      - solver-service-data:/data  # Persist the data
+    networks:
+      - app-network
+
+  # Problem Management Service
+  problem-management-service:
+    build: ./problem-management-service  # Build from the Dockerfile in ./problem-management-service directory
+    ports:
+      - "5000:5000"
+    depends_on:
+      - problem-management-service-db
+      - rabbitmq
+    environment:
+      - JWT_SECRET_KEY=mysecretkeythan
+    volumes:
+      - problem-management-service-data:/data  # Persist the data
+    networks:
+      - app-network
+
+  # Orchestrator Service
+  orchestrator:
+    build: ./orchestrator  # Build from the Dockerfile in ./orchestrator directory
+    ports:
+      - "6900:6900"
+    depends_on:
+      - rabbitmq
+    environment:
+      - JWT_SECRET_KEY=mysecretkeythan
+    networks:
+      - app-network
+  
+   # Problem Management Service
+  transaction-service:
+    build: ./transaction-service  # Build from the Dockerfile in ./problem-management-service directory
+    ports:
+      - "4275:4275"
+    depends_on:
+      - transaction-service-db
+      - rabbitmq
+    environment:
+      - JWT_SECRET_KEY=mysecretkeythan
+    networks:
+      - app-network
+
+  # RabbitMQ
+  rabbitmq:
+    image: rabbitmq:management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - app-network
+  
+  volumes:
+    user-service-db-data:  # Named volume for user-service-db
+    transaction-service-db-data:  # Named volume for transaction-service-db
+    problem-management-service-db-data:  # Named volume for problem-management-service-db
+    problem-management-service-data:  # Named volume for problem-management-service
+    solver-service-data:  # Named volume for solver-service
+  
+  networks:
+    app-network:  # Create a user-defined bridge network
+
+  
+
+
+   
