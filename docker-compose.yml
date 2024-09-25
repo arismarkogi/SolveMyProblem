@@ -1,4 +1,16 @@
 services:
+
+  # RabbitMQ
+  rabbitmq:
+    image: rabbitmq:management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - app-network
+    restart: always  # Ensures the frontend service is restarted on failure or when stopped
+
   # User service database
   user-service-db:
     image: mongo:latest
@@ -9,6 +21,7 @@ services:
       - user-service-db-data:/data/db  # Persist the data
     networks:
       - app-network
+    restart: always  # Ensures the frontend service is restarted on failure or when stopped
 
   # Transaction service database
   transaction-service-db:
@@ -20,7 +33,8 @@ services:
       - transaction-service-db-data:/data/db  # Persist the data
     networks:
       - app-network
-  
+    restart: always  # Ensures the frontend service is restarted on failure or when stopped
+
   # Problem Management service database
   problem-management-service-db:
     image: mongo:latest
@@ -31,7 +45,8 @@ services:
       - problem-management-service-db-data:/data/db  # Persist the data
     networks:
       - app-network
-  
+    restart: always  # Ensures the frontend service is restarted on failure or when stopped
+
   # Frontend Service
   frontend:
     build:
@@ -45,6 +60,7 @@ services:
       - NODE_OPTIONS=--openssl-legacy-provider
     networks:
       - app-network
+    restart: always  # Ensures the frontend service is restarted on failure or when stopped
 
   # User Service
   user-service:
@@ -56,8 +72,11 @@ services:
       - rabbitmq
     environment:
       - SECRET_JWT=mysecretkeythan
+      - RABBITMQ_URL=amqp://guest:guest@rabbitmq:5672/
+      - MONGO_URI=mongodb://user-service-db:27017/user-service-db
     networks:
       - app-network
+    restart: always  # Ensures the frontend service is restarted on failure or when stopped
 
   # Solver Service
   solver-service:
@@ -68,10 +87,14 @@ services:
       - "6789:6789"
     depends_on:
       - rabbitmq
+    environment:
+      - JWT_SECRET_KEY=mysecretkeythan
+      - RABBITMQ_URL=amqp://guest:guest@rabbitmq:5672/
     volumes:
       - solver-service-data:/data  # Persist the data
     networks:
       - app-network
+    restart: always  # Ensures the frontend service is restarted on failure or when stopped
 
   # Problem Management Service
   problem-management-service:
@@ -85,10 +108,13 @@ services:
       - rabbitmq
     environment:
       - JWT_SECRET_KEY=mysecretkeythan
+      - RABBITMQ_URL=amqp://guest:guest@rabbitmq:5672/
+      - MONGO_URI=mongodb://problem-management-service-db:27017/problem-management-service-db
     volumes:
       - problem-management-service-data:/data  # Persist the data
     networks:
       - app-network
+    restart: always  # Ensures the frontend service is restarted on failure or when stopped
 
   # Orchestrator Service
   orchestrator:
@@ -101,8 +127,10 @@ services:
       - rabbitmq
     environment:
       - JWT_SECRET_KEY=mysecretkeythan
+      - RABBITMQ_URL=amqp://guest:guest@rabbitmq:5672/
     networks:
       - app-network
+    restart: always  # Ensures the frontend service is restarted on failure or when stopped
   
   # Transaction Service
   transaction-service:
@@ -116,18 +144,13 @@ services:
       - rabbitmq
     environment:
       - JWT_SECRET_KEY=mysecretkeythan
+      - RABBITMQ_URL=amqp://guest:guest@rabbitmq:5672/
+      - MONGO_URI=mongodb://transaction-service-db:27017/problem-management-service-db
     networks:
       - app-network
+    restart: always  # Ensures the frontend service is restarted on failure or when stopped
 
-  # RabbitMQ
-  rabbitmq:
-    image: rabbitmq:management
-    container_name: rabbitmq
-    ports:
-      - "5672:5672"
-      - "15672:15672"
-    networks:
-      - app-network
+
 
 # Define volumes globally
 volumes:
