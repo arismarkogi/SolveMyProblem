@@ -1,3 +1,5 @@
+const jwt = require('jsonwebtoken');
+
 exports.healthCheck = async (req, res) => {
     try {
         const finalMessage = {

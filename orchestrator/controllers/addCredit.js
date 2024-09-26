@@ -1,7 +1,6 @@
 const jwt = require('jsonwebtoken');
 const { sendToQueue, responseMap } = require('../utils/rabbitmq');
 const { v4: uuidv4 } = require('uuid');
-const { sign } = require('crypto');
 
 exports.addCredit = async (req, res) => {
     try {

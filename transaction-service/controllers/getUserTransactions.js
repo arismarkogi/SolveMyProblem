@@ -1,5 +1,6 @@
 const Transaction = require('../models/transactionModel');
 const { sendToQueue } = require('../utils/rabbitmq');
+const jwt = require('jsonwebtoken');
 
 const getUserTransactions = async (msg, channel) => {
     console.log('Received message:', msg);

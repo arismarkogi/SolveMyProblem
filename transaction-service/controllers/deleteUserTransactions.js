@@ -1,5 +1,6 @@
 const Transaction = require('../models/transactionModel');
 const { sendToQueue } = require('../utils/rabbitmq');
+const jwt = require('jsonwebtoken');
 
 const sendResponse = async (correlationId, message, status, channel, userId = null, deletedCount = null) => {
     const response = {
