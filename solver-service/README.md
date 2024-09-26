@@ -1,9 +1,14 @@
-# MICROSERVICE
+# Solver Microservice
 
-## (name)
+The Solver Microservice handles the computation of user-submitted problems. It uses Google OR-Tools to solve Vehicle Routing Problems (VRP).
 
-(description)
-needs fixing when docker is initialized (urls etc)
+## Features:
 
+    - Solve VRP problems
+    - Generate solutions for problem submissions
 
-can run it with node solver.js
+## Technologies:
+
+    - Python
+    - Google OR-Tools
+    - RabbitMQ for message queues

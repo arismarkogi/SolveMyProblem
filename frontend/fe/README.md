@@ -1,3 +1,19 @@
+# Frontend
+
+The Frontend is a React-based web application that provides the user interface for SolveMyProblem. It allows users to submit problems, manage their account, and view their problem history.
+
+## Features:
+
+    - Submit problems via the web interface
+    - View problem history
+    - Purchase credits
+
+## Technologies:
+
+    - React
+    - Axios for API requests
+    - Bootstrap for UI components
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

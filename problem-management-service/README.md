@@ -1,11 +1,21 @@
-# MICROSERVICE
+# Problem Management Service
 
-## (name)
+The Problem Management Service manages the submission and history of user problems. It stores the problem data, tracks solution status, and interacts with the solver microservice.
 
-(description)
-MongoDB database:
-collections users, data
-needs fixing when docker is initialized (urls etc)
+## Features:
 
+    - Submit problems
+    - View problem history
+    - Store solutions
 
-can run it with node app.js
+## Endpoints:
+
+    - POST /submit-problem
+    - GET /getProblems
+    - DELETE /deleteProblem/:id
+
+## Technologies:
+
+    - Node.js
+    - Express
+    - MongoDB

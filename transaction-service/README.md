@@ -1,5 +1,14 @@
-# MICROSERVICE
+# Transactions Service
 
-## (name)
+The Transactions Service manages user credits and transaction history. It allows users to buy credits and keeps track of their credit balance.
 
-(description)
+## Features:
+
+    - Handle credit purchases
+    - Track transaction history
+
+## Technologies:
+
+    - Node.js
+    - Express
+    - MongoDB
