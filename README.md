@@ -51,7 +51,8 @@ Users can submit problems in the following JSON format:
     ]
   },
   "pythonFileContent": "..."
-}```
+}
+```
 
 ### Problem Solver Description
 
