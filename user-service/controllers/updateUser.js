@@ -8,10 +8,33 @@ const jwt = require('jsonwebtoken');
 
 
 exports.updateUser = async (message) => {
-    const {correlationId, userId, username, email, password } = message;
+    let {correlationId, userId,token, username, email, password } = message;
+    console.log('Received request token:', token);
     try{
-    // Check for Google ID association
-    const user = await User.findOne({_id:userId});
+    if (!userId) {
+            try {
+                let decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
+                // Extract id from the decoded token
+                userId = decoded.id;
+            } catch (error) {
+                console.error('Error verifying token:', error);
+                const errorResponse = {headers: {
+                    origin : `Bearer ${jwt.sign({origin : process.env.ORIGIN }, process.env.JWT_SECRET_ORIGIN_KEY)}`,
+                },type:"update", correlationId : correlationId,message: 'Invalid Token', status: 401 };
+                await sendToQueue('user-service-queue-res', errorResponse);
+                return;
+            }
+        }
+    if (!userId) {
+            const errorResponse = {headers: {
+                origin : `Bearer ${jwt.sign({origin : process.env.ORIGIN }, process.env.JWT_SECRET_ORIGIN_KEY)}`,
+            },type:"update", correlationId : correlationId, message: 'User ID is required', status: 400 };
+            await sendToQueue('user-service-queue-res', errorResponse);
+            return;
+        }
+    
+        const user = await User.findOne({_id:userId});
+
     if (!user) {
         const errorResponse = {headers: {
             origin : `Bearer ${jwt.sign({origin : process.env.ORIGIN }, process.env.JWT_SECRET_ORIGIN_KEY)}`,

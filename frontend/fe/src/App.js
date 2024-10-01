@@ -12,6 +12,9 @@ import Home from './components/Home';
 import AdminMainPage from './components/AdminMainPage';
 import UserEditPage from './components/UserEditPage';
 import ProblemDetail from './components/ProblemDetail';
+import EditSelfPage from './components/EditSelfPage';
+import TransactionPage from './components/TransactionPage';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function AuthWrapper({ children }) {
@@ -75,6 +78,8 @@ function App() {
                         <Route path="/admin" element={<AdminMainPage onLogout={handleLogout} />} />
                         <Route path="/edit-user/:userId" element={<UserEditPage />} />
                         <Route path="/problem/:problemId" element={<ProblemDetail />} />
+                        <Route path="/edit-self" element={<EditSelfPage />} />
+                        <Route path="/get-transactions" element={<TransactionPage />} />
                     </Routes>
                 </div>
             </AuthWrapper>

@@ -15,10 +15,13 @@ RUN python3 -m venv /app/venv
 RUN /app/venv/bin/pip install --upgrade pip
 
 # Install ortools inside the virtual environment
-RUN /app/venv/bin/pip install ortools
+RUN /app/venv/bin/pip3 install ortools
 
 # Copy package.json and package-lock.json
 COPY package*.json ./
+
+ENV VIRTUAL_ENV=/app/venv
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
 # Install Node.js dependencies
 RUN npm install

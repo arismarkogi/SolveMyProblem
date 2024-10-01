@@ -2,10 +2,12 @@ const { json } = require('express');
 const User = require('../models/userModel');
 const { sendToQueue } = require('../utils/rabbitmq');
 const jwt = require('jsonwebtoken');
+const axios = require('axios');
+const { stringify } = require('flatted'); 
 
-exports.searchUsers = async (message) => {
-    const {correlationId, username, email} = message
-
+exports.searchUsers = async (message, res=null) => {
+    const {correlationId, username, email} = message.headers;
+    console.log('User-service: Searching users with username:', username, 'email:', email);
         // Build the query object
     try {
             // Build the query, case insensitive matching
@@ -22,38 +24,34 @@ exports.searchUsers = async (message) => {
         // no users case
         if (users.length === 0) {
             console.log('No matching users found');
-            await sendToQueue('user-service-queue-res', {
+            return res.status(200).json( {
                 headers: {
                     origin : `Bearer ${jwt.sign({origin : process.env.ORIGIN }, process.env.JWT_SECRET_ORIGIN_KEY)}`,
                 },
                 type: 'search',
                 correlationId,
-                status: 200,
                 message: 'No users found matching the criteria ',
                 users: []
             });
-            return;
         }
-        await sendToQueue('user-service-queue-res', {
+        res.status(200).json( {
             headers: {
                 origin : `Bearer ${jwt.sign({origin : process.env.ORIGIN }, process.env.JWT_SECRET_ORIGIN_KEY)}`,
             },
             type: 'search',
             correlationId,
-            status: 200,
             message: 'Users found successfully',
             users: users
         });
 
     } catch (error) {
         console.error('User-service: Error in search users:', error);
-        await sendToQueue('user-service-queue-res', {
+        res.status(500).json({
             headers: {
                 origin : `Bearer ${jwt.sign({origin : process.env.ORIGIN }, process.env.JWT_SECRET_ORIGIN_KEY)}`,
             },
             type: 'search',
             correlationId,
-            status: 500,
             message: 'Internal server error: ' + error.message
         });
     }

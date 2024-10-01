@@ -1,55 +1,29 @@
+const ObjectId = require('mongoose').Types.ObjectId;
 const Transaction = require('../models/transactionModel');
-const { sendToQueue } = require('../utils/rabbitmq');
 const jwt = require('jsonwebtoken');
 
-const getUserTransactions = async (msg, channel) => {
-    console.log('Received message:', msg);
-    const { userId} = msg;
-
-    if (!userId) {
-        console.error('Missing required field: userId');
-        const errorMessage = {
-            headers: {
-                origin : `Bearer ${jwt.sign({origin : process.env.ORIGIN }, process.env.JWT_SECRET_ORIGIN_KEY)}`,
-            },
-            success: false,
-            message: 'Missing required field: userId'
-        };
-        await sendToQueue('trans_response_queue', errorMessage, channel);
-        return;
-    }
-
+const getTransactions = async (req, res) => {
     try {
-        // Calculate skip value for pagination
+        console.log('Received request', req.headers);
+        let userId = req.user;
 
-        // Fetch transactions
-        const transactions = await Transaction.find({ userId: userId })
-            .sort({ createdAt: -1 })
+        if (!userId) {
+            return res.status(400).json({ error: 'User ID is required' });
+        }
 
+        // Don't exclude _id to ensure you get the transaction IDs
+        const transactions = await Transaction.find({ userId: new ObjectId(userId) })
+            .select('-__v')
+            .sort({ createdAt: -1 })  // Sort by createdAt in descending order
+            .exec();
 
-        const successMessage = {
-            headers: {
-                origin : `Bearer ${jwt.sign({origin : process.env.ORIGIN }, process.env.JWT_SECRET_ORIGIN_KEY)}`,
-            },
-            userId,
-            success: true,
-            transactions: transactions,
-            message: 'User transactions fetched successfully'
-        };
-        await sendToQueue('trans_response_queue', successMessage, channel);
+        console.log('Transactions Found:', transactions);
 
+        res.json({ transactions });
     } catch (error) {
-        console.error('Error fetching user transactions:', error);
-        const errorMessage = {
-            headers: {
-                origin : `Bearer ${jwt.sign({origin : process.env.ORIGIN }, process.env.JWT_SECRET_ORIGIN_KEY)}`,
-            },
-            userId,
-            success: false,
-            message: 'Failed to fetch user transactions'
-        };
-        await sendToQueue('trans_response_queue', errorMessage, channel);
+        console.error('Error finding transactions:', error);       
+        res.status(500).json({ error: 'An error occurred while fetching transactions', details: error.message });
     }
 };
 
-module.exports = { getUserTransactions };
+module.exports = { getTransactions };

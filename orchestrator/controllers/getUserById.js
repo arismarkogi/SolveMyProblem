@@ -1,6 +1,7 @@
 const { sendToQueue, responseMap } = require('../utils/rabbitmq');
 const { v4: uuidv4 } = require('uuid');
 const jwt = require('jsonwebtoken');
+const axios = require('axios');
 
 exports.getUserById = async (req, res) => {
     try {
@@ -14,19 +15,23 @@ exports.getUserById = async (req, res) => {
 
         const message = {
             headers: {
+                authorization: `Bearer ${req.token}`,
                 origin : `Bearer ${jwt.sign({origin : process.env.ORIGIN }, process.env.JWT_SECRET_ORIGIN_KEY)}`,
-            },
-            type: "get_user_profile",
-            mes: {
                 userId,
                 correlationId
-            }
+            },
+            type: "get_user_profile",
+            
         };
 
         responseMap.set(correlationId, res);
 
         console.log(`Sending get user by ID request to user-service, correlationId: ${correlationId}, userId: ${userId}`);
-        await sendToQueue('user-service-queue', message);
+        const apiResponse = await axios.get(`http://user-service:4217/get-user-by-id/${userId}`, message);
+
+        // Return the API response to the client
+        res.status(apiResponse.status).json(apiResponse.data);
+        responseMap.delete(correlationId);
 
     } catch (error) {
         console.error('Error in getUserById:', error);

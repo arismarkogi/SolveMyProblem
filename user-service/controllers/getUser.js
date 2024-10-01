@@ -1,61 +1,38 @@
 const User = require('../models/userModel');
-const { sendToQueue } = require('../utils/rabbitmq');
 const jwt = require('jsonwebtoken');
 
-exports.getUser = async (message) => {
-    const { correlationId, token } = message;
+exports.getUser = async (req, res) => {
+  try {
+    const token = req.headers.authorization?.split(' ')[1];
 
-    try {
-        
-        const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
-        const { id, role } = decoded;
-        const userId = id;
-
-        console.log(`User-service: Fetching profile for user ${userId}`);
-        const user = await User.findById(userId).select('-password');
-        
-        if (!user) {
-            console.log(`User-service: User ${userId} not found`);
-            await sendToQueue('user-service-queue-res', {
-                headers: {
-                    origin : `Bearer ${jwt.sign({origin : process.env.ORIGIN }, process.env.JWT_SECRET_ORIGIN_KEY)}`,
-                },
-                type: 'get_user_profile',
-                correlationId,
-                status: 404,
-                message: 'User not found'
-            });
-            return;
-        }
-
-        console.log(`User-service: Profile fetched successfully for user ${userId}`);
-        await sendToQueue('user-service-queue-res', {
-            headers: {
-                origin : `Bearer ${jwt.sign({origin : process.env.ORIGIN }, process.env.JWT_SECRET_ORIGIN_KEY)}`,
-            },
-            type: 'get_user_profile',
-            correlationId,
-            status: 200,
-            message: 'Profile fetched successfully',
-            user: {
-                id: user._id,
-                username: user.username,
-                password: user.password,
-                email: user.email,
-                creditAmount: user.creditAmount
-            }
-        });
-
-    } catch (error) {
-        console.error('User-service: Error fetching user profile:', error);
-        await sendToQueue('user-service-queue-res', {
-            headers: {
-                origin : `Bearer ${jwt.sign({origin : process.env.ORIGIN }, process.env.JWT_SECRET_ORIGIN_KEY)}`,
-            },
-            type: 'get_user_profile',
-            correlationId,
-            status: 500,
-            message: 'Internal server error'
-        });
+    if (!token) {
+      return res.status(400).json({ error: 'Token is required' });
     }
+
+    const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
+    const { id } = decoded;
+
+    console.log(`User-service: Fetching profile for user ${id}`);
+    const user = await User.findById(id).select('-password');
+
+    if (!user) {
+      console.log(`User-service: User ${id} not found`);
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    console.log(`User-service: Profile fetched successfully for user ${id}`);
+    return res.status(200).json({
+      message: 'Profile fetched successfully',
+      user: {
+        id: user._id,
+        username: user.username,
+        email: user.email,
+        creditAmount: user.creditAmount
+      }
+    });
+
+  } catch (error) {
+    console.error('User-service: Error fetching user profile:', error);
+    return res.status(500).json({ error: 'Internal server error' });
+  }
 };

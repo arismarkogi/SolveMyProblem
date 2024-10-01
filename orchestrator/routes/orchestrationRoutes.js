@@ -12,6 +12,11 @@ const getUserController = require('../controllers/getUserById');
 const getgoogleSignUpController = require('../controllers/googleSignup');
 const getStatsController = require('../controllers/stats');
 const getUserByTokenController = require('../controllers/getUserByToken');
+const getProblemByIdController = require('../controllers/getProblem');
+const getProblemsController = require('../controllers/getProblems');
+const deleteProblemController = require('../controllers/deleteProblem');
+const getTransactions = require('../controllers/getTransactions');
+const updateUserTokenController = require('../controllers/updateUserToken');
 const router = express.Router();
 
 router.post('/submit-problem',  problemIssueController.problemIssue);
@@ -26,6 +31,11 @@ router.post('/update-user',  updateUserController.updateUser);
 router.get('/get-user-by-id/:userId',  getUserController.getUserById);
 router.post('/google-signup', getgoogleSignUpController.googleSignUp);
 router.get('/get-stats',  getStatsController.getStats);
-router.get('/get-user-by-token',  getUserByTokenController.getUserByToken);
+router.get('/getProblem/:problemId', getProblemByIdController.getProblemById);
+router.get('/getProblems', getProblemsController.getProblems);
+router.delete('/deleteProblem/:id', deleteProblemController.deleteProblem);
+router.get('/get-transactions',  getTransactions.getTransactions);
 
+router.get('/get-user-by-token', getUserByTokenController.getUserByToken);
+router.put('/update-user-token', updateUserTokenController.updateUserToken);
 module.exports = router;

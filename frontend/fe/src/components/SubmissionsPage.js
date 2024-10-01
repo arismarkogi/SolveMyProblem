@@ -29,15 +29,16 @@ function SubmissionsPage() {
     const fetchSubmissions = async (token, adminUserId) => {
         try {
             const config = {
-                headers: { Authorization: `Bearer ${token}`,
-             }
+                headers: { 
+                    Authorization: `Bearer ${token}`,
+                }
             };
 
-            const response = await axios.get('http://localhost:5000/getProblems', {
+            const response = await axios.get('http://localhost:6900/getProblems', {
                 ...config,
                 params: {
-                    userId: adminUserId,
-                    token: token
+                    token: token,
+                    userId: adminUserId
                 }
             });
 
@@ -86,7 +87,7 @@ function SubmissionsPage() {
         const config = {
             headers: { Authorization: `Bearer ${token}` }
         };
-        const response = await axios.delete(`http://localhost:5000/deleteProblem/${id}`, config);
+        const response = await axios.delete(`http://localhost:6900/deleteProblem/${id}`, config);
         console.log('Problem deleted:', response.data);
         // Refresh the submissions after deletion
         fetchSubmissions(token, role === 'admin' ? userId : null);

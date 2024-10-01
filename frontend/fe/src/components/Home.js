@@ -72,6 +72,13 @@ function Home({ onLogout }) {
                     >
                         View Submissions
                     </button>
+                    <button
+                        className="btn btn-secondary mx-2"
+                        style={{backgroundColor: '#00A86B', borderColor: '#00A86B'}}
+                        onClick={() => navigate('/edit-self')}
+                    >
+                        Edit Profile
+                    </button>
                 </div>
             </main>
             <Footer/>

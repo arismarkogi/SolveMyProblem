@@ -1,0 +1,153 @@
+2024-10-01 02:55:13,992 INFO o.a.j.u.JMeterUtils: Setting Locale to en_EN
+2024-10-01 02:55:14,037 INFO o.a.j.JMeter: Loading user properties from: /opt/jmeter/bin/user.properties
+2024-10-01 02:55:14,037 INFO o.a.j.JMeter: Loading system properties from: /opt/jmeter/bin/system.properties
+2024-10-01 02:55:14,051 INFO o.a.j.JMeter: Copyright (c) 1998-2024 The Apache Software Foundation
+2024-10-01 02:55:14,052 INFO o.a.j.JMeter: Version 5.6.3
+2024-10-01 02:55:14,052 INFO o.a.j.JMeter: java.version=17.0.9
+2024-10-01 02:55:14,052 INFO o.a.j.JMeter: java.vm.name=OpenJDK 64-Bit Server VM
+2024-10-01 02:55:14,052 INFO o.a.j.JMeter: os.name=Linux
+2024-10-01 02:55:14,052 INFO o.a.j.JMeter: os.arch=amd64
+2024-10-01 02:55:14,052 INFO o.a.j.JMeter: os.version=6.2.0-39-generic
+2024-10-01 02:55:14,052 INFO o.a.j.JMeter: file.encoding=UTF-8
+2024-10-01 02:55:14,052 INFO o.a.j.JMeter: java.awt.headless=null
+2024-10-01 02:55:14,053 INFO o.a.j.JMeter: Max memory     =1073741824
+2024-10-01 02:55:14,053 INFO o.a.j.JMeter: Available Processors =8
+2024-10-01 02:55:14,069 INFO o.a.j.JMeter: Default Locale=English (EN)
+2024-10-01 02:55:14,070 INFO o.a.j.JMeter: JMeter  Locale=English (EN)
+2024-10-01 02:55:14,071 INFO o.a.j.JMeter: JMeterHome=/opt/jmeter
+2024-10-01 02:55:14,071 INFO o.a.j.JMeter: user.dir  =/u01/home0_backup/kk/ece/se8/Saas/saas2024-24-demo/testing
+2024-10-01 02:55:14,071 INFO o.a.j.JMeter: PWD       =/u01/home0_backup/kk/ece/se8/Saas/saas2024-24-demo/testing
+2024-10-01 02:55:14,072 INFO o.a.j.JMeter: IP: 127.0.1.1 Name: kk-Inspiron-3505 FullName: kk-Inspiron-3505
+2024-10-01 02:55:14,100 INFO o.a.j.JMeter: Loaded icon properties from org/apache/jmeter/images/icon.properties
+2024-10-01 02:55:14,640 INFO o.a.j.JMeterGuiLauncher: Setting LAF to: com.github.weisj.darklaf.DarkLaf:com.github.weisj.darklaf.theme.DarculaTheme
+2024-10-01 02:56:07,901 INFO o.a.j.s.FileServer: Default base='/u01/home0_backup/kk/ece/se8/Saas/saas2024-24-demo/testing'
+2024-10-01 02:56:07,912 INFO o.a.j.g.a.Load: Loading file: /u01/home0_backup/kk/ece/se8/Saas/saas2024-24-demo/testing/generated_messages.csv
+2024-10-01 02:56:07,912 INFO o.a.j.s.FileServer: Set new base='/u01/home0_backup/kk/ece/se8/Saas/saas2024-24-demo/testing'
+2024-10-01 02:56:08,419 INFO o.a.j.s.SaveService: Testplan (JMX) version: 2.2. Testlog (JTL) version: 2.2
+2024-10-01 02:56:08,436 INFO o.a.j.s.SaveService: Using SaveService properties version 5.0
+2024-10-01 02:56:08,440 INFO o.a.j.s.SaveService: Using SaveService properties file encoding UTF-8
+2024-10-01 02:56:08,443 INFO o.a.j.s.SaveService: Loading file: /u01/home0_backup/kk/ece/se8/Saas/saas2024-24-demo/testing/generated_messages.csv
+2024-10-01 02:56:08,468 WARN o.a.j.g.a.Load: Error in XML format. org.xmlpull.v1.XmlPullParserException: only whitespace content allowed before start tag and not { (position: START_DOCUMENT seen {... @1:2) 
+2024-10-01 02:56:08,469 ERROR o.a.j.u.JMeterUtils: only whitespace content allowed before start tag and not { (position: START_DOCUMENT seen {... @1:2) 
+2024-10-01 02:57:08,049 INFO o.a.j.g.a.Load: Loading file: /u01/home0_backup/kk/ece/se8/Saas/saas2024-24-demo/testing/CSV Data Set Config.jmx
+2024-10-01 02:57:08,050 INFO o.a.j.s.FileServer: Set new base='/u01/home0_backup/kk/ece/se8/Saas/saas2024-24-demo/testing'
+2024-10-01 02:57:08,050 INFO o.a.j.s.SaveService: Loading file: /u01/home0_backup/kk/ece/se8/Saas/saas2024-24-demo/testing/CSV Data Set Config.jmx
+2024-10-01 02:57:08,292 INFO c.z.j.p.a.g.AMQPSamplerGui: AMQPSamplerGui.configure() called
+2024-10-01 02:57:08,294 INFO c.z.j.p.a.g.AMQPSamplerGui: AMQPSamplerGui.modifyTestElement() called, set user/pass to guest/guest on sampler com.zeroclue.jmeter.protocol.amqp.AMQPPublisher@a240da4d
+2024-10-01 02:57:08,448 INFO o.a.j.s.SampleResult: Note: Sample TimeStamps are START times
+2024-10-01 02:57:08,448 INFO o.a.j.s.SampleResult: sampleresult.default.encoding is set to UTF-8
+2024-10-01 02:57:08,449 INFO o.a.j.s.SampleResult: sampleresult.useNanoTime=true
+2024-10-01 02:57:08,449 INFO o.a.j.s.SampleResult: sampleresult.nanoThreadSleep=5000
+2024-10-01 02:57:08,835 INFO o.a.j.s.FileServer: Set new base='/u01/home0_backup/kk/ece/se8/Saas/saas2024-24-demo/testing'
+2024-10-01 02:57:16,349 INFO c.z.j.p.a.g.AMQPSamplerGui: AMQPSamplerGui.configure() called
+2024-10-01 02:57:16,350 INFO c.z.j.p.a.g.AMQPSamplerGui: AMQPSamplerGui.modifyTestElement() called, set user/pass to guest/guest on sampler com.zeroclue.jmeter.protocol.amqp.AMQPPublisher@a240da4d
+2024-10-01 02:57:16,354 INFO c.z.j.p.a.g.AMQPSamplerGui: AMQPSamplerGui.configure() called
+2024-10-01 02:57:16,380 INFO c.z.j.p.a.g.AMQPSamplerGui: AMQPSamplerGui.modifyTestElement() called, set user/pass to guest/guest on sampler com.zeroclue.jmeter.protocol.amqp.AMQPPublisher@a240da4d
+2024-10-01 02:57:16,384 INFO c.z.j.p.a.g.AMQPSamplerGui: AMQPSamplerGui.configure() called
+2024-10-01 02:57:18,438 INFO c.z.j.p.a.g.AMQPSamplerGui: AMQPSamplerGui.modifyTestElement() called, set user/pass to guest/guest on sampler com.zeroclue.jmeter.protocol.amqp.AMQPPublisher@a240da4d
+2024-10-01 02:57:44,290 INFO c.z.j.p.a.g.AMQPSamplerGui: AMQPSamplerGui.configure() called
+2024-10-01 02:57:44,292 INFO c.z.j.p.a.g.AMQPSamplerGui: AMQPSamplerGui.modifyTestElement() called, set user/pass to guest/guest on sampler com.zeroclue.jmeter.protocol.amqp.AMQPPublisher@a240da4d
+2024-10-01 02:57:44,297 INFO c.z.j.p.a.g.AMQPSamplerGui: AMQPSamplerGui.configure() called
+2024-10-01 02:57:44,326 INFO c.z.j.p.a.g.AMQPSamplerGui: AMQPSamplerGui.modifyTestElement() called, set user/pass to guest/guest on sampler com.zeroclue.jmeter.protocol.amqp.AMQPPublisher@a240da4d
+2024-10-01 02:57:44,330 INFO c.z.j.p.a.g.AMQPSamplerGui: AMQPSamplerGui.configure() called
+2024-10-01 02:57:47,751 INFO c.z.j.p.a.g.AMQPSamplerGui: AMQPSamplerGui.modifyTestElement() called, set user/pass to guest/guest on sampler com.zeroclue.jmeter.protocol.amqp.AMQPPublisher@a240da4d
+2024-10-01 02:57:51,076 INFO c.z.j.p.a.g.AMQPSamplerGui: AMQPSamplerGui.configure() called
+2024-10-01 02:57:51,078 INFO c.z.j.p.a.g.AMQPSamplerGui: AMQPSamplerGui.modifyTestElement() called, set user/pass to guest/guest on sampler com.zeroclue.jmeter.protocol.amqp.AMQPPublisher@a240da4d
+2024-10-01 02:57:51,082 INFO c.z.j.p.a.g.AMQPSamplerGui: AMQPSamplerGui.configure() called
+2024-10-01 02:57:51,112 INFO c.z.j.p.a.g.AMQPSamplerGui: AMQPSamplerGui.modifyTestElement() called, set user/pass to guest/guest on sampler com.zeroclue.jmeter.protocol.amqp.AMQPPublisher@a240da4d
+2024-10-01 02:57:51,118 INFO c.z.j.p.a.g.AMQPSamplerGui: AMQPSamplerGui.configure() called
+2024-10-01 02:58:26,912 INFO c.z.j.p.a.g.AMQPSamplerGui: AMQPSamplerGui.modifyTestElement() called, set user/pass to guest/guest on sampler com.zeroclue.jmeter.protocol.amqp.AMQPPublisher@97931578
+2024-10-01 02:58:26,915 INFO c.z.j.p.a.g.AMQPSamplerGui: AMQPSamplerGui.configure() called
+2024-10-01 02:58:26,917 INFO c.z.j.p.a.g.AMQPSamplerGui: AMQPSamplerGui.modifyTestElement() called, set user/pass to guest/guest on sampler com.zeroclue.jmeter.protocol.amqp.AMQPPublisher@97931578
+2024-10-01 02:58:26,919 INFO c.z.j.p.a.g.AMQPSamplerGui: AMQPSamplerGui.configure() called
+2024-10-01 02:58:26,920 INFO c.z.j.p.a.g.AMQPSamplerGui: AMQPSamplerGui.modifyTestElement() called, set user/pass to guest/guest on sampler com.zeroclue.jmeter.protocol.amqp.AMQPPublisher@97931578
+2024-10-01 02:58:26,922 INFO c.z.j.p.a.g.AMQPSamplerGui: AMQPSamplerGui.configure() called
+2024-10-01 02:58:26,978 INFO c.z.j.p.a.g.AMQPSamplerGui: AMQPSamplerGui.modifyTestElement() called, set user/pass to guest/guest on sampler com.zeroclue.jmeter.protocol.amqp.AMQPPublisher@97931578
+2024-10-01 02:58:26,980 INFO c.z.j.p.a.g.AMQPSamplerGui: AMQPSamplerGui.configure() called
+2024-10-01 02:58:26,985 INFO c.z.j.p.a.g.AMQPSamplerGui: AMQPSamplerGui.modifyTestElement() called, set user/pass to guest/guest on sampler com.zeroclue.jmeter.protocol.amqp.AMQPPublisher@97931578
+2024-10-01 02:58:26,987 INFO c.z.j.p.a.g.AMQPSamplerGui: AMQPSamplerGui.configure() called
+2024-10-01 02:58:27,002 INFO o.a.j.e.StandardJMeterEngine: Running the test!
+2024-10-01 02:58:27,007 INFO o.a.j.s.SampleEvent: List of sample_variables: []
+2024-10-01 02:58:27,008 INFO o.a.j.s.SampleEvent: List of sample_variables: []
+2024-10-01 02:58:27,012 INFO o.a.j.e.u.CompoundVariable: Note: Function class names must contain the string: '.functions.'
+2024-10-01 02:58:27,013 INFO o.a.j.e.u.CompoundVariable: Note: Function class names must not contain the string: '.gui.'
+2024-10-01 02:58:27,111 INFO o.a.j.g.u.JMeterMenuBar: setRunning(true, *local*)
+2024-10-01 02:58:27,182 INFO o.a.j.e.StandardJMeterEngine: Starting ThreadGroup: 1 : Thread Group
+2024-10-01 02:58:27,183 INFO o.a.j.e.StandardJMeterEngine: Starting 1 threads for group Thread Group.
+2024-10-01 02:58:27,183 INFO o.a.j.e.StandardJMeterEngine: Thread will continue on error
+2024-10-01 02:58:27,184 INFO o.a.j.t.ThreadGroup: Starting thread group... number=1 threads=1 ramp-up=10 delayedStart=false
+2024-10-01 02:58:27,189 INFO o.a.j.t.ThreadGroup: Started thread group number 1
+2024-10-01 02:58:27,190 INFO o.a.j.e.StandardJMeterEngine: All thread groups have been started
+2024-10-01 02:58:27,193 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-1
+2024-10-01 02:58:27,197 INFO o.a.j.s.FileServer: Stored: /u01/home0_backup/kk/ece/se8/Saas/saas2024-24/testing/generated_messages.csv
+2024-10-01 02:58:27,227 INFO c.z.j.p.a.AMQPSampler: Creating channel /:5672
+2024-10-01 02:58:27,228 INFO c.z.j.p.a.AMQPSampler: RabbitMQ ConnectionFactory using:
+	 virtual host: /
+	 host: 172.22.0.6
+	 port: 5672
+	 username: guest
+	 password: guest
+	 timeout: 1000
+	 heartbeat: 1
+in com.zeroclue.jmeter.protocol.amqp.AMQPPublisher@b65f683c
+2024-10-01 02:58:27,230 INFO c.z.j.p.a.AMQPSampler: Using hosts: [172.22.0.6] addresses: [172.22.0.6:5672]
+2024-10-01 02:58:27,357 INFO c.z.j.p.a.AMQPSampler: bound to:
+	 queue: probMan-to-solver-queue
+	 exchange: jmeterExchange
+	 exchange(D)? false
+	 routing key: jmeterRoutingKey
+	 arguments: {}
+2024-10-01 02:58:28,130 INFO o.a.j.t.JMeterThread: Thread is done: Thread Group 1-1
+2024-10-01 02:58:28,132 INFO o.a.j.t.JMeterThread: Thread finished: Thread Group 1-1
+2024-10-01 02:58:28,132 INFO c.z.j.p.a.AMQPSampler: AMQPSampler.threadFinished called
+2024-10-01 02:58:28,225 INFO o.a.j.e.StandardJMeterEngine: Notifying test listeners of end of test
+2024-10-01 02:58:28,226 INFO o.a.j.s.FileServer: Close: /u01/home0_backup/kk/ece/se8/Saas/saas2024-24/testing/generated_messages.csv
+2024-10-01 02:58:28,227 INFO o.a.j.g.u.JMeterMenuBar: setRunning(false, *local*)
+2024-10-01 02:58:29,919 INFO c.z.j.p.a.g.AMQPSamplerGui: AMQPSamplerGui.modifyTestElement() called, set user/pass to guest/guest on sampler com.zeroclue.jmeter.protocol.amqp.AMQPPublisher@97931578
+2024-10-01 02:58:29,923 INFO c.z.j.p.a.g.AMQPSamplerGui: AMQPSamplerGui.configure() called
+2024-10-01 02:58:29,932 INFO c.z.j.p.a.g.AMQPSamplerGui: AMQPSamplerGui.modifyTestElement() called, set user/pass to guest/guest on sampler com.zeroclue.jmeter.protocol.amqp.AMQPPublisher@97931578
+2024-10-01 02:58:29,935 INFO c.z.j.p.a.g.AMQPSamplerGui: AMQPSamplerGui.configure() called
+2024-10-01 02:58:29,944 INFO c.z.j.p.a.g.AMQPSamplerGui: AMQPSamplerGui.modifyTestElement() called, set user/pass to guest/guest on sampler com.zeroclue.jmeter.protocol.amqp.AMQPPublisher@97931578
+2024-10-01 02:58:29,947 INFO c.z.j.p.a.g.AMQPSamplerGui: AMQPSamplerGui.configure() called
+2024-10-01 02:58:30,003 INFO c.z.j.p.a.g.AMQPSamplerGui: AMQPSamplerGui.modifyTestElement() called, set user/pass to guest/guest on sampler com.zeroclue.jmeter.protocol.amqp.AMQPPublisher@97931578
+2024-10-01 02:58:30,033 INFO c.z.j.p.a.g.AMQPSamplerGui: AMQPSamplerGui.configure() called
+2024-10-01 02:58:30,042 INFO c.z.j.p.a.g.AMQPSamplerGui: AMQPSamplerGui.modifyTestElement() called, set user/pass to guest/guest on sampler com.zeroclue.jmeter.protocol.amqp.AMQPPublisher@97931578
+2024-10-01 02:58:30,049 INFO c.z.j.p.a.g.AMQPSamplerGui: AMQPSamplerGui.configure() called
+2024-10-01 02:58:30,063 INFO o.a.j.e.StandardJMeterEngine: Running the test!
+2024-10-01 02:58:30,066 INFO o.a.j.s.SampleEvent: List of sample_variables: []
+2024-10-01 02:58:30,069 INFO o.a.j.g.u.JMeterMenuBar: setRunning(true, *local*)
+2024-10-01 02:58:30,261 INFO o.a.j.e.StandardJMeterEngine: Starting ThreadGroup: 1 : Thread Group
+2024-10-01 02:58:30,262 INFO o.a.j.e.StandardJMeterEngine: Starting 1 threads for group Thread Group.
+2024-10-01 02:58:30,262 INFO o.a.j.e.StandardJMeterEngine: Thread will continue on error
+2024-10-01 02:58:30,263 INFO o.a.j.t.ThreadGroup: Starting thread group... number=1 threads=1 ramp-up=10 delayedStart=false
+2024-10-01 02:58:30,265 INFO o.a.j.t.ThreadGroup: Started thread group number 1
+2024-10-01 02:58:30,266 INFO o.a.j.e.StandardJMeterEngine: All thread groups have been started
+2024-10-01 02:58:30,268 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-1
+2024-10-01 02:58:30,275 INFO o.a.j.s.FileServer: Stored: /u01/home0_backup/kk/ece/se8/Saas/saas2024-24/testing/generated_messages.csv
+2024-10-01 02:58:30,284 INFO c.z.j.p.a.AMQPSampler: Creating channel /:5672
+2024-10-01 02:58:30,286 INFO c.z.j.p.a.AMQPSampler: RabbitMQ ConnectionFactory using:
+	 virtual host: /
+	 host: 172.22.0.6
+	 port: 5672
+	 username: guest
+	 password: guest
+	 timeout: 1000
+	 heartbeat: 1
+in com.zeroclue.jmeter.protocol.amqp.AMQPPublisher@43b418f6
+2024-10-01 02:58:30,287 INFO c.z.j.p.a.AMQPSampler: Using hosts: [172.22.0.6] addresses: [172.22.0.6:5672]
+2024-10-01 02:58:30,359 INFO c.z.j.p.a.AMQPSampler: bound to:
+	 queue: probMan-to-solver-queue
+	 exchange: jmeterExchange
+	 exchange(D)? false
+	 routing key: jmeterRoutingKey
+	 arguments: {}
+2024-10-01 02:58:31,284 INFO o.a.j.t.JMeterThread: Thread is done: Thread Group 1-1
+2024-10-01 02:58:31,289 INFO o.a.j.t.JMeterThread: Thread finished: Thread Group 1-1
+2024-10-01 02:58:31,297 INFO c.z.j.p.a.AMQPSampler: AMQPSampler.threadFinished called
+2024-10-01 02:58:31,386 INFO o.a.j.e.StandardJMeterEngine: Notifying test listeners of end of test
+2024-10-01 02:58:31,387 INFO o.a.j.s.FileServer: Close: /u01/home0_backup/kk/ece/se8/Saas/saas2024-24/testing/generated_messages.csv
+2024-10-01 02:58:31,387 INFO o.a.j.g.u.JMeterMenuBar: setRunning(false, *local*)
+2024-10-01 02:59:22,392 INFO c.z.j.p.a.g.AMQPSamplerGui: AMQPSamplerGui.modifyTestElement() called, set user/pass to guest/guest on sampler com.zeroclue.jmeter.protocol.amqp.AMQPPublisher@97931578
+2024-10-01 02:59:22,395 INFO c.z.j.p.a.g.AMQPSamplerGui: AMQPSamplerGui.configure() called
+2024-10-01 02:59:22,400 INFO c.z.j.p.a.g.AMQPSamplerGui: AMQPSamplerGui.modifyTestElement() called, set user/pass to guest/guest on sampler com.zeroclue.jmeter.protocol.amqp.AMQPPublisher@97931578
+2024-10-01 02:59:22,402 INFO c.z.j.p.a.g.AMQPSamplerGui: AMQPSamplerGui.configure() called

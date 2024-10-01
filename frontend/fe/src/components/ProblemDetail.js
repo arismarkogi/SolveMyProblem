@@ -16,7 +16,8 @@ function ProblemDetail() {
     const fetchProblemDetails = async () => {
       try {
         const token = localStorage.getItem('token'); // Retrieve token from localStorage
-        const response = await axios.get(`http://localhost:5000/getProblem/${problemId}`, {
+        console.log(`http://localhost:6900/getProblem/${problemId}`);
+        const response = await axios.get(`http://localhost:6900/getProblem/${problemId}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

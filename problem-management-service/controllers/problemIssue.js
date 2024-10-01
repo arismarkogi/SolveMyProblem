@@ -19,10 +19,10 @@ const deleteProblem = async (req, res) => {
         }
 
         await Problem.findByIdAndDelete(id);
-        res.status(200).json({ message: 'Problem deleted successfully' });
+        return res.status(200).json({ message: 'Problem deleted successfully' });
     } catch (error) {
         console.error('Error deleting problem:', error);
-        res.status(500).json({ message: 'Server error while deleting problem' });
+        return res.status(500).json({ message: 'Server error while deleting problem' });
     }
 };
 

@@ -8,12 +8,16 @@ const createTransactionController = require('./controllers/createTransaction');
 const deleteUserTransactionsController = require('./controllers/deleteUserTransactions');
 const getUserTransactionsController = require('./controllers/getUserTransactions');
 const healthCheckController = require('./controllers/healthCheck');
+const originMiddleware = require('./middlewares/originMiddleware');
+const transactionRoutes = require('./routes/transactionRoutes');
 
 require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 app.use(bodyParser.json());
+app.use(originMiddleware);
+app.use('/', transactionRoutes);
 
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('MongoDB connected'))
